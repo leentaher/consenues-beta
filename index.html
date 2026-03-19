@@ -36,11 +36,11 @@
       --gray-100: #e0e0e0;
       --white: #ffffff;
       
-      --red-500: #ff2020;
-      --red-400: #ff4040;
-      --red-300: #ff6060;
-      --amber-500: #f0a020;
-      --cyan-500: #00ffff;
+      --red-500: #6b8dff; /* updated blue from sample */
+      --red-400: #8aa6ff;
+      --red-300: #b7c8ff;
+      --amber-500: #6b8dff;
+      --cyan-500: #94c7ff;
       
       --transition-fast: 0.15s ease;
       --transition-med: 0.25s ease;
@@ -91,8 +91,8 @@
 
     @keyframes rgbSplit {
       0%, 88%, 100% { text-shadow: none; }
-      90% { text-shadow: -2px 0 #ff0040, 2px 0 #00ffff; }
-      94% { text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
+      90% { text-shadow: -2px 0 var(--red-400), 2px 0 #00ffff; }
+      94% { text-shadow: 2px 0 var(--red-400), -2px 0 #00ffff; }
     }
 
     @keyframes trackingError {
@@ -665,6 +665,22 @@
 </head>
 <body>
 
+  <script>
+    const palettes = {
+      red: ['#ff2020', '#ff4040', '#ff6060'],
+      purple: ['#8B5CF6', '#A78BFA', '#C4B5FD'],
+      yellow: ['#FBBF24', '#FCD34D', '#FDE68A'],
+      green: ['#10B981', '#34D399', '#6EE7B7']
+    };
+    const colors = Object.keys(palettes);
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    const shades = palettes[randomColor];
+    console.log('Selected color:', randomColor, shades);
+    document.documentElement.style.setProperty('--red-500', shades[0]);
+    document.documentElement.style.setProperty('--red-400', shades[1]);
+    document.documentElement.style.setProperty('--red-300', shades[2]);
+  </script>
+
   <!-- VHS Effects -->
   <div class="scanlines"></div>
   <div class="scan-bar"></div>
@@ -701,7 +717,7 @@
     </p>
     <div class="cta-row">
       <a href="/read" class="cta cta-primary">see the plan</a>
-      <a href="/join" class="cta cta-secondary">yeah I'm in</a>
+      <a href="/join" class="cta cta-secondary">get involved</a>
     </div>
   </section>
 
