@@ -36,11 +36,11 @@
       --gray-100: #e0e0e0;
       --white: #ffffff;
       
-      --red-500: #6b8dff; /* updated blue from sample */
-      --red-400: #8aa6ff;
-      --red-300: #b7c8ff;
-      --amber-500: #6b8dff;
-      --cyan-500: #94c7ff;
+      --red-500: #ff2020;
+      --red-400: #ff4040;
+      --red-300: #ff6060;
+      --amber-500: #f0a020;
+      --cyan-500: #00ffff;
       
       --transition-fast: 0.15s ease;
       --transition-med: 0.25s ease;
@@ -363,6 +363,17 @@
     /* ============================================
        COUNTDOWN STRIP
     ============================================ */
+    .countdown-title-wrapper {
+      padding: 80px 40px 12px;
+    }
+
+    .countdown-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 500;
+      color: var(--white);
+      margin: 0;
+    }
+
     .countdown-strip {
       display: flex;
       gap: 48px;
@@ -722,6 +733,9 @@
   </section>
 
   <!-- Countdown Strip -->
+  <div class="countdown-title-wrapper">
+    <h2 class="countdown-title">countdown strip</h2>
+  </div>
   <div class="countdown-strip">
     <div class="countdown-item">
       <div class="countdown-label">your job</div>
