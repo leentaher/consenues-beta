@@ -36,9 +36,9 @@
       --gray-100: #e0e0e0;
       --white: #ffffff;
       
-      --red-500: #ff2020;
-      --red-400: #ff4040;
-      --red-300: #ff6060;
+      --red-500: #e7ff00; /* neon yellow primary */
+      --red-400: #f7ff70; /* brighter yellow hover */
+      --red-300: #fbff9e; /* soft yellow highlight */
       --amber-500: #f0a020;
       --cyan-500: #00ffff;
       
@@ -89,6 +89,23 @@
       50% { box-shadow: 0 0 16px var(--red-500), 0 0 32px var(--red-500); }
     }
 
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px rgba(255, 32, 32, 0.4),
+          0 0 40px rgba(255, 32, 32, 0.3),
+          0 0 60px rgba(255, 32, 32, 0.2),
+          0 0 80px rgba(255, 32, 32, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 30px rgba(255, 32, 32, 0.5),
+          0 0 50px rgba(255, 32, 32, 0.4),
+          0 0 70px rgba(255, 32, 32, 0.3),
+          0 0 100px rgba(255, 32, 32, 0.15);
+      }
+    }
+
     @keyframes rgbSplit {
       0%, 88%, 100% { text-shadow: none; }
       90% { text-shadow: -2px 0 var(--red-400), 2px 0 #00ffff; }
@@ -107,8 +124,8 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-6px) rotate(2deg); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     @keyframes staticNoise {
@@ -198,31 +215,46 @@
       right: 32px;
       width: 80px;
       height: 80px;
-      background: rgba(20, 0, 0, 0.9);
-      border: 3px solid var(--red-500);
-      border-radius: 50%;
-      color: var(--red-500);
-      font-family: var(--font-mono);
+      background: #0a0a0a;
+      border: none;
+      border-radius: 16px;
+      color: #ffffff;
+      font-family: var(--font-sans);
       font-weight: 500;
-      font-size: 12px;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      cursor: pointer;
       z-index: 500;
-      animation: pulse 2s infinite, float 3s ease-in-out infinite;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all var(--transition-fast);
-      text-transform: lowercase;
+      flex-direction: column;
+      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+      box-shadow:
+        0 0 20px rgba(255, 32, 32, 0.4),
+        0 0 40px rgba(255, 32, 32, 0.3),
+        0 0 60px rgba(255, 32, 32, 0.2),
+        0 0 80px rgba(255, 32, 32, 0.1);
     }
 
     .panic-btn:hover {
-      background: var(--red-500);
-      color: var(--black);
-      transform: scale(1.1);
-      animation: pulse 2s infinite;
+      transform: scale(1.05);
+      box-shadow:
+        0 0 30px rgba(255, 32, 32, 0.5),
+        0 0 60px rgba(255, 32, 32, 0.4),
+        0 0 90px rgba(255, 32, 32, 0.3),
+        0 0 120px rgba(255, 32, 32, 0.2);
     }
 
     .panic-btn:active {
-      transform: scale(0.95);
+      transform: scale(0.98);
+    }
+
+    .panic-btn span {
+      display: block;
+      line-height: 1.1;
     }
 
     /* ============================================
@@ -701,16 +733,20 @@
   </div>
 
   <!-- Panic Button -->
-  <button class="panic-btn" onclick="window.location.href='panic.html'">PANIC</button>
+  <button class="panic-btn" onclick="triggerPanic()">
+    <span>OH</span>
+    <span>NO</span>
+  </button>
 
   <!-- Navigation -->
   <nav class="nav">
     <a href="/" class="nav-logo">New Consensus</a>
     <div class="nav-links">
-      <a href="/read" class="nav-link">the plan</a>
-      <a href="/projects" class="nav-link">projects</a>
-      <a href="/about" class="nav-link">about</a>
-      <a href="/donate" class="nav-cta">donate</a>
+      <a href="https://www.newconsensus.com/read" class="nav-link" target="_blank" rel="noopener noreferrer">read</a>
+      <a href="https://www.newconsensus.com/projects" class="nav-link" target="_blank" rel="noopener noreferrer">explore</a>
+      <a href="#join" class="nav-link">join</a>
+      <a href="about.html" class="nav-link">about</a>
+      <a href="#" class="nav-cta">start serving</a>
     </div>
   </nav>
 
@@ -721,7 +757,7 @@
     <p class="hero-subhead">
       <span class="crisis">AI's eating careers</span> (36 months, tops). 
       <span class="crisis">Climate's eating cities</span> (already started, check the news). 
-      <span class="crisis">Economy's eating the middle class</span> (dessert course).
+      <span class="crisis">Fascism's eating democracy</span> (dessert course).
       <br><br>
       But here's the fun part: <span class="hope">there's actually a plan.</span> 
       One plan. And it's kind of insane. In a good way.
@@ -791,37 +827,29 @@
   <section class="section">
     <h2 class="section-head">what we're building (while panicking)</h2>
     <div class="projects-grid">
-      <a href="/read" class="project-card">
+      <a href="https://www.newconsensus.com/read" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">Mission for America</h3>
         <p class="project-desc">The whole plan. 23 chapters. Every sector. If you read one thing, it's this. (It's long. Sorry.)</p>
       </a>
-      <a href="https://crashlab.org" class="project-card">
+      <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">CrashLab</h3>
         <p class="project-desc">Break the economy on purpose. Model AI unemployment. Watch it collapse. Then figure out what works. Fun!</p>
       </a>
-      <a href="/projects/bigsim" class="project-card">
+      <a href="https://sim.newconsensus.ai/" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">BigSim</h3>
         <p class="project-desc">Agent-based economic model. So policymakers can stop guessing. Because "we'll figure it out" isn't a plan.</p>
       </a>
-      <a href="https://thecostofwaiting.org" class="project-card">
+      <a href="https://thecostofwaiting.org/" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">The Cost of Waiting</h3>
         <p class="project-desc">Every year we delay costs trillions. The number will ruin your day. You're welcome.</p>
       </a>
-      <a href="/projects/wgfaa" class="project-card">
+      <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">Won't Get Fooled Again Act</h3>
         <p class="project-desc">When the next bank fails (and it will), we turn it into a public institution. Fool us twice, we own you.</p>
       </a>
-      <a href="/projects/ai-convening" class="project-card">
+      <a href="https://www.newconsensus.com/projects/ai-convening" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">2026 AI Convening</h3>
         <p class="project-desc">War-gaming the AI apocalypse with the people who'll actually have to govern through it. Fun times.</p>
-      </a>
-      <a href="/projects/abundance-101" class="project-card">
-        <h3 class="project-title">REAL Abundance 101</h3>
-        <p class="project-desc">How to build an abundant, fair, clean economy. Dozens of countries have done it. The playbook exists.</p>
-      </a>
-      <a href="/projects/no-more-bailouts" class="project-card">
-        <h3 class="project-title">No More Bailouts</h3>
-        <p class="project-desc">Our plan for converting failed banks to public banks. Nationalization with a business model.</p>
       </a>
     </div>
   </section>
@@ -845,6 +873,18 @@
     </div>
   </section>
 
+  <section class="section" id="join">
+    <h2 class="section-head">join</h2>
+    <div class="section-body">
+      <p>
+        If you're ready to help build the plan, start with the Mission for America and get in touch.
+      </p>
+      <p>
+        <a href="jobs.html" class="cta cta-primary">see open roles</a>
+      </p>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-brand">
@@ -856,10 +896,10 @@
     </div>
     <div class="footer-links">
       <a href="/about" class="footer-link">about</a>
-      <a href="https://blog.newconsensus.com" class="footer-link">blog</a>
+      <a href="https://blog.newconsensus.com" class="footer-link" target="_blank" rel="noopener noreferrer">blog</a>
       <a href="/library" class="footer-link">library</a>
-      <a href="/jobs" class="footer-link">jobs</a>
-      <a href="https://twitter.com/NewConsensusOrg" class="footer-link">twitter</a>
+      <a href="jobs.html" class="footer-link">jobs</a>
+      <a href="https://x.com/newconsensus" class="footer-link" target="_blank" rel="noopener noreferrer">twitter</a>
     </div>
     <div class="footer-copy">
       © 2026 New Consensus. All rights reserved. (Assuming there's still a world to reserve rights in.)
