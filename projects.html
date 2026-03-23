@@ -1049,12 +1049,6 @@
 
   <script>
     const now = new Date();
-    const dateStr = now.toLocaleDateString('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric'
-    }).replace(/\//g, '.');
-    document.getElementById('currentDate').textContent = dateStr;
 
     const inauguration = new Date('2029-01-20');
     const daysRemaining = Math.ceil((inauguration - now) / (1000 * 60 * 60 * 24));
