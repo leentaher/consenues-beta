@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Consensus - About</title>
+  <meta name="description" content="About New Consensus. Catch all 8 projects in the fish tank to unlock the origin story.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+      --black: #0a0a0a;
+      --gray-900: #111111;
+      --gray-800: #1a1a1a;
+      --gray-700: #222222;
+      --gray-600: #333333;
+      --gray-500: #505050;
+      --gray-400: #707070;
+      --gray-300: #909090;
+      --gray-200: #a0a0a0;
+      --gray-100: #e0e0e0;
+      --white: #ffffff;
+
+      --red-500: #ff2020;
+      --red-400: #ff5252;
+      --red-300: #ff7a7a;
+      --cyan-500: #00ffff;
+
+      --tank-deep: #0a1628;
+      --tank-mid: #0d213b;
+      --tank-shallow: #0f2847;
+
+      --transition-fast: 0.15s ease;
+      --transition-med: 0.25s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--black);
+      color: var(--gray-100);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: none;
+      background: none;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    @keyframes scanline {
+      0% { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    @keyframes flicker {
+      0%, 95%, 100% { opacity: 1; }
+      96%, 99% { opacity: 0.88; }
+      97% { opacity: 0.74; }
+    }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @keyframes bubbleRise {
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
+      20% { opacity: 0.9; }
+      100% { transform: translateY(-520px) scale(1.1); opacity: 0; }
+    }
+
+    @keyframes waveShift {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes fishTail {
+      0%, 100% { transform: rotate(8deg); }
+      50% { transform: rotate(-8deg); }
+    }
+
+    @keyframes fishGlow {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.15)); }
+      50% { filter: drop-shadow(0 0 14px rgba(255, 32, 32, 0.2)); }
+    }
+
+    @keyframes castLine {
+      0% { height: 0; }
+      50% { height: var(--cast-depth); }
+      100% { height: var(--cast-depth); }
+    }
+
+    @keyframes reelLine {
+      0% { height: var(--cast-depth); }
+      100% { height: 0; }
+    }
+
+    @keyframes hookedPop {
+      0% { transform: scale(1); opacity: 1; }
+      35% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.2); opacity: 0; }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px rgba(255, 32, 32, 0.4),
+          0 0 40px rgba(255, 32, 32, 0.3),
+          0 0 60px rgba(255, 32, 32, 0.2),
+          0 0 80px rgba(255, 32, 32, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 30px rgba(255, 32, 32, 0.5),
+          0 0 50px rgba(255, 32, 32, 0.4),
+          0 0 70px rgba(255, 32, 32, 0.3),
+          0 0 100px rgba(255, 32, 32, 0.15);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+      );
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .scan-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+      );
+      animation: scanline 6s linear infinite;
+      pointer-events: none;
+      z-index: 1001;
+    }
+
+    .vhs-timestamp {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--red-500);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rec-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red-500);
+      border-radius: 50%;
+      animation: blink 1s infinite;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, var(--black) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--gray-300);
+      transition: color var(--transition-fast);
+      text-transform: lowercase;
+    }
+
+    .nav-link:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      color: var(--red-400);
+      font-weight: 500;
+      text-transform: lowercase;
+    }
+
+    .nav-cta:hover {
+      color: var(--red-300);
+    }
+
+    .page-wrap {
+      padding-top: 92px;
+    }
+
+    .hero {
+      padding: 48px 40px 18px;
+      max-width: 980px;
+      animation: flicker 5s infinite;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--red-300);
+      margin-bottom: 18px;
+      text-transform: lowercase;
+    }
+
+    .hero-headline {
+      font-size: clamp(40px, 8vw, 72px);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-subhead {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      color: var(--gray-200);
+      line-height: 1.9;
+      max-width: 680px;
+      margin-bottom: 8px;
+    }
+
+    .tank-section {
+      padding: 16px 40px 24px;
+    }
+
+    .tank {
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      border: 1px solid #193253;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% -80%, rgba(0, 255, 255, 0.12), transparent 55%),
+        linear-gradient(180deg, var(--tank-shallow) 0%, var(--tank-mid) 48%, var(--tank-deep) 100%);
+      box-shadow:
+        inset 0 0 60px rgba(0, 255, 255, 0.08),
+        0 20px 70px rgba(0, 0, 0, 0.45);
+      isolation: isolate;
+    }
+
+    .water-surface {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      overflow: hidden;
+      opacity: 0.75;
+      z-index: 4;
+      pointer-events: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .water-surface::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 24px;
+      background: radial-gradient(circle at 24px 0, rgba(255,255,255,0.22) 16px, transparent 17px) repeat-x;
+      background-size: 48px 24px;
+      animation: waveShift 6s linear infinite;
+    }
+
+    .tank::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 80px;
+      background: radial-gradient(ellipse at bottom, rgba(0, 255, 255, 0.09) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bubbles {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -24px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      animation: bubbleRise linear infinite;
+      filter: blur(0.2px);
+    }
+
+    .tank-ui {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 8;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      pointer-events: none;
+    }
+
+    .tank-instruction {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #d8f7ff;
+      text-transform: lowercase;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(4, 12, 24, 0.45);
+      backdrop-filter: blur(2px);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .progress-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .progress-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #d8f7ff;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(4, 12, 24, 0.45);
+      border-radius: 999px;
+      text-transform: lowercase;
+    }
+
+    .progress-icons {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(32px, auto));
+      gap: 6px;
+    }
+
+    .progress-icon {
+      min-width: 32px;
+      height: 24px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 14px;
+      background: rgba(4, 12, 24, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: rgba(216, 247, 255, 0.6);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .progress-icon.caught {
+      border-color: rgba(255, 32, 32, 0.65);
+      color: #ffffff;
+      background: rgba(255, 32, 32, 0.16);
+      box-shadow: 0 0 14px rgba(255, 32, 32, 0.35);
+    }
+
+    .fish-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+    }
+
+    .fish {
+      position: absolute;
+      width: var(--fish-size);
+      height: calc(var(--fish-size) * 0.56);
+      transform-origin: center center;
+      animation: fishGlow 3s ease-in-out infinite;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .fish-body {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(0, 255, 255, 0.25), rgba(255, 32, 32, 0.22));
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 60% 45% 45% 60%;
+    }
+
+    .fish-tail {
+      position: absolute;
+      left: calc(var(--fish-size) * -0.2);
+      top: 50%;
+      width: calc(var(--fish-size) * 0.24);
+      height: calc(var(--fish-size) * 0.2);
+      transform: translateY(-50%);
+      clip-path: polygon(100% 50%, 0 0, 0 100%);
+      background: linear-gradient(180deg, rgba(0,255,255,0.6), rgba(255,32,32,0.45));
+      animation: fishTail 0.45s ease-in-out infinite;
+      transform-origin: right center;
+    }
+
+    .fish-eye {
+      position: absolute;
+      top: 33%;
+      right: 14%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+
+    .fish.boss {
+      animation-duration: 4s;
+      filter: drop-shadow(0 0 16px rgba(255, 32, 32, 0.35));
+    }
+
+    .fish.boss .fish-body {
+      border-width: 2px;
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.15), rgba(255, 32, 32, 0.3), rgba(0, 255, 255, 0.2));
+    }
+
+    .fish.medium {
+      filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.28));
+    }
+
+    .fish.small {
+      filter: drop-shadow(0 0 8px rgba(255, 32, 32, 0.22));
+    }
+
+    .fish.hooked {
+      animation: hookedPop 0.55s ease-out forwards;
+      pointer-events: none;
+    }
+
+    .cast-line {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.1));
+      z-index: 7;
+      pointer-events: none;
+      box-shadow: 0 0 8px rgba(255,255,255,0.6);
+      animation: castLine 0.45s ease-out forwards;
+    }
+
+    .cast-line.reel {
+      animation: reelLine 0.4s ease-in forwards;
+    }
+
+    .cast-line::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    .completion-banner {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      z-index: 9;
+      padding: 18px 22px;
+      width: min(94%, 620px);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 14px;
+      background: rgba(10, 16, 24, 0.84);
+      backdrop-filter: blur(4px);
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .completion-banner.show {
+      opacity: 1;
+      pointer-events: auto;
+      box-shadow: 0 0 28px rgba(255, 32, 32, 0.34);
+    }
+
+    .completion-text {
+      font-family: var(--font-mono);
+      color: #ffffff;
+      margin-bottom: 12px;
+      text-transform: lowercase;
+      letter-spacing: 0.05em;
+    }
+
+    .completion-btn {
+      display: inline-block;
+      padding: 11px 18px;
+      background: var(--red-500);
+      color: #fff;
+      font-size: 13px;
+      border-radius: 999px;
+      text-transform: lowercase;
+      letter-spacing: 0.03em;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .completion-btn:hover {
+      transform: translateY(-1px);
+      background: var(--red-400);
+    }
+
+    .section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--gray-800);
+      transition: opacity 0.4s ease, filter 0.4s ease;
+    }
+
+    .section-head {
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--gray-300);
+      line-height: 1.8;
+      max-width: 780px;
+    }
+
+    .section-body p + p {
+      margin-top: 20px;
+    }
+
+    .section-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .locked {
+      opacity: 0.35;
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    .transition-copy {
+      padding: 0 40px 18px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--gray-300);
+      text-transform: lowercase;
+      letter-spacing: 0.03em;
+    }
+
+    .principle-list {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+
+    .principle-list li + li {
+      margin-top: 10px;
+    }
+
+    .project-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.66);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .project-modal.show {
+      display: flex;
+    }
+
+    .project-card-modal {
+      width: min(680px, 100%);
+      border: 1px solid var(--gray-600);
+      background: var(--gray-900);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 0 36px rgba(255, 32, 32, 0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--gray-500);
+      color: var(--gray-300);
+      font-size: 16px;
+    }
+
+    .modal-close:hover {
+      border-color: var(--red-500);
+      color: var(--white);
+    }
+
+    .modal-title {
+      font-size: 26px;
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-desc {
+      color: var(--gray-300);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 620px;
+    }
+
+    .modal-cta {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--red-500);
+      color: #fff;
+      background: rgba(255, 32, 32, 0.2);
+      text-transform: lowercase;
+      font-size: 13px;
+      border-radius: 999px;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-cta:hover {
+      background: rgba(255, 32, 32, 0.4);
+    }
+
+    .footer {
+      padding: 60px 40px;
+      border-top: 1px solid var(--gray-800);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-logo {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--gray-400);
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: var(--gray-400);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-link:hover {
+      color: var(--white);
+    }
+
+    .footer-copy {
+      width: 100%;
+      padding-top: 40px;
+      border-top: 1px solid var(--gray-800);
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .panic-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 80px;
+      height: 80px;
+      background: #0a0a0a;
+      border: none;
+      border-radius: 16px;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      cursor: pointer;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+      box-shadow:
+        0 0 20px rgba(255, 32, 32, 0.4),
+        0 0 40px rgba(255, 32, 32, 0.3),
+        0 0 60px rgba(255, 32, 32, 0.2),
+        0 0 80px rgba(255, 32, 32, 0.1);
+    }
+
+    .panic-btn:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 30px rgba(255, 32, 32, 0.5),
+        0 0 60px rgba(255, 32, 32, 0.4),
+        0 0 90px rgba(255, 32, 32, 0.3),
+        0 0 120px rgba(255, 32, 32, 0.2);
+    }
+
+    .panic-btn:active {
+      transform: scale(0.98);
+    }
+
+    .panic-btn span {
+      display: block;
+      line-height: 1.1;
+    }
+
+    .glitch-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .glitch-overlay.active {
+      display: flex;
+    }
+
+    .close-glitch {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      border: 1px solid var(--gray-600);
+      color: var(--gray-400);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      transition: all var(--transition-fast);
+    }
+
+    .close-glitch:hover {
+      border-color: var(--red-500);
+      color: var(--red-400);
+    }
+
+    .emergency-text {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--red-500);
+      letter-spacing: 6px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .countdown-big {
+      font-family: var(--font-mono);
+      font-size: clamp(58px, 14vw, 112px);
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .countdown-label-big {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-top: 16px;
+      text-transform: lowercase;
+    }
+
+    .panic-subtext {
+      font-size: 15px;
+      color: var(--gray-400);
+      max-width: 500px;
+      margin-top: 36px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .tank {
+        min-height: 460px;
+      }
+
+      .progress-icons {
+        grid-template-columns: repeat(4, minmax(28px, auto));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 34px 24px 12px;
+      }
+
+      .tank-section {
+        padding: 14px 24px 20px;
+      }
+
+      .tank {
+        min-height: 400px;
+      }
+
+      .section {
+        padding: 62px 24px;
+      }
+
+      .transition-copy {
+        padding: 0 24px 16px;
+      }
+
+      .footer {
+        padding: 40px 24px;
+      }
+
+      .footer-links {
+        gap: 16px;
+      }
+
+      .panic-btn {
+        bottom: 24px;
+        right: 24px;
+        width: 72px;
+        height: 72px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="scan-bar"></div>
+
+  <button class="panic-btn" onclick="triggerPanic()">
+    <span>OH</span>
+    <span>NO</span>
+  </button>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">New Consensus</a>
+    <div class="nav-links">
+      <a href="https://www.newconsensus.com/read" class="nav-link" target="_blank" rel="noopener noreferrer">Read</a>
+      <a href="https://www.newconsensus.com/projects" class="nav-link" target="_blank" rel="noopener noreferrer">Explore</a>
+      <a href="https://www.newconsensus.com/projects" class="nav-link" target="_blank" rel="noopener noreferrer">Projects</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="index.html#join" class="nav-cta">Start serving</a>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <section class="hero">
+      <p class="hero-eyebrow">about us</p>
+      <h1 class="hero-headline">Most Think Tank about pages are boring.</h1>
+      <p class="hero-subhead">Ours has a fish tank. Catch all 8 projects to unlock our origin story.</p>
+    </section>
+
+    <section class="tank-section">
+      <div class="tank" id="fishTank" aria-label="Interactive fish tank game">
+        <div class="water-surface"></div>
+        <div class="bubbles" id="bubbles"></div>
+
+        <div class="tank-ui">
+          <div class="tank-instruction">click the water to cast 🎣</div>
+          <div class="progress-wrap">
+            <div class="progress-count" id="progressCount">0/8 projects caught</div>
+            <div class="progress-icons" id="progressIcons"></div>
+          </div>
+        </div>
+
+        <div class="fish-layer" id="fishLayer"></div>
+
+        <div class="completion-banner" id="completionBanner">
+          <p class="completion-text">you caught all 8. nice.</p>
+          <a href="#lore" class="completion-btn" id="buildBtn">now help us build the real thing. -></a>
+        </div>
+      </div>
+    </section>
+
+    <p class="transition-copy">that was the fun part. this is the urgent part. ↓</p>
+
+    <section class="section locked" id="lore">
+      <h2 class="section-head">You caught all 8. Nice. Here's the lore.</h2>
+      <div class="section-body">
+        <p>New Consensus is what happens when you get tired of think tanks that think but don't do anything.</p>
+        <p>We design comprehensive, detailed plans for governments to actually achieve economic renewal and transformation. Not vibes. Not white papers that die in someone's inbox. Actual plans.</p>
+      </div>
+    </section>
+
+    <section class="section locked" id="principle">
+      <h2 class="section-head">Our guiding principle (aka why we do this)</h2>
+      <div class="section-body">
+        <p>The tripocalypse: climate crisis, AI displacement, rising fascism. Same root cause. Same solution. Rebuild the economy to solve all three simultaneously.</p>
+        <p>We have everything we need to build that world in a single generation:</p>
+        <ul class="principle-list">
+          <li>Billions of creative, hardworking people</li>
+          <li>Technology that actually works (if we deployed it)</li>
+          <li>Virtually unlimited clean energy just sitting there</li>
+        </ul>
+        <p>The only thing stopping us? Politics. Not physics. Politics.</p>
+        <p><strong>So we're fixing the politics part.</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="footer-logo">New Consensus</div>
+      <p class="footer-tagline">
+        An economic policy think tank for people who think "realistic" policy got us into this mess.
+        Authors of the Green New Deal and Mission for America.
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">about</a>
+      <a href="https://blog.newconsensus.com" class="footer-link" target="_blank" rel="noopener noreferrer">blog</a>
+      <a href="/library" class="footer-link">library</a>
+      <a href="jobs.html" class="footer-link">jobs</a>
+      <a href="https://x.com/newconsensus" class="footer-link" target="_blank" rel="noopener noreferrer">twitter</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 New Consensus. All rights reserved. (Assuming there's still a world to reserve rights in.)
+    </div>
+  </footer>
+
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-card-modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">x</button>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <a class="modal-cta" id="modalCta" href="#">learn more -></a>
+    </div>
+  </div>
+
+  <div class="glitch-overlay" id="glitchOverlay">
+    <button class="close-glitch" onclick="closeGlitch()">x ok I get it</button>
+    <div class="emergency-text">THIS IS FINE</div>
+    <div class="countdown-big" id="bigCountdown">1,018</div>
+    <div class="countdown-label-big">days until someone has to have a plan</div>
+    <p class="panic-subtext">
+      The next president takes office January 2029. By then, AI will have hollowed out entire professions.
+      The climate will be worse. The economy will be... whatever this is.
+      <strong>They'll need a plan. This is the plan.</strong>
+    </p>
+  </div>
+
+  <script>
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric'
+    }).replace(/\//g, '.');
+    document.getElementById('currentDate').textContent = dateStr;
+
+    const inauguration = new Date('2029-01-20');
+    const daysRemaining = Math.ceil((inauguration - now) / (1000 * 60 * 60 * 24));
+    document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
+
+    function triggerPanic() {
+      const overlay = document.getElementById('glitchOverlay');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGlitch() {
+      const overlay = document.getElementById('glitchOverlay');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeGlitch();
+        hideModal();
+      }
+    });
+
+    const fishProjects = [
+      {
+        id: 'mfa',
+        short: 'MFA',
+        size: 'boss',
+        speed: 0.65,
+        title: 'Mission for America',
+        description: 'The plan. 23 chapters of real policy for rebuilding the American economy. What Project 2025 would look like if it were written by people who actually want to govern.',
+        cta: 'enter the plan →',
+        link: 'https://www.newconsensus.com/read'
+      },
+      {
+        id: 'crashlab',
+        short: 'CR',
+        size: 'medium',
+        speed: 1.08,
+        title: 'CrashLab',
+        description: 'Open-source economic simulator. Model how AI-driven automation transforms the economy and test policy responses in real time.',
+        cta: 'launch CrashLab →',
+        link: 'https://crashlab.org/'
+      },
+      {
+        id: 'bigsim',
+        short: 'BS',
+        size: 'medium',
+        speed: 1.02,
+        title: 'BigSim',
+        description: 'Agent-based economy simulator. Watch thousands of simulated workers, firms, and governments interact. Built for movements, politicians, and researchers.',
+        cta: 'explore BigSim →',
+        link: 'https://sim.newconsensus.ai/'
+      },
+      {
+        id: 'bookclub',
+        short: 'BK',
+        size: 'medium',
+        speed: 1.12,
+        title: 'NC Book Club',
+        description: 'Read the books that shaped the movement. Discuss them with people who actually want to build something.',
+        cta: 'join the book club →',
+        link: 'https://www.newconsensus.com/library'
+      },
+      {
+        id: 'wgfaa',
+        short: 'WG',
+        size: 'small',
+        speed: 1.55,
+        title: "Won't Get Fooled Again Act",
+        description: 'A framework for converting failed banks and AI companies into mission-driven public institutions. No more bailouts without accountability.',
+        cta: 'read the framework →',
+        link: 'https://www.newconsensus.com/projects/wgfaa'
+      },
+      {
+        id: 'abundance',
+        short: 'AB',
+        size: 'small',
+        speed: 1.44,
+        title: 'Abundance 101',
+        description: 'How to build an abundant, fair, and clean world economy for all - in a single generation. Dozens of nations have done this before.',
+        cta: 'take the class →',
+        link: 'https://www.newconsensus.com/projects/abundance-101'
+      },
+      {
+        id: 'cost',
+        short: 'CW',
+        size: 'small',
+        speed: 1.62,
+        title: 'The Cost of Waiting',
+        description: "What's the cost of not acting on the economy right now? The answer will make you uncomfortable.",
+        cta: 'see the cost →',
+        link: 'https://thecostofwaiting.org/'
+      },
+      {
+        id: 'convening',
+        short: 'AI',
+        size: 'small',
+        speed: 1.58,
+        title: '2026 AI Convening',
+        description: "We're assembling a group to meticulously work through the consequences of the AI revolution under different policy responses.",
+        cta: 'learn more →',
+        link: 'https://www.newconsensus.com/projects/ai-convening'
+      }
+    ];
+
+    const sizeToPx = {
+      boss: 120,
+      medium: 80,
+      small: 50
+    };
+
+    class Fish {
+      constructor(project, tankWidth, tankHeight) {
+        this.id = project.id;
+        this.project = project;
+        this.size = project.size;
+        this.speed = project.speed;
+        this.radius = sizeToPx[project.size] / 2;
+        this.x = Math.random() * Math.max(120, tankWidth - 120);
+        this.y = 70 + Math.random() * Math.max(140, tankHeight - 140);
+        this.vx = (Math.random() > 0.5 ? 1 : -1) * this.speed;
+        this.vy = (Math.random() * 0.6 - 0.3) * this.speed;
+        this.wobble = Math.random() * Math.PI * 2;
+        this.caught = false;
+        this.el = null;
+      }
+    }
+
+    const tankEl = document.getElementById('fishTank');
+    const fishLayerEl = document.getElementById('fishLayer');
+    const progressCountEl = document.getElementById('progressCount');
+    const progressIconsEl = document.getElementById('progressIcons');
+    const completionBannerEl = document.getElementById('completionBanner');
+    const buildBtnEl = document.getElementById('buildBtn');
+
+    const modalEl = document.getElementById('projectModal');
+    const modalCloseEl = document.getElementById('modalClose');
+    const modalTitleEl = document.getElementById('modalTitle');
+    const modalDescEl = document.getElementById('modalDesc');
+    const modalCtaEl = document.getElementById('modalCta');
+
+    const loreSections = [
+      document.getElementById('lore'),
+      document.getElementById('principle')
+    ];
+
+    const caughtStoreKey = 'nc-about-fish-caught';
+    let fishEntities = [];
+    let caughtIds = new Set();
+    let activeModalProject = null;
+    let lastTick = performance.now();
+
+    function initBubbles() {
+      const bubblesEl = document.getElementById('bubbles');
+      const bubbleCount = 20;
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('span');
+        bubble.className = 'bubble';
+        const size = 4 + Math.random() * 12;
+        const left = Math.random() * 100;
+        const duration = 5 + Math.random() * 7;
+        const delay = Math.random() * 5;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${left}%`;
+        bubble.style.animationDuration = `${duration}s`;
+        bubble.style.animationDelay = `${delay}s`;
+        bubblesEl.appendChild(bubble);
+      }
+    }
+
+    function loadProgress() {
+      try {
+        const raw = localStorage.getItem(caughtStoreKey);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          caughtIds = new Set(parsed.filter((id) => fishProjects.some((p) => p.id === id)));
+        }
+      } catch (err) {
+        caughtIds = new Set();
+      }
+    }
+
+    function persistProgress() {
+      localStorage.setItem(caughtStoreKey, JSON.stringify(Array.from(caughtIds)));
+    }
+
+    function createProgressIcons() {
+      progressIconsEl.innerHTML = '';
+      fishProjects.forEach((project) => {
+        const icon = document.createElement('div');
+        icon.className = 'progress-icon';
+        icon.id = `icon-${project.id}`;
+        icon.textContent = project.short;
+        if (caughtIds.has(project.id)) {
+          icon.classList.add('caught');
+        }
+        progressIconsEl.appendChild(icon);
+      });
+      updateProgressCount();
+    }
+
+    function updateProgressCount() {
+      progressCountEl.textContent = `${caughtIds.size}/8 projects caught`;
+      if (caughtIds.size === fishProjects.length) {
+        unlockLore(true);
+      }
+    }
+
+    function unlockLore(withScroll) {
+      loreSections.forEach((section) => section.classList.remove('locked'));
+      completionBannerEl.classList.add('show');
+      if (withScroll) {
+        setTimeout(() => {
+          document.getElementById('lore').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 700);
+      }
+    }
+
+    function spawnFish() {
+      fishEntities = [];
+      fishLayerEl.innerHTML = '';
+      const rect = tankEl.getBoundingClientRect();
+
+      fishProjects.forEach((project) => {
+        if (caughtIds.has(project.id)) {
+          return;
+        }
+
+        const fish = new Fish(project, rect.width, rect.height);
+        const fishEl = document.createElement('div');
+        fishEl.className = `fish ${fish.size}`;
+        fishEl.dataset.id = fish.id;
+        fishEl.style.setProperty('--fish-size', `${sizeToPx[fish.size]}px`);
+        fishEl.innerHTML = '<div class="fish-tail"></div><div class="fish-body"></div><div class="fish-eye"></div>';
+
+        fish.el = fishEl;
+        fishLayerEl.appendChild(fishEl);
+        fishEntities.push(fish);
+      });
+    }
+
+    function animateFish(ts) {
+      const dt = Math.min(32, ts - lastTick) / 16;
+      lastTick = ts;
+      const rect = tankEl.getBoundingClientRect();
+
+      fishEntities.forEach((fish) => {
+        if (fish.caught) return;
+
+        fish.wobble += 0.04 * dt;
+        fish.x += fish.vx * dt;
+        fish.y += fish.vy * dt + Math.sin(fish.wobble) * 0.25;
+
+        const maxX = rect.width - sizeToPx[fish.size] - 8;
+        const minX = 8;
+        const maxY = rect.height - sizeToPx[fish.size] * 0.6 - 12;
+        const minY = 38;
+
+        if (fish.x <= minX || fish.x >= maxX) {
+          fish.vx *= -1;
+          fish.x = Math.max(minX, Math.min(maxX, fish.x));
+        }
+
+        if (fish.y <= minY || fish.y >= maxY) {
+          fish.vy *= -1;
+          fish.y = Math.max(minY, Math.min(maxY, fish.y));
+        }
+
+        if (Math.random() < 0.0025) {
+          fish.vy = (Math.random() * 0.8 - 0.4) * fish.speed;
+        }
+
+        const facing = fish.vx >= 0 ? 1 : -1;
+        const wobbleDeg = Math.sin(fish.wobble * 1.8) * 5;
+        fish.el.style.transform = `translate(${fish.x}px, ${fish.y}px) scaleX(${facing}) rotate(${wobbleDeg}deg)`;
+      });
+
+      requestAnimationFrame(animateFish);
+    }
+
+    function castLine(clientX, clientY) {
+      const rect = tankEl.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const castDepth = Math.max(18, Math.min(y, rect.height - 18));
+
+      const line = document.createElement('div');
+      line.className = 'cast-line';
+      line.style.left = `${x}px`;
+      line.style.setProperty('--cast-depth', `${castDepth}px`);
+      tankEl.appendChild(line);
+
+      setTimeout(() => {
+        const result = tryCatchFish(x, y);
+        line.classList.add('reel');
+
+        if (result) {
+          setTimeout(() => {
+            presentProject(result.project);
+          }, 300);
+        }
+
+        setTimeout(() => line.remove(), 450);
+      }, 420);
+    }
+
+    function tryCatchFish(x, y) {
+      const catchRadius = 60;
+      let winner = null;
+      let nearestDist = Infinity;
+
+      fishEntities.forEach((fish) => {
+        if (fish.caught) return;
+        const centerX = fish.x + sizeToPx[fish.size] / 2;
+        const centerY = fish.y + sizeToPx[fish.size] * 0.28;
+        const dist = Math.hypot(centerX - x, centerY - y);
+
+        if (dist <= catchRadius && dist < nearestDist) {
+          winner = fish;
+          nearestDist = dist;
+        }
+      });
+
+      if (!winner) {
+        return null;
+      }
+
+      winner.caught = true;
+      winner.el.classList.add('hooked');
+      setTimeout(() => {
+        winner.el.remove();
+      }, 520);
+
+      caughtIds.add(winner.id);
+      persistProgress();
+
+      const icon = document.getElementById(`icon-${winner.id}`);
+      if (icon) {
+        icon.classList.add('caught');
+      }
+
+      updateProgressCount();
+      return winner;
+    }
+
+    function presentProject(project) {
+      activeModalProject = project;
+      modalTitleEl.textContent = project.title;
+      modalDescEl.textContent = project.description;
+      modalCtaEl.textContent = project.cta;
+      modalCtaEl.setAttribute('href', project.link);
+
+      if (project.link.startsWith('http')) {
+        modalCtaEl.setAttribute('target', '_blank');
+        modalCtaEl.setAttribute('rel', 'noopener noreferrer');
+      } else {
+        modalCtaEl.removeAttribute('target');
+        modalCtaEl.removeAttribute('rel');
+      }
+
+      modalEl.classList.add('show');
+      modalEl.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideModal() {
+      activeModalProject = null;
+      modalEl.classList.remove('show');
+      modalEl.setAttribute('aria-hidden', 'true');
+    }
+
+    modalCloseEl.addEventListener('click', hideModal);
+    modalEl.addEventListener('click', (event) => {
+      if (event.target === modalEl) {
+        hideModal();
+      }
+    });
+
+    tankEl.addEventListener('click', (event) => {
+      if (event.target.closest('.completion-banner')) {
+        return;
+      }
+      castLine(event.clientX, event.clientY);
+    });
+
+    buildBtnEl.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.getElementById('lore').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    function handleResize() {
+      const rect = tankEl.getBoundingClientRect();
+      fishEntities.forEach((fish) => {
+        fish.x = Math.min(fish.x, rect.width - sizeToPx[fish.size] - 8);
+        fish.y = Math.min(fish.y, rect.height - sizeToPx[fish.size] * 0.6 - 12);
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    loadProgress();
+    initBubbles();
+    createProgressIcons();
+    spawnFish();
+
+    if (caughtIds.size === fishProjects.length) {
+      unlockLore(false);
+    }
+
+    requestAnimationFrame((ts) => {
+      lastTick = ts;
+      animateFish(ts);
+    });
+  </script>
+</body>
+</html>
