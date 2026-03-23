@@ -368,9 +368,24 @@
   </div>
 
   <script>
-    const inauguration = new Date('2029-01-20');
-    const daysRemaining = Math.ceil((inauguration - new Date()) / (1000 * 60 * 60 * 24));
-    document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
+    function getDaysRemaining() {
+      const inauguration = new Date('2029-01-20');
+      inauguration.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return Math.ceil((inauguration - today) / (1000 * 60 * 60 * 24));
+    }
+
+    function updateCountdownDisplays() {
+      const daysRemaining = getDaysRemaining();
+      const bigCountdownEl = document.getElementById('bigCountdown');
+      if (bigCountdownEl) {
+        bigCountdownEl.textContent = daysRemaining.toLocaleString();
+      }
+    }
+
+    updateCountdownDisplays();
+    setInterval(updateCountdownDisplays, 60 * 1000);
 
     function triggerPanic() {
       document.getElementById('glitchOverlay').classList.add('active');

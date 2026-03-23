@@ -1047,11 +1047,24 @@
   </div>
 
   <script>
-    const now = new Date();
+    function getDaysRemaining() {
+      const inauguration = new Date('2029-01-20');
+      inauguration.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return Math.ceil((inauguration - today) / (1000 * 60 * 60 * 24));
+    }
 
-    const inauguration = new Date('2029-01-20');
-    const daysRemaining = Math.ceil((inauguration - now) / (1000 * 60 * 60 * 24));
-    document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
+    function updateCountdownDisplays() {
+      const daysRemaining = getDaysRemaining();
+      const bigCountdownEl = document.getElementById('bigCountdown');
+      if (bigCountdownEl) {
+        bigCountdownEl.textContent = daysRemaining.toLocaleString();
+      }
+    }
+
+    updateCountdownDisplays();
+    setInterval(updateCountdownDisplays, 60 * 1000);
 
     function triggerPanic() {
       const overlay = document.getElementById('glitchOverlay');

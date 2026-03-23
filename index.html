@@ -952,14 +952,29 @@
     }).replace(/\//g, '.');
     document.getElementById('currentDate').textContent = dateStr;
 
-    // Calculate days until inauguration 2029
-    const inauguration = new Date('2029-01-20');
-    inauguration.setHours(0, 0, 0, 0);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const daysRemaining = Math.ceil((inauguration - today) / (1000 * 60 * 60 * 24));
-    document.getElementById('daysLeft').textContent = daysRemaining.toLocaleString() + ' days';
-    document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
+    function getDaysRemaining() {
+      const inauguration = new Date('2029-01-20');
+      inauguration.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return Math.ceil((inauguration - today) / (1000 * 60 * 60 * 24));
+    }
+
+    function updateCountdownDisplays() {
+      const daysRemaining = getDaysRemaining();
+      const daysLeftEl = document.getElementById('daysLeft');
+      const bigCountdownEl = document.getElementById('bigCountdown');
+
+      if (daysLeftEl) {
+        daysLeftEl.textContent = daysRemaining.toLocaleString() + ' days';
+      }
+      if (bigCountdownEl) {
+        bigCountdownEl.textContent = daysRemaining.toLocaleString();
+      }
+    }
+
+    updateCountdownDisplays();
+    setInterval(updateCountdownDisplays, 60 * 1000);
 
     // Panic button functions
     function triggerPanic() {
