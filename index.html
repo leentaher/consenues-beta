@@ -753,10 +753,6 @@
   <!-- VHS Effects -->
   <div class="scanlines"></div>
   <div class="scan-bar"></div>
-  <div class="vhs-timestamp">
-    <span class="rec-dot"></span>
-    <span>REC <span id="currentDate"></span></span>
-  </div>
 
   <!-- Panic Button -->
   <button class="panic-btn" onclick="triggerPanic()">
@@ -769,7 +765,7 @@
     <a href="/" class="nav-logo">New Consensus</a>
     <div class="nav-links">
       <a href="https://www.newconsensus.com/read" class="nav-link" target="_blank" rel="noopener noreferrer">read</a>
-      <a href="https://www.newconsensus.com/projects" class="nav-link" target="_blank" rel="noopener noreferrer">explore</a>
+      <a href="https://www.newconsensus.com/projects" class="nav-link" target="_blank" rel="noopener noreferrer">projects</a>
       <a href="#join" class="nav-link">join</a>
       <a href="about.html" class="nav-link">about</a>
       <a href="#" class="nav-cta">start serving</a>
@@ -955,9 +951,12 @@
     }).replace(/\//g, '.');
     document.getElementById('currentDate').textContent = dateStr;
 
-    // Calculate days until election 2028
-    const election = new Date('2028-11-07');
-    const daysRemaining = Math.ceil((election - now) / (1000 * 60 * 60 * 24));
+    // Calculate days until inauguration 2029
+    const inauguration = new Date('2029-01-20');
+    inauguration.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const daysRemaining = Math.ceil((inauguration - today) / (1000 * 60 * 60 * 24));
     document.getElementById('daysLeft').textContent = daysRemaining.toLocaleString() + ' days';
     document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
 
