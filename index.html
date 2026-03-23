@@ -325,7 +325,8 @@
       flex-direction: column;
       justify-content: center;
       padding: 120px 40px 80px;
-      max-width: 900px;
+      width: 100%;
+      max-width: none;
       animation: flicker 5s infinite;
     }
 
@@ -345,6 +346,8 @@
       margin-bottom: 24px;
       animation: rgbSplit 6s infinite;
       letter-spacing: -0.03em;
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
 
     .hero-subhead {
@@ -352,8 +355,9 @@
       font-size: 15px;
       color: var(--gray-200);
       line-height: 1.9;
-      max-width: 600px;
+      max-width: 80ch;
       margin-bottom: 40px;
+      overflow-wrap: anywhere;
     }
 
     .hero-subhead .crisis {
@@ -674,6 +678,17 @@
         padding: 100px 24px 60px;
       }
 
+      .hero-headline {
+        font-size: clamp(32px, 10vw, 56px);
+        line-height: 1.12;
+      }
+
+      .hero-subhead {
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
       .section {
         padding: 60px 24px;
       }
@@ -774,10 +789,10 @@
       <br>
       Solving each alone? Impossible.
       <br>
-      <span class="hope">Solving all three at once? Counterintuitively doable.</span>
+      <span class="hope">Solving all three at once? Counterintuitively doable. That's humanity's mission for the 21st century.</span>
     </p>
     <div class="cta-row">
-      <a href="/join" class="cta cta-primary">Sign Up to Serve</a>
+      <a href="/join" class="cta cta-primary">sign up to serve</a>
       <a href="/join" class="cta cta-secondary">get involved</a>
     </div>
   </section>
@@ -789,15 +804,15 @@
   <div class="countdown-strip">
     <div class="countdown-item">
       <div class="countdown-label">your job</div>
-      <div class="countdown-value red">36 mo</div>
+      <div class="countdown-value red">AI's now</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-label">the climate</div>
-      <div class="countdown-value red">lol</div>
+      <div class="countdown-value red">we're cooked</div>
     </div>
     <div class="countdown-item">
-      <div class="countdown-label">the economy</div>
-      <div class="countdown-value red">vibes only</div>
+      <div class="countdown-label">fascism</div>
+      <div class="countdown-value red">having a moment</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-label">time to fix it</div>
@@ -810,40 +825,37 @@
     <h2 class="section-head">they did this on purpose, btw</h2>
     <div class="section-body">
       <p>
-        We used to build things. Industries. A middle class. Then the people in charge got a fun idea: 
-        <em>what if we just... stopped trying?</em> Let the market decide. Ship the jobs. Gut the agencies. 
-        Tell everyone to "adapt."
+        We used to invest in our future. We constantly upgraded our means of production. We grew the middle class. Then the people in charge got a fun idea: what if we just... stopped trying? Let the market decide. Ship the jobs. Gut the agencies. Tell everyone to "adapt."
       </p>
       <p>
-        Forty years later, here's adaptation: stagnant wages, impossible housing, no savings, and three 
-        simultaneous crises arriving at the door they left wide open. <strong>Cool cool cool.</strong>
+        Fifty years later, here's adaptation: stagnant wages, impossible housing, no savings, and three simultaneous crises arriving at the door they left wide open. Cool cool cool.
       </p>
     </div>
   </section>
 
   <!-- Section: We've Done This Before -->
   <section class="section">
-    <h2 class="section-head">anyway we've done this before</h2>
+    <h2 class="section-head">we've done this before</h2>
     <div class="section-body">
       <p>
-        In 1942, America transformed its entire economy in under three years. Factories retooled overnight. 
-        Twelve million people mobilized. We did it because we had no choice.
+        Last existential threat? We rebuilt the entire economy in three years. Defeated fascism. Built the middle class. Whole industries overnight. Millions trained into jobs that actually paid. We didn't wait for permission. We just did it.
       </p>
       <p>
-        <strong>We're at that moment again.</strong> Except now the enemy is three things at once and also 
-        kind of abstract. The Mission for America is a 23-chapter playbook for total mobilization. 
-        It's very long. It's very serious. <em>Someone had to write it.</em>
+        We're doing it again. Next window: 2029. We're writing the break-glass plan now. Mission for America. Ready to deploy.
+      </p>
+      <p>
+        <strong>Sign up to serve in the 2029 Mission for America administration →</strong>
       </p>
     </div>
   </section>
 
   <!-- Section: Projects -->
   <section class="section">
-    <h2 class="section-head">what we're building (while panicking)</h2>
+    <h2 class="section-head">what we're building</h2>
     <div class="projects-grid">
       <a href="https://www.newconsensus.com/read" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">Mission for America</h3>
-        <p class="project-desc">The whole plan. 23 chapters. Every sector. If you read one thing, it's this. (It's long. Sorry.)</p>
+        <p class="project-desc">The whole plan. 23 chapters. Every sector. If you read one thing, it's this. <em>(It's long. Sorry.)</em></p>
       </a>
       <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">CrashLab</h3>
@@ -859,7 +871,7 @@
       </a>
       <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">Won't Get Fooled Again Act</h3>
-        <p class="project-desc">When the next bank fails (and it will), we turn it into a public institution. Fool us twice, we own you.</p>
+        <p class="project-desc">When the next bank fails <em>(and it will)</em>, we turn it into a public institution. Fool us twice, we own you.</p>
       </a>
       <a href="https://www.newconsensus.com/projects/ai-convening" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">2026 AI Convening</h3>
@@ -894,7 +906,7 @@
         If you're ready to help build the plan, start with the Mission for America and get in touch.
       </p>
       <p>
-        <a href="jobs.html" class="cta cta-primary">see open roles</a>
+        <a href="jobs.html" class="cta cta-primary">see open roles →</a>
       </p>
     </div>
   </section>
@@ -943,9 +955,9 @@
     }).replace(/\//g, '.');
     document.getElementById('currentDate').textContent = dateStr;
 
-    // Calculate days until inauguration 2029
-    const inauguration = new Date('2029-01-20');
-    const daysRemaining = Math.ceil((inauguration - now) / (1000 * 60 * 60 * 24));
+    // Calculate days until election 2028
+    const election = new Date('2028-11-07');
+    const daysRemaining = Math.ceil((election - now) / (1000 * 60 * 60 * 24));
     document.getElementById('daysLeft').textContent = daysRemaining.toLocaleString() + ' days';
     document.getElementById('bigCountdown').textContent = daysRemaining.toLocaleString();
 
