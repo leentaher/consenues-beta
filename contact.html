@@ -12,12 +12,12 @@
 		:root{--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;--black:#0a0a0a;--gray-900:#111;--gray-800:#1a1a1a;--gray-500:#505050;--gray-300:#909090;--gray-100:#e0e0e0;--white:#fff;--violet:#c4b5fd}
 		body{font-family:var(--font-sans);background:var(--black);color:var(--gray-100)}
 		.nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,var(--black),transparent)}
-		.nav-logo{font-weight:600;font-size:15px}.nav-links{display:flex;gap:32px}.nav-link{font-size:13px;color:var(--gray-300);text-transform:lowercase;text-decoration:none}
-		.nav-dropdown{position:relative}.nav-dropdown-trigger{background:none;border:none;color:var(--gray-300);font-size:13px;text-transform:lowercase;display:inline-flex;gap:4px}
+		.nav-logo{font-weight:600;font-size:15px}.nav-links{display:flex;align-items:center;gap:32px}.nav-link{display:inline-flex;align-items:center;line-height:1;font-size:13px;color:var(--gray-300);text-transform:lowercase;text-decoration:none}
+		.nav-dropdown{position:relative}.nav-dropdown-trigger{background:none;border:none;color:var(--gray-300);font-size:13px;text-transform:lowercase;line-height:1;display:inline-flex;gap:4px}
 		.nav-dropdown-trigger.active{color:#fff}.nav-dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:180px;background:#141414;border:1px solid #2a2a2a;border-radius:8px;padding:8px 0;opacity:0;visibility:hidden}
 		.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown[open] .nav-dropdown-menu{opacity:1;visibility:visible}
 		.nav-dropdown-item{display:block;padding:10px 16px;color:var(--violet);text-decoration:none}.nav-dropdown-item.active,.nav-dropdown-item:hover{color:#fff;background:rgba(167,139,250,.08)}
-		.nav-cta{font-size:13px;color:var(--violet);text-transform:lowercase;text-decoration:none}
+		.nav-cta{display:inline-flex;align-items:center;line-height:1;font-size:13px;color:var(--violet);text-transform:lowercase;text-decoration:none}
 		.hero{padding:130px 40px 24px}.eyebrow{font-family:var(--font-mono);font-size:14px;color:var(--violet);text-transform:lowercase}.hero h1{font-size:clamp(38px,8vw,68px);line-height:1.05;margin:14px 0 18px}
 		.body{max-width:760px;color:var(--gray-300);line-height:1.8}
 		.countdown-strip{display:flex;gap:36px;padding:24px 40px;background:var(--gray-900);border-top:1px solid var(--gray-800);border-bottom:1px solid var(--gray-800);flex-wrap:wrap}

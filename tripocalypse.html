@@ -26,16 +26,16 @@
 		.panic-btn { position: fixed; bottom: 24px; right: 24px; width: 80px; height: 80px; border-radius: 16px; background: #0a0a0a; color: #fff; z-index: 500; border: none; box-shadow: 0 0 20px rgba(255,32,32,0.4); }
 		.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--black), transparent); }
 		.nav-logo { font-weight: 600; font-size: 15px; }
-		.nav-links { display: flex; gap: 32px; }
-		.nav-link { font-size: 13px; color: var(--gray-300); text-transform: lowercase; }
+		.nav-links { display: flex; align-items: center; gap: 32px; }
+		.nav-link { display: inline-flex; align-items: center; line-height: 1; font-size: 13px; color: var(--gray-300); text-transform: lowercase; }
 		.nav-link.active { color: var(--white); border-bottom: 1px solid var(--red-500); padding-bottom: 2px; }
 		.nav-dropdown { position: relative; }
-		.nav-dropdown-trigger { background: none; border: none; color: var(--gray-300); font-size: 13px; text-transform: lowercase; display: inline-flex; align-items: center; gap: 4px; }
+		.nav-dropdown-trigger { background: none; border: none; color: var(--gray-300); font-size: 13px; text-transform: lowercase; line-height: 1; display: inline-flex; align-items: center; gap: 4px; }
 		.nav-dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 180px; background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 8px 0; opacity: 0; visibility: hidden; }
 		.nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown[open] .nav-dropdown-menu { opacity: 1; visibility: visible; }
 		.nav-dropdown-item { display: block; padding: 10px 16px; color: #c4b5fd; font-size: 14px; }
 		.nav-dropdown-item.active, .nav-dropdown-item:hover { color: #fff; background: rgba(167,139,250,0.08); }
-		.nav-cta { font-size: 13px; color: var(--red-400); text-transform: lowercase; }
+		.nav-cta { display: inline-flex; align-items: center; line-height: 1; font-size: 13px; color: var(--red-400); text-transform: lowercase; }
 		.hero { padding: 120px 40px 40px; }
 		.hero-eyebrow { font-family: var(--font-mono); color: #c4b5fd; font-size: 14px; margin-bottom: 16px; text-transform: lowercase; }
 		.hero-headline { font-size: clamp(40px, 8vw, 72px); line-height: 1.05; }

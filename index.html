@@ -293,10 +293,14 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 32px;
     }
 
     .nav-link {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
       font-size: 13px;
       color: var(--gray-300);
       transition: color var(--transition-fast);
@@ -324,7 +328,7 @@
       text-transform: lowercase;
       padding: 0;
       margin: 0;
-      line-height: inherit;
+      line-height: 1;
       vertical-align: baseline;
       display: inline-flex;
       align-items: center;
@@ -394,6 +398,9 @@
     }
 
     .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
       font-size: 13px;
       color: var(--red-400);
       font-weight: 500;

@@ -66,19 +66,19 @@
 
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--black) 0%, transparent 100%); }
     .nav-logo { font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-link { font-size: 13px; color: var(--gray-300); transition: color var(--transition-fast); text-transform: lowercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link { display: inline-flex; align-items: center; line-height: 1; font-size: 13px; color: var(--gray-300); transition: color var(--transition-fast); text-transform: lowercase; }
     .nav-link:hover { color: var(--white); }
     .nav-link.active { color: var(--white); border-bottom: 1px solid var(--red-500); padding-bottom: 2px; }
     .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
-    .nav-dropdown-trigger { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; color: var(--gray-300); text-transform: lowercase; display: inline-flex; align-items: center; gap: 4px; }
+    .nav-dropdown-trigger { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; color: var(--gray-300); text-transform: lowercase; line-height: 1; display: inline-flex; align-items: center; gap: 4px; }
     .nav-dropdown-trigger.active { color: var(--white); }
     .dropdown-arrow { font-size: 10px; }
     .nav-dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 180px; background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 8px 0; opacity: 0; visibility: hidden; }
     .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown[open] .nav-dropdown-menu { opacity: 1; visibility: visible; }
     .nav-dropdown-item { display: block; padding: 10px 16px; color: #c4b5fd; font-size: 14px; }
     .nav-dropdown-item:hover, .nav-dropdown-item.active { color: #fff; background: rgba(167, 139, 250, 0.08); }
-    .nav-cta { font-size: 13px; color: var(--red-400); font-weight: 500; text-transform: lowercase; }
+    .nav-cta { display: inline-flex; align-items: center; line-height: 1; font-size: 13px; color: var(--red-400); font-weight: 500; text-transform: lowercase; }
     .nav-cta:hover { color: var(--red-300); }
 
     .countdown-strip { display: flex; gap: 36px; padding: 24px 40px; background: var(--gray-900); border-top: 1px solid var(--gray-800); border-bottom: 1px solid var(--gray-800); flex-wrap: wrap; }

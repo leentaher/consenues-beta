@@ -150,10 +150,14 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 32px;
     }
 
     .nav-link {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
       font-size: 13px;
       color: var(--gray-300);
       transition: color var(--transition-fast);
@@ -164,7 +168,7 @@
     }
 
     .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
-    .nav-dropdown-trigger { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; color: var(--gray-300); text-transform: lowercase; display: inline-flex; align-items: center; gap: 4px; }
+    .nav-dropdown-trigger { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: 13px; color: var(--gray-300); text-transform: lowercase; line-height: 1; display: inline-flex; align-items: center; gap: 4px; }
     .nav-dropdown-trigger.active { color: var(--white); }
     .dropdown-arrow { font-size: 10px; }
     .nav-dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 180px; background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 8px 0; opacity: 0; visibility: hidden; }
@@ -177,6 +181,9 @@
 
 
     .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
       font-size: 13px;
       color: var(--red-400);
       font-weight: 500;
