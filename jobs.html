@@ -450,11 +450,6 @@
 <body>
   <div class="scanlines"></div>
   <div class="scan-bar"></div>
-  <div class="vhs-timestamp">
-    <span class="rec-dot"></span>
-    <span>REC <span id="currentDate"></span></span>
-  </div>
-
   <div id="site-header"></div>
 
   <section class="hero">
@@ -543,7 +538,6 @@
       day: '2-digit',
       year: 'numeric'
     }).replace(/\//g, '.');
-    document.getElementById('currentDate').textContent = dateStr;
     function getDaysRemaining() {
       const inauguration = new Date('2029-01-20');
       inauguration.setHours(0, 0, 0, 0);
