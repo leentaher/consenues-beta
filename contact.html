@@ -33,11 +33,11 @@
 </head>
 <body>
 	<button class="panic-btn" onclick="triggerPanic()">PANIC</button>
-	<nav class="nav"><a href="/" class="nav-logo">New Consensus</a><div class="nav-links"><a class="nav-link" href="/tripocalypse">Tripocalypse</a><div class="nav-dropdown"><button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" type="button">Solution <span>▼</span></button><div class="nav-dropdown-menu"><a href="/the-big-idea" class="nav-dropdown-item">The Big Idea</a></div></div><a href="/projects" class="nav-link">Projects</a><div class="nav-dropdown"><button class="nav-link nav-dropdown-trigger active" aria-expanded="false" aria-haspopup="true" type="button">About <span>▼</span></button><div class="nav-dropdown-menu"><a href="/team" class="nav-dropdown-item">Team</a><a href="/jobs" class="nav-dropdown-item">Jobs</a><a href="/contact" class="nav-dropdown-item active">Contact</a></div></div><a href="/#join" class="nav-cta">Start serving</a></div></nav>
+	<div id="site-header"></div>
 	<section class="hero"><p class="eyebrow">get in touch</p><h1>we actually respond</h1><p class="body">Questions? Want to collaborate?</p></section>
 	<div class="countdown-strip"><div><div class="countdown-label">your job</div><div class="countdown-value">AI's now</div></div><div><div class="countdown-label">the climate</div><div class="countdown-value">we're cooked</div></div><div><div class="countdown-label">fascism</div><div class="countdown-value">having a moment</div></div><div><div class="countdown-label">time to fix it</div><div class="countdown-value" id="daysLeft">1,018 days</div></div></div>
 	<section class="section"><div class="contact-list"><div>General inquiries: <a href="mailto:info@newconsensus.com">info@newconsensus.com</a></div><div>Press / Media: <a href="mailto:press@newconsensus.com">press@newconsensus.com</a></div><div>Zack directly: <a href="mailto:zack@newconsensus.com">zack@newconsensus.com</a> <span class="muted">(he asked to be included)</span></div></div></section>
-	<footer class="footer"><div>New Consensus</div><div class="footer-links"><a href="/team">about</a><a href="https://blog.newconsensus.com" target="_blank" rel="noopener noreferrer">blog</a><a href="/projects">projects</a><a href="/jobs">jobs</a><a href="https://x.com/newconsensus" target="_blank" rel="noopener noreferrer">twitter</a></div></footer>
+	<div id="site-footer"></div>
 	<div class="glitch-overlay" id="glitchOverlay"><button onclick="closeGlitch()">close</button><div id="bigCountdown">1,018</div></div>
 	<script>
 		function getDaysRemaining(){const i=new Date('2029-01-20');i.setHours(0,0,0,0);const t=new Date();t.setHours(0,0,0,0);return Math.ceil((i-t)/(1000*60*60*24));}
@@ -58,5 +58,6 @@
 			document.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeAll();});
 		})();
 	</script>
+  <script src="/shared-layout.js"></script>
 </body>
 </html>
