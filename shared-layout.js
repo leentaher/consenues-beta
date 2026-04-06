@@ -255,7 +255,10 @@
     return {
       tripocalypse: p === '/tripocalypse',
       projects: p === '/projects',
-      solution: p === '/the-big-idea',
+      solution: p === '/the-mission' || p === '/the-big-idea' || p === '/tripocalypse',
+      mission: p === '/the-mission',
+      plan: p === '/the-big-idea',
+      evidence: p === '/tripocalypse',
       bigIdea: p === '/the-big-idea',
       about: p === '/team' || p === '/jobs' || p === '/contact',
       team: p === '/team',
@@ -276,7 +279,9 @@
         Solution <span class="dropdown-arrow">&#9660;</span>
       </button>
       <div class="nav-dropdown-menu">
-        <a href="/the-big-idea" class="nav-dropdown-item${flags.bigIdea ? ' active' : ''}">The Big Idea</a>
+        <a href="/the-mission" class="nav-dropdown-item${flags.mission ? ' active' : ''}">The Mission</a>
+        <a href="/the-big-idea" class="nav-dropdown-item${flags.plan ? ' active' : ''}">The Plan</a>
+        <a href="/tripocalypse" class="nav-dropdown-item${flags.evidence ? ' active' : ''}">The Evidence</a>
       </div>
     </div>
 

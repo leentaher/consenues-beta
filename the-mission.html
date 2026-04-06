@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mission - New Consensus</title>
+  <meta name="description" content="Build a clean economy with great jobs for everyone. That's the assignment.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+      --black: #0f0f10;
+      --gray-900: #111111;
+      --gray-850: #151111;
+      --gray-800: #1a1a1a;
+      --gray-700: #262626;
+      --gray-400: #8a8a8a;
+      --gray-300: #b7b7b7;
+      --gray-200: #dddddd;
+      --white: #f3f0eb;
+
+      --red-500: #c43e2a;
+      --red-400: #e5503a;
+
+      --transition-fast: 0.15s ease;
+      --transition-med: 0.3s ease;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at 20% -20%, rgba(196, 62, 42, 0.08), transparent 36%), var(--gray-900);
+      color: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--red-500);
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-wrap {
+      padding-top: 92px;
+    }
+
+    .hero {
+      max-width: 980px;
+      padding: 54px 40px 28px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red-400);
+      margin-bottom: 18px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(52px, 8vw, 106px);
+      line-height: 0.92;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .hero-subhead {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3vw, 36px);
+      color: var(--gray-400);
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .section {
+      padding: 78px 40px;
+      border-top: 1px solid var(--gray-800);
+      position: relative;
+    }
+
+    .section-tinted {
+      background: linear-gradient(180deg, rgba(196, 62, 42, 0.08), rgba(196, 62, 42, 0.02));
+    }
+
+    .section-slot {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 16px;
+    }
+
+    .section-headline {
+      font-size: clamp(30px, 4.5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+      margin-bottom: 26px;
+      max-width: 980px;
+    }
+
+    .section-body {
+      max-width: 860px;
+      font-size: clamp(1.05rem, 1.9vw, 1.17rem);
+      color: var(--gray-300);
+      line-height: 1.8;
+    }
+
+    .section-body p + p {
+      margin-top: 18px;
+    }
+
+    .section-body strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .punchline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gray-400);
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      line-height: 1.3;
+      margin: 22px 0;
+    }
+
+    .peak-callout {
+      margin: 30px 0;
+      padding: 24px 0;
+      border-top: 1px solid rgba(196, 62, 42, 0.7);
+      border-bottom: 1px solid rgba(196, 62, 42, 0.7);
+      font-size: clamp(1.55rem, 4.4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: var(--red-500);
+    }
+
+    .mission-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      color: var(--red-400);
+      border-bottom: 1px solid rgba(229, 80, 58, 0.65);
+      padding-bottom: 2px;
+      font-size: 0.96rem;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .mission-link .arrow {
+      display: inline-block;
+      transition: transform var(--transition-med);
+    }
+
+    .mission-link:hover {
+      color: #ff6b53;
+      border-color: #ff6b53;
+    }
+
+    .mission-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 48px 32px 22px;
+      }
+
+      .section {
+        padding: 68px 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding-top: 84px;
+      }
+
+      .hero {
+        padding: 38px 24px 18px;
+      }
+
+      .section {
+        padding: 54px 24px;
+      }
+
+      .hero-eyebrow,
+      .section-slot {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="page-wrap">
+    <section class="hero reveal">
+      <p class="hero-eyebrow">THE SOLUTION</p>
+      <h1 class="hero-headline">The Mission</h1>
+      <p class="hero-subhead">For humanity. For the 21st century. No pressure.</p>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-slot">02</div>
+      <h2 class="section-headline">here's the assignment.</h2>
+      <div class="section-body">
+        <p>AI is eliminating jobs. Someone needs to create new ones. The planet is heating. Someone needs to build a clean economy. Fascism is rising. Someone needs to prove democracy still works.</p>
+        <p>Turns out all three assignments are the same assignment.</p>
+        <p>Build a clean economy with great jobs for everyone. That's it. That's the whole thing. Prosperity, democracy, freedom - all of it falls out of that one project if you do it right.</p>
+        <p class="punchline">Simple. Obvious. Boring. Been done before.</p>
+        <p>More on that in a second.</p>
+      </div>
+    </section>
+
+    <section class="section section-tinted reveal">
+      <div class="section-slot">03</div>
+      <h2 class="section-headline">spoiler: we've survived this before.</h2>
+      <div class="section-body">
+        <p><strong>1930s. Sound familiar?</strong></p>
+        <p>Few getting rich. Masses falling behind. Machines taking jobs. Very weird people winning elections. Countries sleepwalking toward something nobody wanted to name out loud.</p>
+        <p>You know what happened next.</p>
+        <p>Hundreds of millions died. Then - and only then - humanity finally did the obvious thing. Reset the whole system. Jobs for everyone. A middle class. A future. The thing we should have done before the dying started.</p>
+        <p>A billion people got that future. A billion more are still waiting. And a billion whose parents had it just lost it.</p>
+        <p class="punchline">Here we are again.</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-slot">04</div>
+      <h2 class="section-headline">so. do we really have to wait for world war 3?</h2>
+      <div class="section-body">
+        <p>Every single time. Same story. Same solution. Different body count.</p>
+        <p>The solution is always massive public investment. Jobs for everyone. Reset the system. Build the thing that needs to be built. It works every time. We just never do it until after the catastrophe.</p>
+        <p class="peak-callout">DO WE REALLY HAVE TO WAIT FOR WORLD WAR 3 TO ACTUALLY HAPPEN TO HIT RESET?</p>
+        <p class="punchline">Sure hope not.</p>
+        <p>Here's our radical idea: do it now. Before the dying. Novel concept. We're workshopping it.</p>
+      </div>
+    </section>
+
+    <section class="section section-tinted reveal">
+      <div class="section-slot">05</div>
+      <h2 class="section-headline">here's how simple this actually is.</h2>
+      <div class="section-body">
+        <p>If you want to build a bike shed, you can build a bike shed.</p>
+        <p>If you're a country and you want to build a new economy with great jobs for everyone, you can build that too. Same logic. Bigger shed.</p>
+        <p>The crises feed each other. So do the solutions. A clean economy creates jobs. Jobs kill desperation. Desperation dead means fascism starved. Fascism starved means climate policy survives.</p>
+        <p>Fix one. Fix all three. It has always worked this way.</p>
+        <p>We wrote the plan. It's long. It covers everything. You should read it.</p>
+        <a href="https://www.newconsensus.com/read" class="mission-link" target="_blank" rel="noopener noreferrer">Read the plan <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function setupRevealAnimations() {
+      const revealItems = document.querySelectorAll('.reveal');
+      if (!revealItems.length) return;
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -8% 0px'
+      });
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index * 70, 180)}ms`;
+        observer.observe(item);
+      });
+    })();
+  </script>
+
+  <script src="/shared-layout.js"></script>
+</body>
+</html>
