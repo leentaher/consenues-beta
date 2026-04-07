@@ -47,99 +47,6 @@
       overflow-x: hidden;
     }
 
-    @keyframes scanline {
-      0% { top: -100%; }
-      100% { top: 100%; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 20px rgba(255, 32, 32, 0.4),
-          0 0 40px rgba(255, 32, 32, 0.3),
-          0 0 60px rgba(255, 32, 32, 0.2),
-          0 0 80px rgba(255, 32, 32, 0.1);
-      }
-      50% {
-        box-shadow:
-          0 0 30px rgba(255, 32, 32, 0.5),
-          0 0 50px rgba(255, 32, 32, 0.4),
-          0 0 70px rgba(255, 32, 32, 0.3),
-          0 0 100px rgba(255, 32, 32, 0.15);
-      }
-    }
-
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.1) 2px,
-        rgba(0, 0, 0, 0.1) 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    .scan-bar {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: linear-gradient(
-        transparent,
-        rgba(255, 255, 255, 0.03),
-        transparent
-      );
-      animation: scanline 6s linear infinite;
-      pointer-events: none;
-      z-index: 1001;
-    }
-
-    .panic-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 80px;
-      height: 80px;
-      background: #0a0a0a;
-      border: none;
-      border-radius: 16px;
-      color: #ffffff;
-      font-family: var(--font-sans);
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1.4;
-      cursor: pointer;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
-    }
-
-    .panic-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .panic-btn span {
-      display: block;
-      line-height: 1.1;
-    }
-
     ::selection {
       background: var(--red-500);
       color: #fff;
@@ -290,6 +197,99 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @keyframes scanline {
+      0% { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px rgba(255, 32, 32, 0.4),
+          0 0 40px rgba(255, 32, 32, 0.3),
+          0 0 60px rgba(255, 32, 32, 0.2),
+          0 0 80px rgba(255, 32, 32, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 30px rgba(255, 32, 32, 0.5),
+          0 0 50px rgba(255, 32, 32, 0.4),
+          0 0 70px rgba(255, 32, 32, 0.3),
+          0 0 100px rgba(255, 32, 32, 0.15);
+      }
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+      );
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .scan-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+      );
+      animation: scanline 6s linear infinite;
+      pointer-events: none;
+      z-index: 1001;
+    }
+
+    .panic-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 80px;
+      height: 80px;
+      background: #0a0a0a;
+      border: none;
+      border-radius: 16px;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      cursor: pointer;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+    }
+
+    .panic-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .panic-btn span {
+      display: block;
+      line-height: 1.1;
     }
 
     .glitch-overlay {

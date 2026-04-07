@@ -273,10 +273,9 @@
   <a href="/" class="nav-logo">New Consensus</a>
   <div class="nav-links">
     <a class="nav-link${flags.tripocalypse ? ' active' : ''}" href="/tripocalypse">Tripocalypse</a>
-
     <div class="nav-dropdown">
       <button class="nav-link nav-dropdown-trigger${flags.solution ? ' active' : ''}" aria-expanded="false" aria-haspopup="true" type="button">
-        The Solution <span class="dropdown-arrow">&#9660;</span>
+        Solution <span class="dropdown-arrow">&#9660;</span>
       </button>
       <div class="nav-dropdown-menu">
         <a href="/the-mission" class="nav-dropdown-item${flags.mission ? ' active' : ''}">The Mission</a>
