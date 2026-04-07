@@ -828,32 +828,55 @@
     /* ============================================
        PROJECTS GRID
     ============================================ */
+    .projects-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 80px;
+      padding-top: 80px;
+    }
+
+    .projects-section .section-head {
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 12px;
       margin-top: 40px;
     }
 
     .project-card {
-      background: var(--gray-900);
-      border: 1px solid var(--gray-700);
+      background: #121212;
+      border: 1px solid #2b2b2b;
       padding: 28px;
       transition: all var(--transition-med);
     }
 
     .project-card:hover {
       border-color: var(--red-500);
-      background: var(--gray-800);
-      transform: translateY(-2px);
+      background: #161616;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
 
     .project-card--featured {
-      grid-row: span 3;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      border-left: 2px solid var(--red-500);
+      background: #1d1d1d;
+      border: 1px solid #5a5a5a;
+      border-left: 3px solid var(--red-500);
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .project-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--red-300);
+      margin-bottom: 14px;
     }
 
     .project-title {
@@ -861,6 +884,12 @@
       font-weight: 500;
       color: var(--gray-100);
       margin-bottom: 12px;
+    }
+
+    .project-card--featured .project-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     .project-desc {
@@ -873,8 +902,17 @@
       font-family: var(--font-mono);
       font-size: 13px;
       color: var(--red-300);
-      margin-top: auto;
-      padding-top: 40px;
+      margin-top: 32px;
+    }
+
+    .projects-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .projects-right-col .project-card {
+      flex: 1;
     }
 
     /* ============================================
@@ -1284,27 +1322,29 @@
   </section>
 
   <!-- Section: Projects -->
-  <section class="section">
+  <section class="section projects-section">
     <h2 class="section-head">what we're building</h2>
     <div class="projects-grid">
       <a href="https://www.newconsensus.com/read" class="project-card project-card--featured" target="_blank" rel="noopener noreferrer">
-        <p class="hero-eyebrow">THE BREAK-GLASS PLAN</p>
+        <p class="project-eyebrow">THE BREAK-GLASS PLAN</p>
         <h3 class="project-title">Mission for America</h3>
-        <p class="project-desc">The full playbook. Over 20 chapters, every angle covered. It's there when you're ready.</p>
+        <p class="project-desc">The full playbook. 20+ chapters. Every sector. The plan the next president will need on day one. Ready to deploy.</p>
         <p class="project-link">read the plan →</p>
       </a>
-      <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
-        <h3 class="project-title">CrashLab</h3>
-        <p class="project-desc">Economic stress test simulator. Break things digitally so we don't break them IRL.</p>
-      </a>
-      <a href="https://thecostofwaiting.org/" class="project-card" target="_blank" rel="noopener noreferrer">
-        <h3 class="project-title">The Cost of Waiting</h3>
-        <p class="project-desc">Interactive breakdown of how expensive inaction is. (Spoiler: very.)</p>
-      </a>
-      <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
-        <h3 class="project-title">The Won't Get Fooled Again Act</h3>
-        <p class="project-desc">A framework for converting failed banks and AI companies into mission-driven public institutions.</p>
-      </a>
+      <div class="projects-right-col">
+        <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
+          <h3 class="project-title">CrashLab</h3>
+          <p class="project-desc">The biggest financial bubble in history. We're tracking it. Policymakers should probably know about it.</p>
+        </a>
+        <a href="https://thecostofwaiting.org/" class="project-card" target="_blank" rel="noopener noreferrer">
+          <h3 class="project-title">The Cost of Waiting</h3>
+          <p class="project-desc">Every year we don't act, it gets more expensive. We did the math. You won't like it.</p>
+        </a>
+        <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
+          <h3 class="project-title">The Won't Get Fooled Again Act</h3>
+          <p class="project-desc">When this bubble bursts, failed banks and AI companies become public institutions. Not bailouts. Conversions.</p>
+        </a>
+      </div>
     </div>
     <div class="section-body" style="margin-top: 28px;">
       <p>
