@@ -830,7 +830,7 @@
     ============================================ */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-top: 40px;
     }
@@ -848,6 +848,14 @@
       transform: translateY(-2px);
     }
 
+    .project-card--featured {
+      grid-row: span 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-left: 2px solid var(--red-500);
+    }
+
     .project-title {
       font-size: 16px;
       font-weight: 500;
@@ -859,6 +867,14 @@
       font-size: 14px;
       color: var(--gray-400);
       line-height: 1.7;
+    }
+
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--red-300);
+      margin-top: auto;
+      padding-top: 40px;
     }
 
     /* ============================================
@@ -1271,9 +1287,11 @@
   <section class="section">
     <h2 class="section-head">what we're building</h2>
     <div class="projects-grid">
-      <a href="https://www.newconsensus.com/read" class="project-card" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.newconsensus.com/read" class="project-card project-card--featured" target="_blank" rel="noopener noreferrer">
+        <p class="hero-eyebrow">THE BREAK-GLASS PLAN</p>
         <h3 class="project-title">Mission for America</h3>
         <p class="project-desc">The full playbook. Over 20 chapters, every angle covered. It's there when you're ready.</p>
+        <p class="project-link">read the plan →</p>
       </a>
       <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
         <h3 class="project-title">CrashLab</h3>
