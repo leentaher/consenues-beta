@@ -23,6 +23,7 @@
     :root {
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+      --accent: #e7ff00;
       
       --black: #0a0a0a;
       --gray-900: #111111;
@@ -836,25 +837,25 @@
 
     .projects-section .section-head {
       font-weight: 700;
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: 1.2fr 1fr;
+      column-gap: 40px;
       margin-top: 40px;
     }
 
     .project-card {
-      background: #121212;
-      border: 1px solid #2b2b2b;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 28px;
       transition: all var(--transition-med);
     }
 
     .project-card:hover {
-      border-color: var(--red-500);
+      border-color: var(--accent);
       background: #161616;
       transform: translateY(-3px);
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
@@ -864,10 +865,12 @@
       display: flex;
       flex-direction: column;
       background: #1d1d1d;
-      border: 1px solid #5a5a5a;
-      border-left: 3px solid var(--red-500);
-      padding-top: 56px;
-      padding-bottom: 56px;
+      border: none;
+      border-left: 4px solid var(--accent);
+      padding-top: 48px;
+      padding-right: 48px;
+      padding-bottom: 48px;
+      padding-left: 28px;
     }
 
     .project-eyebrow {
@@ -875,8 +878,8 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--red-300);
-      margin-bottom: 14px;
+      color: var(--accent);
+      margin-bottom: 12px;
     }
 
     .project-title {
@@ -890,29 +893,35 @@
       font-size: 24px;
       font-weight: 700;
       line-height: 1.2;
+      margin-bottom: 20px;
     }
 
     .project-desc {
       font-size: 14px;
-      color: var(--gray-400);
+      color: rgba(255, 255, 255, 0.65);
       line-height: 1.7;
     }
 
     .project-link {
       font-family: var(--font-mono);
       font-size: 13px;
-      color: var(--red-300);
-      margin-top: 32px;
+      color: var(--accent);
+      display: inline-block;
+      margin-top: 28px;
     }
 
     .projects-right-col {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 24px;
     }
 
     .projects-right-col .project-card {
       flex: 1;
+    }
+
+    .projects-right-col .project-title {
+      margin-bottom: 8px;
     }
 
     /* ============================================
