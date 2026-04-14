@@ -1,59 +1,47 @@
 import { defineConfig } from "tinacms";
 
-// Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
-
 export default defineConfig({
-  branch,
-
-  // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
-  token: process.env.TINA_TOKEN,
-
-  build: {
-    outputFolder: "admin",
-    publicFolder: ".",
-  },
-  // Uncomment to allow cross-origin requests from non-localhost origins
-  // during local development (e.g. GitHub Codespaces, Gitpod, Docker).
-  // Use 'private' to allow all private-network IPs (WSL2, Docker, etc.)
-  // server: {
-  //   allowedOrigins: ['https://your-codespace.github.dev'],
-  // },
-  media: {
-    tina: {
-      mediaRoot: "",
-      publicFolder: ".",
+    branch: "main",
+    clientId: "01cd2726-76f0-420d-a1d5-d4fab28fd19d",
+    token: "d0fd9695fb0310790d0e220f314c323d33a7007a",
+    build: { outputFolder: "admin", publicFolder: "." },
+    schema: {
+          collections: [
+            {
+                      name: "homepage",
+                      label: "Homepage",
+                      path: "content",
+                      format: "json",
+                      ui: { allowedActions: { create: false, delete: false } },
+                      fields: [
+                        { type: "string", name: "hero_eyebrow", label: "Hero — eyebrow" },
+                        { type: "string", name: "hero_headline", label: "Hero — headline" },
+                        { type: "string", name: "hero_subhead", label: "Hero — subheadline", ui: { component: "textarea" } },
+                        { type: "string", name: "hero_cta_text", label: "Hero — CTA button text" },
+                        { type: "string", name: "hero_cta_url", label: "Hero — CTA button URL" },
+                        { type: "string", name: "two_futures_title", label: "Two futures — section title" },
+                        { type: "string", name: "end_eyebrow", label: "End card — eyebrow" },
+                        { type: "string", name: "end_teaser", label: "End card — teaser quote" },
+                        { type: "string", name: "end_headline", label: "End card — back headline" },
+                        { type: "string", name: "end_body", label: "End card — back body", ui: { component: "textarea" } },
+                        { type: "string", name: "begin_eyebrow", label: "Beginning card — eyebrow" },
+                        { type: "string", name: "begin_teaser", label: "Beginning card — teaser quote" },
+                        { type: "string", name: "begin_headline", label: "Beginning card — back headline" },
+                        { type: "string", name: "begin_body", label: "Beginning card — back body", ui: { component: "textarea" } },
+                        { type: "string", name: "pivot_line", label: "Pivot line", ui: { component: "textarea" } },
+                        { type: "string", name: "mission_head", label: "Mission — heading" },
+                        { type: "string", name: "mission_body", label: "Mission — body", ui: { component: "textarea" } },
+                        { type: "string", name: "done_before_head", label: "Done before — heading" },
+                        { type: "string", name: "done_before_body", label: "Done before — body", ui: { component: "textarea" } },
+                        { type: "string", name: "building_head", label: "Building — heading" },
+                        { type: "string", name: "thinktank_head", label: "Think tank — heading" },
+                        { type: "string", name: "thinktank_body", label: "Think tank — body", ui: { component: "textarea" } },
+                        { type: "string", name: "join_head", label: "Join — heading" },
+                        { type: "string", name: "join_body", label: "Join — body", ui: { component: "textarea" } },
+                        { type: "string", name: "footer_tagline", label: "Footer — tagline" },
+                        { type: "string", name: "footer_copyright", label: "Footer — copyright" },
+                                ],
+            },
+                ],
     },
-  },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
-  schema: {
-    collections: [
-      {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
-        ],
-      },
-    ],
-  },
 });
