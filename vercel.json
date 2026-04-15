@@ -1,1 +1,8 @@
-{"rewrites":[{"source":"/admin","destination":"/admin/index.html"},{"source":"/admin/index.html","destination":"/admin/index.html"}]}
+{
+  "outputDirectory": ".",
+  "routes": [
+    { "src": "/admin/index.html", "dest": "/admin/index.html" },
+    { "src": "/admin", "dest": "/admin/index.html" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
