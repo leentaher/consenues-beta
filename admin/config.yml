@@ -1,0 +1,35 @@
+backend:
+  name: github
+  repo: leentaher/consenues-beta
+  branch: main
+media_folder: "assets"
+collections:
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - label: "Homepage Content"
+        name: "homepage"
+        file: "content/homepage.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero headline", name: "hero_headline", widget: "string"}
+          - {label: "Hero subheadline", name: "hero_subhead", widget: "text"}
+          - {label: "Hero CTA text", name: "hero_cta_text", widget: "string"}
+          - {label: "Two futures title", name: "two_futures_title", widget: "string"}
+          - {label: "End card eyebrow", name: "end_eyebrow", widget: "string"}
+          - {label: "End card headline", name: "end_headline", widget: "string"}
+          - {label: "End card body", name: "end_body", widget: "text"}
+          - {label: "Beginning card eyebrow", name: "begin_eyebrow", widget: "string"}
+          - {label: "Beginning card headline", name: "begin_headline", widget: "string"}
+          - {label: "Beginning card body", name: "begin_body", widget: "text"}
+          - {label: "Pivot line", name: "pivot_line", widget: "text"}
+          - {label: "Mission heading", name: "mission_head", widget: "string"}
+          - {label: "Mission body", name: "mission_body", widget: "text"}
+          - {label: "Done before heading", name: "done_before_head", widget: "string"}
+          - {label: "Done before body", name: "done_before_body", widget: "text"}
+          - {label: "Think tank heading", name: "thinktank_head", widget: "string"}
+          - {label: "Think tank body", name: "thinktank_body", widget: "text"}
+          - {label: "Join heading", name: "join_head", widget: "string"}
+          - {label: "Join body", name: "join_body", widget: "text"}
+          - {label: "Footer tagline", name: "footer_tagline", widget: "string"}
+          - {label: "Footer copyright", name: "footer_copyright", widget: "string"}
