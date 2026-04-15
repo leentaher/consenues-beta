@@ -33,3 +33,6 @@ collections:
           - {label: "Join body", name: "join_body", widget: "text"}
           - {label: "Footer tagline", name: "footer_tagline", widget: "string"}
           - {label: "Footer copyright", name: "footer_copyright", widget: "string"}
+
+site_url: https://consenues-beta.vercel.app
+display_url: https://consenues-beta.vercel.app

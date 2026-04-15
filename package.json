@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/leentaher/consenues-beta#readme",
   "dependencies": {
+    "fs-extra": "^11.3.4",
     "tinacms": "^3.7.2"
   },
   "devDependencies": {
