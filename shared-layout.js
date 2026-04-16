@@ -196,6 +196,115 @@
     color: #505050;
   }
 
+  /* ============================================
+     SHARED PANIC BUTTON + GLITCH OVERLAY
+  ============================================ */
+  .shared-panic-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 80px;
+    height: 80px;
+    background: #0a0a0a;
+    border: none;
+    border-radius: 16px;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    cursor: pointer;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 20px rgba(255, 32, 32, 0.4),
+      0 0 40px rgba(255, 32, 32, 0.3),
+      0 0 60px rgba(255, 32, 32, 0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  .shared-panic-btn:hover {
+    transform: scale(1.08);
+    background: #ff2020;
+    color: #0a0a0a;
+    box-shadow:
+      0 0 30px rgba(255, 32, 32, 0.6),
+      0 0 60px rgba(255, 32, 32, 0.4),
+      0 0 90px rgba(255, 32, 32, 0.3);
+  }
+
+  .shared-panic-btn:active { transform: scale(0.96); }
+
+  .shared-panic-btn span {
+    display: block;
+    line-height: 1.1;
+  }
+
+  .shared-glitch-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .shared-glitch-overlay.active { display: flex; }
+
+  .shared-glitch-overlay .close-glitch {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: 1px solid #2a2a2a;
+    color: #909090;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: lowercase;
+  }
+
+  .shared-glitch-overlay .close-glitch:hover {
+    color: #ffffff;
+    border-color: #404040;
+  }
+
+  .shared-glitch-overlay .emergency-text {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-size: clamp(40px, 9vw, 96px);
+    color: #ff2020;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+
+  .shared-glitch-overlay .emergency-sub {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-size: 14px;
+    color: #909090;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .shared-panic-btn {
+      bottom: 24px;
+      right: 24px;
+      width: 72px;
+      height: 72px;
+      font-size: 12px;
+    }
+  }
+
   @media (max-width: 768px) {
     .nav {
       padding: 16px 24px;
@@ -263,10 +372,9 @@
       aiConvening: p === '/ai-convening',
       abundance101: p === '/abundance-101',
       ncNews: p === '/nc-news',
-      solution: p === '/the-mission' || p === '/the-big-idea' || p === '/tripocalypse',
+      solution: p === '/the-mission' || p === '/mission-for-america',
       mission: p === '/the-mission',
-      plan: p === '/the-big-idea',
-      evidence: p === '/tripocalypse',
+      evidence: p === '/mission-for-america',
       bigIdea: p === '/the-big-idea',
       intel: p === '/library' || p === '/blog' || p === '/press',
       library: p === '/library',
@@ -290,9 +398,8 @@
         Solution <span class="dropdown-arrow">&#9660;</span>
       </button>
       <div class="nav-dropdown-menu">
-        <a href="/the-mission" class="nav-dropdown-item${flags.mission ? ' active' : ''}">The Mission</a>
-        <a href="/the-big-idea" class="nav-dropdown-item${flags.plan ? ' active' : ''}">The Plan</a>
-        <a href="/tripocalypse" class="nav-dropdown-item${flags.evidence ? ' active' : ''}">The Evidence</a>
+        <a href="/the-mission" class="nav-dropdown-item${flags.mission ? ' active' : ''}">Mission for Humanity</a>
+        <a href="/mission-for-america" class="nav-dropdown-item${flags.evidence ? ' active' : ''}">Mission for America</a>
       </div>
     </div>
 
@@ -432,6 +539,74 @@
     });
   }
 
+  function injectPanicButton() {
+    // If this page already has its own panic button, leave it alone.
+    if (document.querySelector('.panic-btn')) return;
+    if (document.getElementById('shared-panic-btn')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'shared-panic-btn';
+    btn.className = 'shared-panic-btn';
+    btn.setAttribute('aria-label', 'Panic button');
+    btn.innerHTML = '<span>PANIC</span>';
+    document.body.appendChild(btn);
+
+    // Reuse an existing overlay if the page already defines one.
+    let overlay = document.getElementById('glitchOverlay')
+      || document.querySelector('.glitch-overlay');
+
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'glitchOverlay';
+      overlay.className = 'shared-glitch-overlay';
+      overlay.innerHTML = [
+        '<button class="close-glitch" type="button" aria-label="close">\u00d7 close</button>',
+        '<div class="emergency-text">DON\'T PANIC</div>',
+        '<div class="emergency-sub">you found the panic button. now get back to work \u2014 there isn\'t much time.</div>'
+      ].join('');
+      document.body.appendChild(overlay);
+    }
+
+    function openOverlay() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeOverlay() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Prefer any page-defined handlers so existing behavior on index/library/etc. wins.
+    btn.addEventListener('click', function () {
+      if (typeof window.triggerPanic === 'function') {
+        window.triggerPanic();
+      } else {
+        openOverlay();
+      }
+    });
+
+    const closeBtn = overlay.querySelector('.close-glitch');
+    if (closeBtn && !closeBtn.onclick) {
+      closeBtn.addEventListener('click', function () {
+        if (typeof window.closeGlitch === 'function') {
+          window.closeGlitch();
+        } else {
+          closeOverlay();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (typeof window.closeGlitch === 'function') {
+          window.closeGlitch();
+        } else {
+          closeOverlay();
+        }
+      }
+    });
+  }
+
   function injectSharedLayout() {
     if (!document.getElementById('shared-layout-style')) {
       const styleEl = document.createElement('style');
@@ -448,6 +623,7 @@
     if (footerHost) footerHost.innerHTML = buildFooter();
 
     setupNavDropdown();
+    injectPanicButton();
   }
 
   if (document.readyState === 'loading') {
