@@ -92,7 +92,7 @@
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
-    min-width: 180px;
+    min-width: 240px;
     background: #141414;
     border: 1px solid #2a2a2a;
     border-radius: 8px;
@@ -254,7 +254,16 @@
     const p = normalizePath(pathname);
     return {
       tripocalypse: p === '/tripocalypse',
-      projects: p === '/projects',
+      projects: p === '/projects' || p === '/fish-tank' || p === '/crashlab' || p === '/wont-get-fooled-again-act' || p === '/cost-of-waiting' || p === '/bigsim' || p === '/ai-convening' || p === '/abundance-101' || p === '/nc-news',
+      projectsMain: p === '/projects',
+      fishTank: p === '/fish-tank',
+      crashlab: p === '/crashlab',
+      wgfaa: p === '/wont-get-fooled-again-act',
+      costOfWaiting: p === '/cost-of-waiting',
+      bigsim: p === '/bigsim',
+      aiConvening: p === '/ai-convening',
+      abundance101: p === '/abundance-101',
+      ncNews: p === '/nc-news',
       solution: p === '/the-mission' || p === '/the-big-idea' || p === '/tripocalypse',
       mission: p === '/the-mission',
       plan: p === '/the-big-idea',
@@ -288,7 +297,21 @@
       </div>
     </div>
 
-    <a href="/projects" class="nav-link${flags.projects ? ' active' : ''}">Projects</a>
+    <div class="nav-dropdown">
+      <button class="nav-link nav-dropdown-trigger${flags.projects ? ' active' : ''}" aria-expanded="false" aria-haspopup="true" type="button">
+        Projects <span class="dropdown-arrow">&#9660;</span>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/fish-tank" class="nav-dropdown-item${flags.fishTank ? ' active' : ''}">Fish Tank</a>
+        <a href="/crashlab" class="nav-dropdown-item${flags.crashlab ? ' active' : ''}">CrashLab</a>
+        <a href="/wont-get-fooled-again-act" class="nav-dropdown-item${flags.wgfaa ? ' active' : ''}">The Won't Get Fooled Again Act</a>
+        <a href="/cost-of-waiting" class="nav-dropdown-item${flags.costOfWaiting ? ' active' : ''}">The Cost of Waiting</a>
+        <a href="/bigsim" class="nav-dropdown-item${flags.bigsim ? ' active' : ''}">BigSim</a>
+        <a href="/ai-convening" class="nav-dropdown-item${flags.aiConvening ? ' active' : ''}">2026 AI Convening</a>
+        <a href="/abundance-101" class="nav-dropdown-item${flags.abundance101 ? ' active' : ''}">Class: REAL Abundance 101</a>
+        <a href="/nc-news" class="nav-dropdown-item${flags.ncNews ? ' active' : ''}">NC News</a>
+      </div>
+    </div>
     <div class="nav-dropdown">
       <button class="nav-link nav-dropdown-trigger${flags.intel ? ' active' : ''}" aria-expanded="false" aria-haspopup="true" type="button">
         Intel <span class="dropdown-arrow">&#9660;</span>
