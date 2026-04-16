@@ -1,7 +1,8 @@
 // CMS Wire
 fetch('/content/homepage.json').then(r=>r.json()).then(d=>{
-  const s=(q,v)=>{const e=document.querySelector(q);if(e&&e.textContent.trim()!==((v||'').trim()))e.textContent=v};
+  const s=(q,v)=>{const e=document.querySelector(q);if(e&&e.textContent.trim()!==(v||'').trim())e.textContent=v};
   const h=(q,v)=>{const e=document.querySelector(q);if(e&&e.getAttribute('href')!==v)e.href=v};
+  const g=(els,i,v)=>{if(els[i]&&els[i].textContent.trim()!==(v||'').trim())els[i].textContent=v};
   s('.hero-eyebrow',d.hero_eyebrow);
   s('.hero-headline',d.hero_headline);
   s('.hero-subhead',d.hero_subhead);
@@ -9,21 +10,13 @@ fetch('/content/homepage.json').then(r=>r.json()).then(d=>{
   h('.cta-row a',d.hero_cta_url);
   s('.section-title',d.two_futures_title);
   const ey=document.querySelectorAll('.card-eyebrow');
-  if(ey[0]&&ey[0].textContent.trim()!==(d.end_eyebrow||'').trim())ey[0].textContent=d.end_eyebrow;
-  if(ey[1]&&ey[1].textContent.trim()!==(d.begin_eyebrow||'').trim())ey[1].textContent=d.begin_eyebrow;
+  g(ey,0,d.end_eyebrow);g(ey,1,d.begin_eyebrow);
   const te=document.querySelectorAll('.card-teaser');
-  if(te[0]&&te[0].textContent.trim()!==(d.end_teaser||'').trim())te[0].textContent=d.end_teaser;
-  if(te[1]&&te[1].textContent.trim()!==(d.begin_teaser||'').trim())te[1].textContent=d.begin_teaser;
+  g(te,0,d.end_teaser);g(te,1,d.begin_teaser);
   const bh=document.querySelectorAll('.card-back-headline');
-  if(bh[0]&&bh[0].textContent.trim()!==(d.end_headline||'').trim())bh[0].textContent=d.end_headline;
-  if(bh[1]&&bh[1].textContent.trim()!==(d.begin_headline||'').trim())bh[1].textContent=d.begin_headline;
-  s('.pivot-line',d.pivot_line);
+  g(bh,0,d.end_headline);g(bh,1,d.begin_headline);
   const sh=document.querySelectorAll('.section-head');
-  if(sh[0]&&sh[0].textContent.trim()!==(d.mission_head||'').trim())sh[0].textContent=d.mission_head;
-  if(sh[1]&&sh[1].textContent.trim()!==(d.done_before_head||'').trim())sh[1].textContent=d.done_before_head;
-  if(sh[2]&&sh[2].textContent.trim()!==(d.building_head||'').trim())sh[2].textContent=d.building_head;
-  if(sh[3]&&sh[3].textContent.trim()!==(d.thinktank_head||'').trim())sh[3].textContent=d.thinktank_head;
-  if(sh[4]&&sh[4].textContent.trim()!==(d.join_head||'').trim())sh[4].textContent=d.join_head;
+  g(sh,0,d.mission_head);g(sh,1,d.done_before_head);g(sh,2,d.building_head);g(sh,3,d.thinktank_head);g(sh,4,d.join_head);
   s('.footer-brand p',d.footer_tagline);
   s('.footer-copy',d.footer_copyright);
 });
