@@ -1,30 +1,836 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Library — New Consensus</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-	<style>
-		*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-		:root{--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;--black:#0a0a0a;--gray-900:#111;--gray-800:#1a1a1a;--gray-500:#505050;--gray-300:#909090;--gray-100:#e0e0e0;--white:#fff;--red-500:#ff2020;--red-400:#ff5252}
-		body{font-family:var(--font-sans);background:var(--black);color:var(--gray-100)}
-		.hero{padding:130px 40px 24px}.eyebrow{font-family:var(--font-mono);font-size:14px;color:var(--red-400);text-transform:lowercase}.hero h1{font-size:clamp(38px,8vw,68px);line-height:1.05;margin:14px 0 18px}
-		.body{max-width:760px;color:var(--gray-300);line-height:1.8}
-		.section{padding:54px 40px;border-top:1px solid var(--gray-800)}
-		@media (max-width:768px){.hero,.section{padding-left:24px;padding-right:24px}}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library — New Consensus</title>
+  <meta name="description" content="The books that shaped the plan — and the ones that will help you argue for it.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+      --black: #0f0f10;
+      --gray-900: #111111;
+      --gray-850: #151515;
+      --gray-800: #1a1a1a;
+      --gray-700: #262626;
+      --gray-600: #333333;
+      --gray-400: #8a8a8a;
+      --gray-300: #b7b7b7;
+      --gray-200: #dddddd;
+      --white: #f3f0eb;
+
+      --red-500: #c43e2a;
+      --red-400: #e5503a;
+
+      --transition-fast: 0.15s ease;
+      --transition-med: 0.3s ease;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at 20% -20%, rgba(196, 62, 42, 0.08), transparent 36%), var(--gray-900);
+      color: var(--white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--red-500);
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .page-wrap {
+      padding-top: 92px;
+    }
+
+    .hero {
+      max-width: 980px;
+      padding: 54px 40px 28px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red-400);
+      margin-bottom: 18px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(52px, 8vw, 106px);
+      line-height: 0.92;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .hero-subhead {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 34px);
+      color: var(--gray-400);
+      font-style: italic;
+      line-height: 1.25;
+      max-width: 760px;
+    }
+
+    /* ============================================
+       INTRO SECTION
+    ============================================ */
+    .intro {
+      padding: 48px 40px 60px;
+      max-width: 760px;
+    }
+
+    .intro p {
+      font-size: clamp(1.05rem, 1.9vw, 1.15rem);
+      color: var(--gray-300);
+      line-height: 1.85;
+    }
+
+    .intro p + p {
+      margin-top: 16px;
+    }
+
+    .intro strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ============================================
+       BOOK GRID — stripe press inspired
+    ============================================ */
+    .books-section {
+      padding: 0 40px 80px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+    }
+
+    .book-card {
+      background: var(--gray-850);
+      border: 1px solid var(--gray-700);
+      border-radius: 12px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--transition-med), box-shadow var(--transition-med), transform var(--transition-fast);
+      position: relative;
+    }
+
+    .book-card:hover {
+      border-color: rgba(196, 62, 42, 0.4);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(196, 62, 42, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .book-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      letter-spacing: 0.06em;
+    }
+
+    .book-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.5vw, 28px);
+      line-height: 1.15;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .book-author {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red-400);
+      margin-bottom: 16px;
+    }
+
+    .book-desc {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--gray-300);
+      flex: 1;
+    }
+
+    .book-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-700);
+    }
+
+    .book-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--gray-400);
+      transition: color var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .book-link:hover {
+      color: var(--red-400);
+    }
+
+    .book-link .arrow {
+      transition: transform var(--transition-fast);
+      display: inline-block;
+    }
+
+    .book-link:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* ============================================
+       AND MORE — papers/articles list
+    ============================================ */
+    .more-section {
+      padding: 64px 40px 80px;
+      border-top: 1px solid var(--gray-800);
+    }
+
+    .more-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 28px;
+    }
+
+    .more-list {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 40px;
+    }
+
+    .more-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-800);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .more-item:nth-child(-n+2) {
+      border-top: 1px solid var(--gray-800);
+    }
+
+
+    .more-item-author {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--red-400);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .more-item-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    /* ============================================
+       CTA / SUGGEST
+    ============================================ */
+    .suggest-section {
+      padding: 64px 40px 100px;
+      border-top: 1px solid var(--gray-800);
+    }
+
+    .suggest-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+
+    .suggest-body {
+      font-size: 1.05rem;
+      color: var(--gray-300);
+      margin-bottom: 24px;
+    }
+
+    .suggest-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      color: var(--red-400);
+      border-bottom: 1px solid rgba(229, 80, 58, 0.65);
+      padding-bottom: 2px;
+      font-size: 0.96rem;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .suggest-link:hover {
+      color: #ff6b53;
+      border-color: #ff6b53;
+    }
+
+    .suggest-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .suggest-link .arrow {
+      display: inline-block;
+      transition: transform var(--transition-med);
+    }
+
+    /* ============================================
+       SCANLINES / PANIC / GLITCH
+    ============================================ */
+    @keyframes scanline {
+      0% { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 20px rgba(255, 32, 32, 0.4),
+          0 0 40px rgba(255, 32, 32, 0.3),
+          0 0 60px rgba(255, 32, 32, 0.2),
+          0 0 80px rgba(255, 32, 32, 0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 30px rgba(255, 32, 32, 0.5),
+          0 0 50px rgba(255, 32, 32, 0.4),
+          0 0 70px rgba(255, 32, 32, 0.3),
+          0 0 100px rgba(255, 32, 32, 0.15);
+      }
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .scan-bar {
+      position: fixed;
+      left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(transparent, rgba(255,255,255,0.03), transparent);
+      animation: scanline 6s linear infinite;
+      pointer-events: none;
+      z-index: 1001;
+    }
+
+    .panic-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 80px;
+      height: 80px;
+      background: #0a0a0a;
+      border: none;
+      border-radius: 16px;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.4;
+      cursor: pointer;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+    }
+
+    .panic-btn:hover { transform: scale(1.05); }
+    .panic-btn span { display: block; line-height: 1.1; }
+
+    .glitch-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px;
+      text-align: center;
+    }
+    .glitch-overlay.active { display: flex; }
+    .close-glitch {
+      position: absolute;
+      top: 24px; right: 24px;
+      border: 1px solid var(--gray-700);
+      color: var(--gray-300);
+      padding: 10px 20px;
+      font-size: 12px;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* ============================================
+       REVEAL ANIMATION
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 768px) {
+      .hero, .intro, .books-section, .more-section, .suggest-section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .book-grid {
+        grid-template-columns: 1fr;
+      }
+      .more-list {
+        grid-template-columns: 1fr;
+      }
+      .more-item:nth-child(2) {
+        border-top: none;
+      }
+      .book-card {
+        padding: 24px 20px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-	<div id="site-header"></div>
-	<section class="hero">
-		<p class="eyebrow">intel / library</p>
-		<h1>library</h1>
-		<p class="body">Content coming soon.</p>
-	</section>
-	<div id="site-footer"></div>
-	<script src="/shared-layout.js"></script>
+  <div class="scanlines"></div>
+  <div class="scan-bar"></div>
+
+  <div id="site-header"></div>
+
+  <div class="page-wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">the intel</p>
+      <h1 class="hero-headline">The Library</h1>
+      <p class="hero-subhead">The books that shaped the plan — and the ones that will help you argue for it.</p>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <p>If you're here, you're either already convinced and want to go deeper, or you're not convinced yet and want to understand more. Either way, this list is for you.</p>
+      <p>These are the books that economists, historians, and policymakers have used to rethink how economies actually grow — not how textbooks say they do. No single book tells the whole story. But together they build the case for what New Consensus is trying to do.</p>
+      <p><strong>Read one. Then argue with someone.</strong></p>
+    </section>
+
+    <!-- BOOK GRID -->
+    <section class="books-section">
+      <div class="book-grid">
+
+        <div class="book-card reveal">
+          <span class="book-number">01</span>
+          <h2 class="book-title">Bad Samaritans</h2>
+          <p class="book-author">Ha-Joon Chang</p>
+          <p class="book-desc">Start here. The best account of how rich countries actually got rich — and it wasn't by following the rules they now tell everyone else to follow. Not vibes. Institutions.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">02</span>
+          <h2 class="book-title">Invisible Hands</h2>
+          <p class="book-author">Kim Phillips-Fein</p>
+          <p class="book-desc">Know your adversary. How a small group of right-wing activists dismantled the economic consensus we're now trying to rebuild. It worked. Now we're undoing it.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">03</span>
+          <h2 class="book-title">Freedom's Forge</h2>
+          <p class="book-author">Arthur Herman</p>
+          <p class="book-desc">The WWII mobilization story, told by a right-wing historian. Which makes it more useful, not less. Our playbook, wrapped in a flag.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">04</span>
+          <h2 class="book-title">Destructive Creation</h2>
+          <p class="book-author">Mark R. Wilson</p>
+          <p class="book-desc">Same story, less mythology. Business leaders and government servants working together, with industrialists in public coordinator roles. Messy, effective, instructive.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">05</span>
+          <h2 class="book-title">The Production of Money</h2>
+          <p class="book-author">Ann Pettifor</p>
+          <p class="book-desc">The book that proves this is all actually possible. "We can afford what we can do." Read this when someone tells you we can't afford it.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">06</span>
+          <h2 class="book-title">The Entrepreneurial State</h2>
+          <p class="book-author">Mariana Mazzucato</p>
+          <p class="book-desc">Every piece of technology in your pocket was funded by the U.S. government decades before any private investor saw a use for it. The biggest venture capitalist in history takes no stake. Because private=good, public=bad. It's a racket.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">07</span>
+          <h2 class="book-title">Doughnut Economics</h2>
+          <p class="book-author">Kate Raworth</p>
+          <p class="book-desc">A whole new economics paradigm. Not just what's wrong with the current one — an actual replacement. It was on every desk at a think tank in Berlin. Make of that what you will.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">08</span>
+          <h2 class="book-title">Concrete Economics</h2>
+          <p class="book-author">Stephen S. Cohen &amp; J. Bradford DeLong</p>
+          <p class="book-desc">Same story as Bad Samaritans but just about America, in language your centrist uncle might read. The government has always shaped the market. It stopped doing it well in the 1980s. That's when things went sideways.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">09</span>
+          <h2 class="book-title">When Small States Make Big Leaps</h2>
+          <p class="book-author">Darius Ornston</p>
+          <p class="book-desc">Finland and Denmark mobilized not because they were at war — just because they decided to. Turns out you don't need a catastrophe to act like one is coming.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">10</span>
+          <h2 class="book-title">Marketcrafters</h2>
+          <p class="book-author">Chris Hughes</p>
+          <p class="book-desc">The free market myth, dismantled. The "invisible hand" has always had someone guiding it. Hughes tells the stories of who did it well and who blew it.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">11</span>
+          <h2 class="book-title">Made in the USA</h2>
+          <p class="book-author">Vaclav Smil</p>
+          <p class="book-desc">Bill Gates' favorite book — useful for certain conversations. A country the size of America cannot make a prosperous living without manufacturing. Nations that "let the market decide" end up at the bottom of the food chain.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">12</span>
+          <h2 class="book-title">Ages of American Capitalism</h2>
+          <p class="book-author">Jonathan Levy</p>
+          <p class="book-desc">The whole story. Four ages of American capitalism from colonial era to now. Levy argues we're at a turning point. He's right.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">13</span>
+          <h2 class="book-title">Makers and Takers</h2>
+          <p class="book-author">Rana Foroohar</p>
+          <p class="book-desc">Who are the real makers? Workers, entrepreneurs, caregivers. Who are the takers? Wall Street, using government-backed credit to extract wealth while contributing nothing. Foroohar names names.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">14</span>
+          <h2 class="book-title">Rethinking Capitalism</h2>
+          <p class="book-author">Mariana Mazzucato &amp; Michael Jacobs</p>
+          <p class="book-desc">2008 broke the economy. It also broke economics as a discipline. Mazzucato and Jacobs bring together economists to rebuild the theory from scratch. Theory and policy, both.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">15</span>
+          <h2 class="book-title">Economics: The User's Guide</h2>
+          <p class="book-author">Ha-Joon Chang</p>
+          <p class="book-desc">Back to Chang. The toolkit — how to understand economic arguments and spot the bad ones. Don't get played by men in suits.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">16</span>
+          <h2 class="book-title">Against the Consensus</h2>
+          <p class="book-author">Justin Yifu Lin</p>
+          <p class="book-desc">What the world economy looks like from Beijing. The measures taken after 2008 were insufficient. Bold, counter-cyclical government investment is what's needed. He's not wrong.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">17</span>
+          <h2 class="book-title">The End of Alchemy</h2>
+          <p class="book-author">Mervyn King</p>
+          <p class="book-desc">Still not convinced? The former governor of the Bank of England thinks the system is broken too. Read it.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">18</span>
+          <h2 class="book-title">The Shifts and the Shocks</h2>
+          <p class="book-author">Martin Wolf</p>
+          <p class="book-desc">The Financial Times economics guru admits austerity was wrong. When the mainstream admits it, you know things have shifted.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">19</span>
+          <h2 class="book-title">The Only Game in Town</h2>
+          <p class="book-author">Mohamed El-Erian</p>
+          <p class="book-desc">Former PIMCO CEO says the same thing. Governments must intervene beyond central bank activity. The improbable keeps becoming reality.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">20</span>
+          <h2 class="book-title">The Park Chung Hee Era</h2>
+          <p class="book-author">Byung-Kook Kim &amp; Ezra F. Vogel</p>
+          <p class="book-desc">South Korea in the 1960s: no economy, mostly illiterate population, almost no resources. Built a modern wealthy economy in a single generation. Through public funding and tight coordination. Samsung started as a fruit importer.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">21</span>
+          <h2 class="book-title">MITI and the Japanese Miracle</h2>
+          <p class="book-author">Chalmers Johnson</p>
+          <p class="book-desc">The Japanese miracle wasn't capitalism unleashed. It was decades of sustained government intervention. The miracle was engineered. On purpose.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="book-card reveal">
+          <span class="book-number">22</span>
+          <h2 class="book-title">Why Europe Grew Rich and Asia Did Not</h2>
+          <p class="book-author">Prasannan Parthasarathi</p>
+          <p class="book-desc">The really big picture. Colonialism, extraction, and the mechanics of how economic power shifts. Dark, important, clarifying.</p>
+          <div class="book-links">
+            <a href="#" class="book-link">Bookshop.org <span class="arrow">&rarr;</span></a>
+            <a href="#" class="book-link">Amazon <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AND MORE -->
+    <section class="more-section">
+      <p class="more-label">and more — papers &amp; articles</p>
+      <div class="more-list">
+        <div class="more-item reveal">
+          <span class="more-item-author">Stephanie Kelton</span>
+          <span class="more-item-title">The Failure of Austerity: Rethinking Fiscal Policy</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">L. Randall Wray &amp; Yeva Nersisyan</span>
+          <span class="more-item-title">Understanding Money and Macroeconomic Policy</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Andrew Haldane</span>
+          <span class="more-item-title">The Costs of Short-termism</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Mariana Mazzucato</span>
+          <span class="more-item-title">Innovation, the State and Patient Capital</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Stephany Griffith-Jones &amp; Giovanni Cozzi</span>
+          <span class="more-item-title">Investment-led Growth: A Solution to the European Crisis</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Joseph Stiglitz</span>
+          <span class="more-item-title">Inequality and Economic Growth</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Colin Crouch</span>
+          <span class="more-item-title">The Paradoxes of Privatisation and Public Service Outsourcing</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Dimitri Zenghelis</span>
+          <span class="more-item-title">Decarbonisation: Innovation and the Economics of Climate Change</span>
+        </div>
+        <div class="more-item reveal">
+          <span class="more-item-author">Carlota Perez</span>
+          <span class="more-item-title">Capitalism, Technology and a Green Global Golden Age</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUGGEST -->
+    <section class="suggest-section">
+      <h2 class="suggest-headline">Have a suggestion?</h2>
+      <p class="suggest-body">Know a book that should be here? We'd love to hear from you.</p>
+      <a href="mailto:info@newconsensus.com" class="suggest-link">send us a recommendation <span class="arrow">&rarr;</span></a>
+    </section>
+
+  </div><!-- /page-wrap -->
+
+  <div id="site-footer"></div>
+
+  <!-- PANIC BUTTON -->
+  <button class="panic-btn" onclick="triggerPanic()" aria-label="Panic button">
+    <span>DO</span>
+    <span>NOT</span>
+    <span>PRESS</span>
+  </button>
+
+  <!-- GLITCH OVERLAY -->
+  <div class="glitch-overlay" id="glitchOverlay">
+    <button class="close-glitch" onclick="closeGlitch()">close</button>
+    <div id="bigCountdown" style="font-family:var(--font-mono);font-size:clamp(60px,15vw,140px);font-weight:700;color:var(--white);"></div>
+    <p style="font-family:var(--font-mono);font-size:14px;color:var(--gray-400);margin-top:16px;">days remaining</p>
+  </div>
+
+  <script>
+    /* countdown */
+    function getDaysRemaining() {
+      const target = new Date('2029-01-20');
+      target.setHours(0,0,0,0);
+      const now = new Date();
+      now.setHours(0,0,0,0);
+      return Math.ceil((target - now) / (1000*60*60*24));
+    }
+    function updateCountdownDisplays() {
+      const d = getDaysRemaining().toLocaleString();
+      const el = document.getElementById('bigCountdown');
+      if (el) el.textContent = d;
+    }
+    function triggerPanic() {
+      document.getElementById('glitchOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGlitch() {
+      document.getElementById('glitchOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    updateCountdownDisplays();
+    setInterval(updateCountdownDisplays, 60000);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeGlitch(); });
+
+    /* reveal on scroll */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+  <script src="/shared-layout.js"></script>
 </body>
 </html>
