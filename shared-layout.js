@@ -393,15 +393,7 @@
   <a href="/" class="nav-logo">New Consensus</a>
   <div class="nav-links">
     <a class="nav-link${flags.tripocalypse ? ' active' : ''}" href="/tripocalypse">The Tripocalypse</a>
-    <div class="nav-dropdown">
-      <button class="nav-link nav-dropdown-trigger${flags.solution ? ' active' : ''}" aria-expanded="false" aria-haspopup="true" type="button">
-        The Mission <span class="dropdown-arrow">&#9660;</span>
-      </button>
-      <div class="nav-dropdown-menu">
-        <a href="/the-mission" class="nav-dropdown-item${flags.mission ? ' active' : ''}">Mission for Humanity</a>
-        <a href="/mission-for-america" class="nav-dropdown-item${flags.evidence ? ' active' : ''}">Mission for America</a>
-      </div>
-    </div>
+    <a class="nav-link${flags.evidence ? ' active' : ''}" href="/mission-for-america">The Mission</a>
 
     <div class="nav-dropdown">
       <button class="nav-link nav-dropdown-trigger${flags.projects ? ' active' : ''}" aria-expanded="false" aria-haspopup="true" type="button">
