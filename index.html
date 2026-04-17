@@ -863,6 +863,13 @@
       margin-top: 8px;
     }
 
+    .card-back-copy.mobile { display: none; }
+    @media (max-width: 768px) {
+      .card-back-copy.desktop { display: none; }
+      .card-back-copy.mobile { display: block; }
+      .card-back-copy.mobile + .card-back-copy.mobile { margin-top: 8px; }
+    }
+
     .card-separator {
       font-family: var(--font-mono);
       letter-spacing: 0.08em;
@@ -1334,8 +1341,10 @@
           <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
           <p class="card-eyebrow">↑ the end</p>
           <h3 class="card-back-headline">Things are not fine. Let's start there.</h3>
-          <p class="card-back-copy">Three crises. Each accelerating. Each making each other worse. The people who should be fixing it are torn between denial and nihilism. They offer only to slow the descent into chaos.</p>
-          <p class="card-back-copy">We believe a different future is possible.</p>
+          <p class="card-back-copy desktop">Three crises. Each accelerating. Each making each other worse. The people who should be fixing it are torn between denial and nihilism. They offer only to slow the descent into chaos.</p>
+          <p class="card-back-copy desktop">We believe a different future is possible.</p>
+          <p class="card-back-copy mobile">Three crises. Each accelerating. Each making the others worse.</p>
+          <p class="card-back-copy mobile">We believe a different future is possible.</p>
           <button class="card-flip-link" id="homeToBegin" type="button">NOW SEE THE OTHER SIDE →</button>
         </div>
       </article>
@@ -1354,10 +1363,14 @@
           <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
           <p class="card-eyebrow">↓ the beginning</p>
           <h3 class="card-back-headline">We're building the beginning.</h3>
-          <p class="card-back-copy">Last time the apocalypse came knocking, we mobilized. Built a new economy. Put millions to work in great jobs. Defeated fascism. Because that's what saving the world actually takes.</p>
-          <p class="card-back-copy">Time to save the world again. This isn't just America's problem. But America can lead — build the clean economy, supply the global transition from here.</p>
-          <p class="card-back-copy">January 20, 2029. A new president takes office. Imagine that moment without a plan.</p>
-          <p class="card-back-copy">We're making the plan.</p>
+          <p class="card-back-copy desktop">The last time the apocalypse came knocking, we chose to act. Not manage. Not adapt. Mobilize. Built a new economy overnight. Put millions of people to work in really good jobs. Defeated fascism. Not because it was easy. Because that's what it took to save the world.</p>
+          <p class="card-back-copy desktop">Time to save the world again. Every country must do everything it can. We can mobilize to build a clean economy for the U.S. and to build the industries to supply the global transition.</p>
+          <p class="card-back-copy desktop">Things can only get worse until January 20, 2029. But then we have our chance. Imagine landing in that moment WITHOUT a plan?</p>
+          <p class="card-back-copy desktop">We're making the plan.</p>
+          <p class="card-back-copy mobile">Last time, we mobilized. Built a new economy. Put millions to work. Defeated fascism.</p>
+          <p class="card-back-copy mobile">Time to save the world again. America can lead.</p>
+          <p class="card-back-copy mobile">January 20, 2029. Imagine that moment without a plan.</p>
+          <p class="card-back-copy mobile">We're making the plan.</p>
           <button class="card-flip-link" id="homeToEnd" type="button">← SEE WHAT WE'RE UP AGAINST</button>
         </div>
       </article>
