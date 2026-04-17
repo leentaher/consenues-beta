@@ -513,6 +513,28 @@
       font-weight: 500;
     }
 
+    .hero-lead {
+      font-family: var(--font-mono);
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 32px;
+      max-width: 80ch;
+    }
+
+    .hero-callout {
+      font-family: var(--font-mono);
+      font-size: clamp(24px, 3.2vw, 34px);
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 16px 0 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .cta-row {
       display: flex;
       gap: 16px;
@@ -677,7 +699,7 @@
        TWO FUTURES FLIP SECTION
     ============================================ */
     .two-futures-section {
-      padding: 80px 40px;
+      padding: 80px 40px 32px;
       border-top: 1px solid var(--gray-800);
     }
 
@@ -841,6 +863,13 @@
       margin-top: 8px;
     }
 
+    .card-back-copy.mobile { display: none; }
+    @media (max-width: 768px) {
+      .card-back-copy.desktop { display: none; }
+      .card-back-copy.mobile { display: block; }
+      .card-back-copy.mobile + .card-back-copy.mobile { margin-top: 8px; }
+    }
+
     .card-separator {
       font-family: var(--font-mono);
       letter-spacing: 0.08em;
@@ -874,13 +903,16 @@
       text-align: center;
     }
 
+    .pivot-line .highlight {
+      color: var(--accent);
+    }
+
     /* ============================================
        PROJECTS GRID
     ============================================ */
     .projects-section {
       border-top: 1px solid var(--border-white-06);
-      margin-top: 80px;
-      padding-top: 80px;
+      padding-top: 40px;
     }
 
     .projects-section .section-head {
@@ -890,9 +922,11 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      column-gap: 40px;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      column-gap: 24px;
+      row-gap: 24px;
       margin-top: 40px;
+      align-items: stretch;
     }
 
     .project-card {
@@ -910,15 +944,28 @@
     }
 
     .project-card--featured {
+      position: relative;
       display: flex;
       flex-direction: column;
-      background: var(--surface-800);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--red-500) 8%, transparent) 0%, transparent 60%),
+        var(--surface-800);
       border: none;
-      border-left: 4px solid var(--accent);
-      padding-top: 48px;
-      padding-right: 48px;
-      padding-bottom: 48px;
-      padding-left: 28px;
+      border-left: 4px solid var(--red-500);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--red-500) 20%, transparent),
+        0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 36px 32px;
+    }
+
+    .project-card--featured:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--red-500) 40%, transparent),
+        0 12px 40px rgba(0, 0, 0, 0.5);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--red-500) 12%, transparent) 0%, transparent 60%),
+        var(--surface-850);
     }
 
     .project-eyebrow {
@@ -958,18 +1005,10 @@
       margin-top: 28px;
     }
 
-    .projects-right-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .projects-right-col .project-card {
-      flex: 1;
-    }
-
-    .projects-right-col .project-title {
-      margin-bottom: 8px;
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ============================================
@@ -1253,19 +1292,17 @@
 
   <!-- Hero -->
   <section class="hero">
-    <p class="hero-eyebrow">okay so</p>
-    <h1 class="hero-headline">Welcome to the Tripocalypse</h1>
+    <p class="hero-eyebrow">since 2018</p>
+    <h1 class="hero-headline">the think tank for the revolution.</h1>
     <p class="hero-subhead">
-      <span class="crisis">AI's taking careers. Climate's taking Miami. Fascism's taking attendance.</span>
-      <br><br>
       We wrote the Green New Deal. Now we're writing the Mission for America — the plan the next president will need on day one. We're not waiting.
       <br><br>
-      Three existential crises. Interconnected. Accelerating. Each makes the others worse. There's no way to solve one without solving the others.
+      And you shouldn't either. <a href="/library">Start reading</a>. <a href="/join-a-call">Join a call</a> with us. And sign up to serve in the 2029 administration.
       <br><br>
-      <span class="hope">That's not a problem. That's the answer.</span>
+      We're facing three existential crises. Interconnected. Accelerating. Each makes the others worse. There's no way to solve one without solving the others.
     </p>
     <div class="cta-row">
-      <a href="/join" class="cta cta-primary">sign up to serve</a>
+      <a href="/join" class="cta cta-primary">sign up to serve →</a>
     </div>
   </section>
 
@@ -1280,7 +1317,7 @@
     </div>
     <div class="countdown-item">
       <div class="countdown-label">the climate</div>
-      <div class="countdown-value red">we're cooked</div>
+      <div class="countdown-value red">cooked</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-label">fascism</div>
@@ -1311,9 +1348,11 @@
         <div class="flip-card-face flip-card-back">
           <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
           <p class="card-eyebrow">↑ the end</p>
-          <h3 class="card-back-headline">Things are not fine. Let's start there.</h3>
-          <p class="card-back-copy">Three crises. Each accelerating. Each making each other worse. The people who should be fixing it are torn between denial and nihilism. They offer only to slow the descent into chaos.</p>
-          <p class="card-back-copy">We believe a different future is possible.</p>
+          <h3 class="card-back-headline">Things are not fine.</h3>
+          <p class="card-back-copy desktop">Three crises. Each accelerating. Each making each other worse. The people who should be fixing it are torn between denial and nihilism. They offer only to slow the descent into chaos.</p>
+          <p class="card-back-copy desktop">We believe a different future is possible.</p>
+          <p class="card-back-copy mobile">Three crises. Each accelerating. Each making the others worse.</p>
+          <p class="card-back-copy mobile">We believe a different future is possible.</p>
           <button class="card-flip-link" id="homeToBegin" type="button">NOW SEE THE OTHER SIDE →</button>
         </div>
       </article>
@@ -1332,13 +1371,15 @@
           <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
           <p class="card-eyebrow">↓ the beginning</p>
           <h3 class="card-back-headline">We're building the beginning.</h3>
-          <p class="card-back-copy">We've been here before. The last time everything broke at once, we didn't slow the descent. We reversed it. New economy. New industries. Millions of great jobs. Fascism defeated.</p>
-          <p class="card-back-copy">We're doing it again. The plan is being written now.</p>
+          <p class="card-back-copy desktop">We've been here before. The last time everything broke at once, we didn't slow the descent. We reversed it. New economy. New industries. Millions of great jobs. Fascism defeated.</p>
+          <p class="card-back-copy desktop">We're doing it again. The plan is being written now.</p>
+          <p class="card-back-copy mobile">We've been here before. The last time everything broke at once, we didn't slow the descent. We reversed it. New economy. New industries. Millions of great jobs. Fascism defeated.</p>
+          <p class="card-back-copy mobile">We're doing it again. The plan is being written now.</p>
           <button class="card-flip-link" id="homeToEnd" type="button">← SEE WHAT WE'RE UP AGAINST</button>
         </div>
       </article>
 
-      <p class="pivot-line">The end of the world and the beginning of utopia are the same moment. Which one you get depends on what you decide to do next.</p>
+      <p class="pivot-line">The end of the world and the beginning of utopia are the same moment. <span class="highlight">Which one we get depends on what you decide to do next.</span></p>
     </div>
   </section>
 
@@ -1352,23 +1393,21 @@
         <p class="project-desc">The full playbook. 20+ chapters. Every sector. The plan the next president will need on day one. Ready to deploy.</p>
         <p class="project-link">read the plan →</p>
       </a>
-      <div class="projects-right-col">
-        <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
-          <h3 class="project-title">CrashLab</h3>
-          <p class="project-desc">The biggest financial bubble in history. We're tracking it. Policymakers should probably know about it.</p>
-          <p class="project-link">explore →</p>
-        </a>
-        <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
-          <h3 class="project-title">The Won't Get Fooled Again Act</h3>
-          <p class="project-desc">When this bubble bursts, failed banks and AI companies become public institutions. Not bailouts. Conversions.</p>
-          <p class="project-link">read the act →</p>
-        </a>
-        <a href="https://thecostofwaiting.org/" class="project-card" target="_blank" rel="noopener noreferrer">
-          <h3 class="project-title">The Cost of Waiting</h3>
-          <p class="project-desc">Every year we don't act, it gets more expensive. We did the math. You won't like it.</p>
-          <p class="project-link">see the cost →</p>
-        </a>
-      </div>
+      <a href="https://crashlab.org/" class="project-card" target="_blank" rel="noopener noreferrer">
+        <h3 class="project-title">CrashLab</h3>
+        <p class="project-desc">The biggest financial bubble in history. We're tracking it. Policymakers should probably know about it.</p>
+        <p class="project-link">explore →</p>
+      </a>
+      <a href="https://www.newconsensus.com/projects/wgfaa" class="project-card" target="_blank" rel="noopener noreferrer">
+        <h3 class="project-title">The Won't Get Fooled Again Act</h3>
+        <p class="project-desc">When this bubble bursts, failed banks and AI companies become public institutions. Not bailouts. Conversions.</p>
+        <p class="project-link">read the act →</p>
+      </a>
+      <a href="https://thecostofwaiting.org/" class="project-card" target="_blank" rel="noopener noreferrer">
+        <h3 class="project-title">The Cost of Waiting</h3>
+        <p class="project-desc">Every year we don't act, it gets more expensive. We did the math. You won't like it.</p>
+        <p class="project-link">see the cost →</p>
+      </a>
     </div>
     <div class="section-body" style="margin-top: 28px;">
       <p>
@@ -1377,27 +1416,11 @@
     </div>
   </section>
 
-  <!-- Section: About -->
-  <section class="section">
-    <h2 class="section-head">a think tank for the emergency.</h2>
-    <div class="section-body">
-      <p>
-        Most think tanks write policy designed to be "realistic." Small ideas that can survive a divided Congress. That's important work.
-      </p>
-      <p>
-        <em>Our job is different.</em>
-      </p>
-      <p>
-        New Consensus develops solutions that match the scale of our problems. We wrote the Green New Deal. Now we're writing the Mission for America. Because "realistic" got us here. And here is three converging catastrophes with no serious plan in sight.
-      </p>
-    </div>
-  </section>
-
   <section class="section" id="join">
     <h2 class="section-head">join us.</h2>
     <div class="section-body">
       <p>
-        If you're ready to help build the plan, start with the Mission for America and get in touch.
+        The plan won't deploy itself. We need people. You could be one of them.
       </p>
       <p>
         <a href="jobs.html" class="cta cta-primary">see open roles →</a>
