@@ -513,6 +513,28 @@
       font-weight: 500;
     }
 
+    .hero-lead {
+      font-family: var(--font-mono);
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--white);
+      line-height: 1.5;
+      margin-bottom: 32px;
+      max-width: 80ch;
+    }
+
+    .hero-callout {
+      font-family: var(--font-mono);
+      font-size: clamp(24px, 3.2vw, 34px);
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin: 16px 0 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .cta-row {
       display: flex;
       gap: 16px;
@@ -1253,19 +1275,20 @@
 
   <!-- Hero -->
   <section class="hero">
-    <p class="hero-eyebrow">okay so</p>
-    <h1 class="hero-headline">Welcome to the Tripocalypse</h1>
+    <p class="hero-eyebrow">we need to talk</p>
+    <h1 class="hero-headline">the think tank for the revolution.</h1>
+    <p class="hero-lead">Nobody else was writing the plan. So we did.</p>
     <p class="hero-subhead">
-      <span class="crisis">AI's taking careers. Climate's taking Miami. Fascism's taking attendance.</span>
-      <br><br>
       We wrote the Green New Deal. Now we're writing the Mission for America — the plan the next president will need on day one. We're not waiting.
       <br><br>
       Three existential crises. Interconnected. Accelerating. Each makes the others worse. There's no way to solve one without solving the others.
-      <br><br>
-      <span class="hope">That's not a problem. That's the answer.</span>
+    </p>
+    <p class="hero-callout">
+      <span>That's not a problem.</span>
+      <span>That's the answer.</span>
     </p>
     <div class="cta-row">
-      <a href="/join" class="cta cta-primary">sign up to serve</a>
+      <a href="/join" class="cta cta-primary">sign up to serve →</a>
     </div>
   </section>
 
@@ -1375,22 +1398,6 @@
     <div class="section-body" style="margin-top: 28px;">
       <p>
         <a href="/projects" class="cta cta-secondary">see everything we're building →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Section: About -->
-  <section class="section">
-    <h2 class="section-head">a think tank for the emergency.</h2>
-    <div class="section-body">
-      <p>
-        Most think tanks write policy designed to be "realistic." Small ideas that can survive a divided Congress. That's important work.
-      </p>
-      <p>
-        <em>Our job is different.</em>
-      </p>
-      <p>
-        New Consensus develops solutions that match the scale of our problems. We wrote the Green New Deal. Now we're writing the Mission for America. Because "realistic" got us here. And here is three converging catastrophes with no serious plan in sight.
       </p>
     </div>
   </section>
