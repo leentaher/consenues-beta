@@ -1,690 +1,1391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tripocalypse - New Consensus</title>
-  <meta name="description" content="AI, climate, and fascism are connected crises that feed each other.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-
-      --black: #0a0a0a;
-      --gray-900: #111111;
-      --gray-800: #1a1a1a;
-      --gray-700: #222222;
-      --gray-600: #333333;
-      --gray-500: #505050;
-      --gray-400: #707070;
-      --gray-300: #909090;
-      --gray-200: #a0a0a0;
-      --gray-100: #e0e0e0;
-      --white: #ffffff;
-
-      --red-500: #e7ff00;
-      --red-400: #f7ff70;
-      --accent-blue: #5aa7ff;
-      --accent-green: #57d987;
-      --accent-red: #ff5c5c;
-      --accent-gold: #f7cc58;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--black);
-      color: var(--gray-100);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .scanlines {
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.1) 2px,
-        rgba(0, 0, 0, 0.1) 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    .scan-bar {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: linear-gradient(transparent, rgba(255, 255, 255, 0.03), transparent);
-      animation: scanline 6s linear infinite;
-      pointer-events: none;
-      z-index: 1001;
-    }
-
-    @keyframes scanline {
-      0% { top: -100%; }
-      100% { top: 100%; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.85; }
-      50% { transform: scale(1.18); opacity: 1; }
-    }
-
-    @keyframes mapPulse {
-      0%, 100% { transform: scale(1); opacity: 0.55; }
-      50% { transform: scale(1.4); opacity: 1; }
-    }
-
-    .page-wrap {
-      padding-top: 96px;
-    }
-
-    .section {
-      padding: 72px 40px;
-      border-top: 1px solid var(--gray-800);
-    }
-
-    .hero {
-      padding-top: 32px;
-      border-top: none;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-300);
-      text-transform: lowercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 16px;
-    }
-
-    .hero-title {
-      font-size: clamp(40px, 8vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      margin-bottom: 18px;
-    }
-
-    .hero-subtitle {
-      font-family: var(--font-mono);
-      font-size: 15px;
-      color: var(--gray-200);
-      margin-bottom: 26px;
-    }
-
-    .hero-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-300);
-      text-transform: lowercase;
-      border: 1px solid var(--gray-700);
-      background: rgba(17, 17, 17, 0.9);
-      padding: 10px 14px;
-      border-radius: 999px;
-    }
-
-    .dot-row {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      animation: pulse 1.7s infinite ease-in-out;
-    }
-
-    .dot.blue { background: var(--accent-blue); }
-    .dot.green { background: var(--accent-green); animation-delay: 0.2s; }
-    .dot.red { background: var(--accent-red); animation-delay: 0.4s; }
-
-    .meta-copy {
-      color: var(--gray-200);
-    }
-
-    .crisis {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 30px;
-      align-items: stretch;
-    }
-
-    .kicker {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-400);
-      text-transform: lowercase;
-      margin-bottom: 10px;
-    }
-
-    .crisis-title {
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-
-    .crisis-title.gold { color: var(--accent-gold); }
-    .crisis-title.green { color: var(--accent-green); }
-    .crisis-title.red { color: var(--accent-red); }
-
-    .crisis-copy p {
-      color: var(--gray-200);
-      max-width: 740px;
-    }
-
-    .crisis-copy p + p {
-      margin-top: 14px;
-    }
-
-    .viz-box {
-      border: 1px solid var(--gray-700);
-      background: linear-gradient(165deg, rgba(24, 24, 24, 0.95), rgba(10, 10, 10, 0.96));
-      border-radius: 14px;
-      padding: 20px;
-      min-height: 290px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .viz-label {
-      font-family: var(--font-mono);
-      text-transform: lowercase;
-      font-size: 11px;
-      color: var(--gray-400);
-      margin-bottom: 16px;
-      letter-spacing: 0.03em;
-    }
-
-    .job-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .job-list li {
-      font-family: var(--font-mono);
-      color: var(--gray-300);
-      font-size: 14px;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
-      padding-bottom: 8px;
-      text-transform: lowercase;
-    }
-
-    .job-list li.struck {
-      text-decoration: line-through;
-      color: var(--gray-500);
-    }
-
-    .job-list li.current {
-      color: var(--accent-gold);
-      font-weight: 500;
-      border-color: rgba(247, 204, 88, 0.45);
-      text-shadow: 0 0 12px rgba(247, 204, 88, 0.35);
-    }
-
-    .map-box {
-      border: 1px solid rgba(87, 217, 135, 0.3);
-    }
-
-    .map-field {
-      position: absolute;
-      inset: 56px 16px 16px 16px;
-      border: 1px solid rgba(87, 217, 135, 0.15);
-      background:
-        radial-gradient(circle at 20% 30%, rgba(87, 217, 135, 0.12), transparent 30%),
-        radial-gradient(circle at 70% 60%, rgba(87, 217, 135, 0.1), transparent 34%),
-        linear-gradient(rgba(87, 217, 135, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(87, 217, 135, 0.05) 1px, transparent 1px);
-      background-size: auto, auto, 28px 28px, 28px 28px;
-      border-radius: 10px;
-    }
-
-    .city-dot {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-green);
-      box-shadow: 0 0 12px rgba(87, 217, 135, 0.75);
-      animation: mapPulse 2.2s infinite ease-in-out;
-    }
-
-    .city-dot:nth-child(1) { top: 28%; left: 20%; }
-    .city-dot:nth-child(2) { top: 54%; left: 34%; animation-delay: 0.3s; }
-    .city-dot:nth-child(3) { top: 42%; left: 59%; animation-delay: 0.6s; }
-    .city-dot:nth-child(4) { top: 65%; left: 75%; animation-delay: 0.9s; }
-    .city-dot:nth-child(5) { top: 24%; left: 70%; animation-delay: 1.2s; }
-
-    .map-note {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      font-family: var(--font-mono);
-      color: var(--accent-green);
-      font-size: 12px;
-      text-transform: lowercase;
-    }
-
-    .chart-box {
-      border: 1px solid rgba(255, 92, 92, 0.3);
-    }
-
-    .chart-row {
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .chart-year {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-400);
-    }
-
-    .bar-track {
-      height: 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .bar {
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent-blue), #7f7fff, var(--accent-red));
-      box-shadow: 0 0 10px rgba(255, 92, 92, 0.3);
-    }
-
-    .bar.wide { width: 89%; }
-    .bar.mid { width: 73%; }
-    .bar.narrow { width: 59%; }
-    .bar.small { width: 44%; }
-
-    .network-wrap {
-      margin-top: 26px;
-      border: 1px solid var(--gray-700);
-      border-radius: 14px;
-      background: linear-gradient(170deg, rgba(18, 18, 18, 0.95), rgba(10, 10, 10, 0.95));
-      padding: 22px;
-    }
-
-    .network-note {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-300);
-      text-transform: lowercase;
-      margin-bottom: 14px;
-    }
-
-    .network {
-      position: relative;
-      min-height: 190px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 26px;
-      flex-wrap: wrap;
-    }
-
-    .network::before,
-    .network::after {
-      content: "";
-      position: absolute;
-      width: 170px;
-      border-top: 1px dashed var(--gray-500);
-      top: 46%;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .network::after {
-      width: 130px;
-      transform: translateX(-50%) rotate(60deg);
-    }
-
-    .node-link {
-      border: none;
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      text-transform: uppercase;
-      color: var(--white);
-      cursor: pointer;
-      position: relative;
-      z-index: 2;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .node-link:hover {
-      transform: translateY(-2px);
-    }
-
-    .node-link.ai { background: rgba(90, 167, 255, 0.2); border: 1px solid rgba(90, 167, 255, 0.65); }
-    .node-link.climate { background: rgba(87, 217, 135, 0.2); border: 1px solid rgba(87, 217, 135, 0.65); }
-    .node-link.fascism { background: rgba(255, 92, 92, 0.2); border: 1px solid rgba(255, 92, 92, 0.65); }
-
-    .node-link.active {
-      box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
-    }
-
-    .network-detail {
-      margin-top: 14px;
-      font-size: 14px;
-      color: var(--gray-200);
-      min-height: 22px;
-    }
-
-    .solutions {
-      background: linear-gradient(180deg, rgba(87, 217, 135, 0.08), rgba(10, 10, 10, 0.96) 60%);
-      border-top: 1px solid rgba(87, 217, 135, 0.28);
-    }
-
-    .solutions .crisis-title {
-      color: var(--accent-green);
-    }
-
-    .cta-link {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 20px;
-      padding: 13px 20px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--black);
-      background: var(--red-500);
-      border: 1px solid var(--red-500);
-      transition: all 0.15s ease;
-    }
-
-    .cta-link:hover {
-      background: var(--red-400);
-      border-color: var(--red-400);
-    }
-
-    @media (max-width: 980px) {
-      .crisis {
-        grid-template-columns: 1fr;
-      }
-
-      .viz-box {
-        min-height: 240px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .section {
-        padding: 60px 24px;
-      }
-
-      .hero-meta {
-        flex-wrap: wrap;
-        border-radius: 14px;
-      }
-
-      .network::before,
-      .network::after {
-        display: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tripocalypse — New Consensus</title>
+<meta name="description" content="AI, climate, and fascism are connected crises that feed each other.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #0a0a0c;
+  color: #c8c8d0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ========== UTILITY ========== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ========== SCANLINES ========== */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.scan-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.03), transparent);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+@keyframes scanline {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* ========== HERO (adjusted for shared nav padding) ========== */
+.hero {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding-top: 140px;
+  padding-bottom: 100px;
+  background: #0a0a0c;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(4rem, 9vw, 8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  background: rgba(255,255,255,0.03);
+}
+.hero-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+.hero-pill .dot-ai { background: #60a5fa; }
+.hero-pill .dot-climate { background: #4ade80; }
+.hero-pill .dot-fascism { background: #f87171; }
+.hero-pill span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.02em;
+}
+
+/* ========== SECTION DIVIDER ========== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  margin: 0;
+}
+
+/* ========== CRISIS SECTIONS ========== */
+.crisis-section {
+  padding: 140px 0;
+  position: relative;
+}
+
+.crisis-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.crisis-label .num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.crisis-section h2 {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.crisis-hook {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  margin-bottom: 32px;
+  opacity: 0.6;
+}
+
+.crisis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.crisis-text p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 20px;
+}
+.crisis-text p strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+/* --- AI Section --- */
+.crisis-ai .crisis-label { color: #f5c842; }
+.crisis-ai .crisis-label .num { background: rgba(245,200,66,0.12); color: #f5c842; }
+.crisis-ai h2 { color: #f5c842; }
+
+/* --- Climate Section --- */
+.crisis-climate .crisis-label { color: #4ade80; }
+.crisis-climate .crisis-label .num { background: rgba(74,222,128,0.12); color: #4ade80; }
+.crisis-climate h2 { color: #4ade80; }
+
+/* --- Fascism Section --- */
+.crisis-fascism .crisis-label { color: #f87171; }
+.crisis-fascism .crisis-label .num { background: rgba(248,113,113,0.12); color: #f87171; }
+.crisis-fascism h2 { color: #f87171; }
+
+/* ========== DATA CARDS ========== */
+.data-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.data-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+}
+.crisis-ai .data-card::before { background: linear-gradient(90deg, transparent, #f5c842, transparent); }
+.crisis-climate .data-card::before { background: linear-gradient(90deg, transparent, #4ade80, transparent); }
+.crisis-fascism .data-card::before { background: linear-gradient(90deg, transparent, #f87171, transparent); }
+
+.data-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 28px;
+}
+.data-card-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.data-card-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+}
+
+/* Job loss tracker */
+.job-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.job-item:last-child { border-bottom: none; }
+.job-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+.job-name.struck { text-decoration: line-through; opacity: 0.35; }
+.job-name.you { color: #f5c842; font-weight: 700; text-decoration: none; }
+.job-risk {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.risk-high { background: rgba(248,113,113,0.12); color: #f87171; }
+.risk-med { background: rgba(245,200,66,0.12); color: #f5c842; }
+.risk-you { background: rgba(245,200,66,0.15); color: #f5c842; border: 1px dashed rgba(245,200,66,0.3); }
+
+/* Climate: thermometer visual */
+.thermo-visual {
+  padding: 16px 0;
+}
+.thermo-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(74,222,128,0.06);
+}
+.thermo-row:last-child { border-bottom: none; }
+.thermo-icon {
+  font-size: 1.2rem;
+  width: 32px; text-align: center;
+  filter: grayscale(0.3);
+}
+.thermo-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  flex: 1;
+}
+.thermo-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(74,222,128,0.1);
+  color: #4ade80;
+}
+.thermo-status.warn { background: rgba(245,200,66,0.1); color: #f5c842; }
+.thermo-status.crit { background: rgba(248,113,113,0.1); color: #f87171; }
+
+/* Fascism: signal decay visual */
+.signal-decay {
+  padding: 16px 0;
+}
+.signal-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(248,113,113,0.06);
+}
+.signal-row:last-child { border-bottom: none; }
+.signal-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(248,113,113,0.5);
+  width: 24px; text-align: center;
+}
+.signal-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  flex: 1;
+}
+.signal-label.fading {
+  opacity: 0.3;
+  text-decoration: line-through;
+  text-decoration-color: rgba(248,113,113,0.4);
+}
+.signal-bar {
+  display: flex; gap: 3px; align-items: center;
+}
+.signal-bar .bar-seg {
+  width: 4px; border-radius: 2px;
+  background: #f87171;
+}
+.signal-bar .bar-seg.off {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ========== INTERCONNECTION SECTION ========== */
+.interconnection {
+  padding: 140px 0;
+  text-align: center;
+}
+
+.inter-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.interconnection h2 {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  letter-spacing: -0.02em;
+}
+
+.inter-sub {
+  color: rgba(255,255,255,0.45);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 64px;
+  line-height: 1.7;
+}
+
+/* ========== VENN DIAGRAM (ZURB sketch style) ========== */
+.venn-container {
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+
+.venn-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.venn-diagram svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Zone styling */
+.venn-zone {
+  cursor: pointer;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.venn-zone:hover {
+  filter: brightness(1.8) saturate(1.4);
+}
+.venn-zone.active {
+  filter: brightness(2) saturate(1.6);
+}
+
+/* Dim inactive */
+.venn-diagram.has-active .venn-zone:not(.active) {
+  opacity: 0.25;
+  filter: brightness(0.6) saturate(0.4);
+}
+
+/* Labels */
+.venn-diagram svg text {
+  pointer-events: none;
+  font-family: 'JetBrains Mono', monospace;
+  transition: opacity 0.3s;
+}
+
+/* Callout annotations */
+.venn-diagram svg .callout-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  transition: opacity 0.35s;
+}
+.venn-diagram svg .callout-highlight {
+  transition: opacity 0.35s;
+}
+.venn-diagram svg .callout-line {
+  transition: opacity 0.35s;
+}
+
+/* Highlight callouts matching active zone */
+.venn-diagram.has-active .callout-group { opacity: 0.15; transition: opacity 0.3s; }
+.venn-diagram.has-active .callout-group.callout-active { opacity: 1; }
+
+/* Detail card */
+.venn-detail-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-top: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.venn-detail-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f5c842, #4ade80, #f87171);
+  transition: background 0.4s;
+}
+.venn-detail-card[data-active="ai"]::before { background: #f5c842; }
+.venn-detail-card[data-active="climate"]::before { background: #4ade80; }
+.venn-detail-card[data-active="fascism"]::before { background: #f87171; }
+.venn-detail-card[data-active="ai-climate"]::before { background: linear-gradient(90deg, #f5c842, #4ade80); }
+.venn-detail-card[data-active="ai-fascism"]::before { background: linear-gradient(90deg, #f5c842, #f87171); }
+.venn-detail-card[data-active="climate-fascism"]::before { background: linear-gradient(90deg, #4ade80, #f87171); }
+.venn-detail-card[data-active="center"]::before { background: linear-gradient(90deg, #f5c842, #4ade80, #f87171); }
+
+.venn-card-title {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: color 0.35s;
+  color: #fff;
+}
+.venn-detail-card[data-active="ai"] .venn-card-title { color: #f5c842; }
+.venn-detail-card[data-active="climate"] .venn-card-title { color: #4ade80; }
+.venn-detail-card[data-active="fascism"] .venn-card-title { color: #f87171; }
+.venn-detail-card[data-active="ai-climate"] .venn-card-title { color: #a0e860; }
+.venn-detail-card[data-active="ai-fascism"] .venn-card-title { color: #f0a05a; }
+.venn-detail-card[data-active="climate-fascism"] .venn-card-title { color: #c08a9a; }
+.venn-detail-card[data-active="center"] .venn-card-title {
+  background: linear-gradient(135deg, #f5c842, #4ade80, #f87171);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.5rem;
+}
+
+.venn-card-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  max-width: 640px;
+}
+
+.venn-card-tag {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.3);
+  transition: all 0.35s;
+}
+.venn-detail-card[data-active="center"] .venn-card-tag {
+  border-color: rgba(224,255,79,0.2);
+  color: rgba(224,255,79,0.5);
+}
+
+/* Cheeky floating prompt */
+.venn-nudge {
+  position: relative;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.venn-nudge-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.03em;
+  animation: nudgeBob 2.5s ease-in-out infinite;
+  cursor: default;
+  transition: all 0.4s;
+  position: relative;
+}
+.venn-nudge-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255,255,255,0.08);
+}
+.venn-nudge-inner .nudge-arrow {
+  display: inline-block;
+  animation: nudgePoint 1.5s ease-in-out infinite;
+  font-size: 1rem;
+}
+@keyframes nudgeBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes nudgePoint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+/* After user interacts, nudge transforms */
+.venn-nudge-inner.touched {
+  background: rgba(74,222,128,0.08);
+  border-color: rgba(74,222,128,0.15);
+  color: #4ade80;
+  animation: none;
+}
+
+/* Reaction text that appears on first hover */
+.venn-reaction {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: none;
+}
+.venn-reaction.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.venn-hint {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: opacity 0.5s;
+}
+.venn-hint.hidden { opacity: 0; }
+
+/* Fun cursor change on diagram */
+.venn-zone { cursor: crosshair; }
+.venn-zone:hover { cursor: pointer; }
+
+/* ========== SOLUTION SECTION ========== */
+.solution {
+  padding: 140px 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+.solution::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,255,65,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.solution-content { position: relative; z-index: 1; max-width: 720px; }
+
+.solution-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(224,255,79,0.6);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.solution h2 {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #e0ff4f;
+  margin-bottom: 40px;
+}
+
+.solution p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 24px;
+}
+.solution p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ========== MATRIX TERMINAL FIX CARDS ========== */
+.fix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin: 48px 0 56px;
+  background: rgba(0,255,65,0.03);
+  border: 1px solid rgba(0,255,65,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+/* Scanline overlay */
+.fix-grid::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+/* Flicker animation */
+.fix-grid::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,255,65,0.01);
+  pointer-events: none;
+  z-index: 1;
+  animation: termFlicker 4s ease-in-out infinite;
+}
+@keyframes termFlicker {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+  52% { opacity: 0; }
+  54% { opacity: 0.5; }
+  56% { opacity: 0; }
+}
+
+.fix-card {
+  background: rgba(0,8,2,0.9);
+  padding: 32px 28px;
+  text-align: left;
+  position: relative;
+  border-radius: 0;
+  border-right: 1px solid rgba(0,255,65,0.08);
+}
+.fix-card:last-child { border-right: none; }
+
+.fix-card-prompt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(0,255,65,0.35);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.fix-card-prompt .blink-cursor {
+  display: inline-block;
+  width: 6px; height: 12px;
+  background: rgba(0,255,65,0.5);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: cursorBlink 1s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.fix-card h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #00ff41;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(0,255,65,0.3);
+  letter-spacing: -0.01em;
+}
+.fix-card p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(0,255,65,0.45);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.fix-card .term-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  padding: 3px 8px;
+  border: 1px solid rgba(0,255,65,0.15);
+  border-radius: 2px;
+  color: rgba(0,255,65,0.3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.solution-urgency {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 48px;
+  padding-left: 20px;
+  border-left: 2px solid rgba(224,255,79,0.2);
+}
+.solution-urgency strong {
+  color: #e0ff4f;
+  font-weight: 700;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center; gap: 12px;
+  padding: 18px 40px;
+  background: #e0ff4f;
+  color: #0a0a0c;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(224,255,79,0.25);
+}
+.cta-btn .arrow {
+  transition: transform 0.3s;
+}
+.cta-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .crisis-grid { grid-template-columns: 1fr; gap: 40px; }
+  .fix-grid { grid-template-columns: 1fr; }
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.fade-up {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-up.visible {
+  opacity: 1; transform: translateY(0);
+}
+</style>
 </head>
 <body>
-  <div class="scanlines"></div>
-  <div class="scan-bar"></div>
 
-  <div id="site-header"></div>
+<!-- Scanlines overlay -->
+<div class="scanlines"></div>
+<div class="scan-bar"></div>
 
-  <main class="page-wrap">
-    <section class="section hero">
-      <p class="hero-eyebrow">okay so</p>
-      <h1 class="hero-title">The Tripocalypse</h1>
-      <p class="hero-subtitle">AI. Climate. Fascism. Let's get into it.</p>
-      <div class="hero-meta">
-        <span class="dot-row">
-          <span class="dot blue"></span>
-          <span class="dot green"></span>
-          <span class="dot red"></span>
-        </span>
-        <span class="meta-copy">three crises &middot; one planet &middot; no time</span>
-      </div>
-    </section>
+<!-- Site header injected by shared-layout.js -->
+<div id="site-header"></div>
 
-    <section class="section">
-      <div class="crisis">
-        <div class="crisis-copy">
-          <p class="kicker">crisis 01</p>
-          <h2 class="crisis-title gold">AI is eating jobs.</h2>
-          <p>Your job is probably fine. For now.</p>
-          <p>If you do your job on a computer, AI will soon be able to do it too. And yes, it will create whole new industries. New enterprises. New opportunities.</p>
-          <p>AI will staff those too.</p>
-          <p>By 2029, whoever is president will inherit an economy where the professional-managerial class is one missed payment away from mortgage default. The working class was already there. Now everyone else joins them.</p>
+<!-- Main page content -->
+<main class="page-wrap">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">welcome to</div>
+    <h1>The Tripocalypse</h1>
+    <p class="hero-sub">AI. Climate. Fascism. Let's get into it.</p>
+    <div class="hero-pill">
+      <span class="dot dot-ai"></span>
+      <span class="dot dot-climate"></span>
+      <span class="dot dot-fascism"></span>
+      <span>three crises &middot; one planet &middot; no time</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== CRISIS 01: AI ===== -->
+<section class="crisis-section crisis-ai">
+  <div class="container">
+    <div class="crisis-grid">
+      <div class="crisis-text fade-up">
+        <div class="crisis-label">
+          <span class="num">01</span> crisis one
         </div>
-        <aside class="viz-box">
-          <p class="viz-label">job loss tracker</p>
-          <ul class="job-list">
-            <li class="struck">customer service</li>
-            <li class="struck">paralegal</li>
-            <li class="struck">junior developer</li>
-            <li class="struck">radiologist</li>
-            <li class="current">your job (?)</li>
-          </ul>
-        </aside>
+        <h2>AI is eating<br>jobs.</h2>
+        <p class="crisis-hook">Your job is probably fine. For now.</p>
+        <p>If you do your job on a computer, AI will soon be able to do it too. And yes, it will create whole new industries. New enterprises. New opportunities.</p>
+        <p><strong>AI will staff those too.</strong></p>
+        <p>By 2029, whoever is president will inherit an economy where the professional-managerial class is one missed payment away from mortgage default. The working class was already there. Now everyone else joins them.</p>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="crisis">
-        <div class="crisis-copy">
-          <p class="kicker">crisis 02</p>
-          <h2 class="crisis-title green">Climate is eating continents.</h2>
-          <p>Your house is probably fine. For now.</p>
-          <p>Miami is underwater. Phoenix hits 120&deg; in June and stays there. Wildfires are burning through towns that have never burned before. The insurance companies already ran the numbers — that's why they're leaving. That's why your premiums doubled. That's why "act of God" is being quietly redefined to mean "not our problem."</p>
-          <p>The physics is simple and merciless: the warmer it gets, the more ice melts. The more ice melts, the warmer it gets. There's no thermostat. There's no off switch. There's just the bill, which arrives every year and gets larger.</p>
-          <p>Every year we wait, the cost of fixing it doubles. We've been waiting for fifty years.</p>
+      <div class="data-card fade-up" style="animation-delay: 0.2s;">
+        <div class="data-card-header">
+          <span class="data-card-title">Job loss tracker</span>
+          <span class="data-card-badge risk-high">at risk</span>
         </div>
-        <aside class="viz-box map-box">
-          <p class="viz-label">impact map</p>
-          <p class="map-note">now -> 2050 cities under threat</p>
-          <div class="map-field">
-            <span class="city-dot"></span>
-            <span class="city-dot"></span>
-            <span class="city-dot"></span>
-            <span class="city-dot"></span>
-            <span class="city-dot"></span>
-          </div>
-        </aside>
+        <div class="job-item"><span class="job-name struck">customer service</span><span class="job-risk risk-high">94%</span></div>
+        <div class="job-item"><span class="job-name struck">paralegal</span><span class="job-risk risk-high">89%</span></div>
+        <div class="job-item"><span class="job-name struck">junior developer</span><span class="job-risk risk-high">82%</span></div>
+        <div class="job-item"><span class="job-name struck">radiologist</span><span class="job-risk risk-med">71%</span></div>
+        <div class="job-item"><span class="job-name you">your job (?)</span><span class="job-risk risk-you">???</span></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section">
-      <div class="crisis">
-        <div class="crisis-copy">
-          <p class="kicker">crisis 03</p>
-          <h2 class="crisis-title red">Fascism is eating democracy.</h2>
-          <p>It had a lot of different names before it got to this one.</p>
-          <p>It introduced itself as "free speech." As "common sense." As "just asking questions." Then, without a single turning point, we got to mass deportations. Masked federal agents in unmarked vans. Unarmed civilians shot. Entire articles of the constitution quietly set aside.</p>
-          <p>By the time it's obvious, it's usually too late. Next stop: canceled elections. Martial law.</p>
-          <p>Economic desperation is the fuel. Scapegoats are the match. Both are currently in record supply.</p>
+<div class="section-divider"></div>
+
+<!-- ===== CRISIS 02: CLIMATE ===== -->
+<section class="crisis-section crisis-climate">
+  <div class="container">
+    <div class="crisis-grid">
+      <div class="crisis-text fade-up">
+        <div class="crisis-label">
+          <span class="num">02</span> crisis two
         </div>
-        <aside class="viz-box chart-box">
-          <p class="viz-label">democracy index: 2015 -> now</p>
-          <div class="chart-row">
-            <span class="chart-year">2015</span>
-            <div class="bar-track"><div class="bar wide"></div></div>
-          </div>
-          <div class="chart-row">
-            <span class="chart-year">2018</span>
-            <div class="bar-track"><div class="bar mid"></div></div>
-          </div>
-          <div class="chart-row">
-            <span class="chart-year">2021</span>
-            <div class="bar-track"><div class="bar narrow"></div></div>
-          </div>
-          <div class="chart-row">
-            <span class="chart-year">now</span>
-            <div class="bar-track"><div class="bar small"></div></div>
-          </div>
-        </aside>
+        <h2>Climate is eating<br>continents.</h2>
+        <p class="crisis-hook">Your house is probably fine. For now.</p>
+        <p>Miami is underwater. Phoenix hits 120 degrees in June and stays there. Wildfires are burning through towns that have never burned before.</p>
+        <p>The insurance companies already ran the numbers — <strong>that's why they're leaving.</strong></p>
+        <p>The physics is simple and merciless: the warmer it gets, the more ice melts. The more ice melts, the warmer it gets. There's no thermostat. There's no off switch. There's just the bill, which arrives every year and gets larger.</p>
       </div>
-    </section>
-
-    <section class="section">
-      <p class="kicker">here's the kicker — each one feeds the other two.</p>
-      <h2 class="crisis-title"></h2>
-      <div class="crisis-copy">
-        <p>AI job loss drives economic desperation. Desperation fuels fascism. Fascism blocks climate action. Climate crisis strains economies. Each one makes the others worse. Click to see how.</p>
-      </div>
-      <div class="network-wrap">
-        <p class="network-note">click nodes to see how each crisis feeds the others</p>
-        <div class="network">
-          <button class="node-link ai active" data-detail="Mass unemployment hollows out the middle class. Desperate people don't vote for stability — they vote for whoever promises to burn it down.">AI alone</button>
-          <button class="node-link climate" data-detail="Floods, fires, and crop failures strain economies and displace populations. Economic stress creates the conditions fascism feeds on.">Climate alone</button>
-          <button class="node-link fascism" data-detail="Authoritarian governments defund climate agencies, gut environmental protections, and block international cooperation. Every year of fascism is years of lost climate action.">Fascism alone</button>
-          <button class="node-link ai" data-detail="As automation eliminates jobs, the economic pressure to delay expensive climate transitions intensifies. Why retrofit a factory that's already being shut down?">AI meets climate</button>
-          <button class="node-link ai" data-detail="Mass unemployment is fascism's best recruiting tool. Desperate, displaced workers are the base. AI is currently manufacturing that base at scale.">AI meets fascism</button>
-          <button class="node-link climate" data-detail="Climate refugees create migration pressure. Migration pressure feeds nationalist movements. Nationalist movements elect governments that accelerate climate destruction. The loop tightens.">Climate meets fascism</button>
-          <button class="node-link fascism" data-detail="All three crises share the same engine: economic desperation. Fix that — with a clean economy that actually puts people to work — and all three start to unravel. That's not a coincidence. That's the plan.">The tripocalypse.</button>
+      <div class="data-card fade-up" style="animation-delay: 0.2s;">
+        <div class="data-card-header">
+          <span class="data-card-title">What's already happening</span>
+          <span class="data-card-badge" style="background:rgba(74,222,128,0.1);color:#4ade80;">accelerating</span>
         </div>
-        <p class="network-detail" id="networkDetail">All three crises share the same engine: economic desperation. Fix that — with a clean economy that actually puts people to work — and all three start to unravel. That's not a coincidence. That's the plan.</p>
+        <div class="thermo-visual">
+          <div class="thermo-row">
+            <span class="thermo-icon">&#127777;&#65039;</span>
+            <span class="thermo-label">record heat waves</span>
+            <span class="thermo-status crit">every year now</span>
+          </div>
+          <div class="thermo-row">
+            <span class="thermo-icon">&#127754;</span>
+            <span class="thermo-label">coastal flooding</span>
+            <span class="thermo-status crit">worsening</span>
+          </div>
+          <div class="thermo-row">
+            <span class="thermo-icon">&#128293;</span>
+            <span class="thermo-label">wildfire seasons</span>
+            <span class="thermo-status warn">year-round</span>
+          </div>
+          <div class="thermo-row">
+            <span class="thermo-icon">&#128200;</span>
+            <span class="thermo-label">insurance premiums</span>
+            <span class="thermo-status warn">doubled</span>
+          </div>
+          <div class="thermo-row">
+            <span class="thermo-icon">&#10060;</span>
+            <span class="thermo-label">the off switch</span>
+            <span class="thermo-status" style="background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);">doesn't exist</span>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section solutions">
-      <h2 class="crisis-title">turns out there's a fix.</h2>
-      <div class="crisis-copy">
-        <p>All three crises. One solution. One obvious solution that humanity keeps almost figuring out — usually right after the apocalypse starts and hundreds of millions of people are already dead.</p>
-        <p>Guess what we're trying to do differently this time.</p>
-        <p>To fix economic desperation: massive economic project. Great jobs for everyone. To fix the climate: massive clean economy buildout. Same project. To fix fascism: take away the desperation it runs on. Still the same project.</p>
-        <p>This isn't a coincidence. This isn't complicated. You could have figured this out yourself if you'd been paying attention. Some of you have. Most of you haven't. That's why this page exists.</p>
-        <p>Name one way to solve any of these without solving the others. Go ahead.</p>
-        <p>You can't. It's the same thing. It has always been the same thing.</p>
-        <p>BEFORE your job disappears. BEFORE your city floods. BEFORE your democracy does too.</p>
-        <p><a class="cta-link" href="/the-solution" target="_blank" rel="noopener noreferrer">Ready for the solution? → (seriously. click it.)</a></p>
+<div class="section-divider"></div>
+
+<!-- ===== CRISIS 03: FASCISM ===== -->
+<section class="crisis-section crisis-fascism">
+  <div class="container">
+    <div class="crisis-grid">
+      <div class="crisis-text fade-up">
+        <div class="crisis-label">
+          <span class="num">03</span> crisis three
+        </div>
+        <h2>Fascism is eating<br>democracy.</h2>
+        <p class="crisis-hook">It had a lot of different names before it got to this one.</p>
+        <p>It introduced itself as "free speech." As "common sense." As "just asking questions." Then, without a single turning point, we got to mass deportations. Masked federal agents. Unarmed civilians shot.</p>
+        <p>By the time it's obvious, <strong>it's usually too late.</strong></p>
+        <p>Economic desperation is the fuel. Scapegoats are the match. Both are currently in record supply.</p>
       </div>
-    </section>
-  </main>
+      <div class="data-card fade-up" style="animation-delay: 0.2s;">
+        <div class="data-card-header">
+          <span class="data-card-title">Signal decay</span>
+          <span class="data-card-badge" style="background:rgba(248,113,113,0.1);color:#f87171;">fading</span>
+        </div>
+        <div class="signal-decay">
+          <div class="signal-row">
+            <span class="signal-icon">&#9656;</span>
+            <span class="signal-label">free press</span>
+            <div class="signal-bar">
+              <span class="bar-seg" style="height:16px;"></span>
+              <span class="bar-seg" style="height:12px;"></span>
+              <span class="bar-seg" style="height:8px; opacity:0.5;"></span>
+              <span class="bar-seg off" style="height:6px;"></span>
+              <span class="bar-seg off" style="height:4px;"></span>
+            </div>
+          </div>
+          <div class="signal-row">
+            <span class="signal-icon">&#9656;</span>
+            <span class="signal-label">judicial independence</span>
+            <div class="signal-bar">
+              <span class="bar-seg" style="height:16px;"></span>
+              <span class="bar-seg" style="height:10px; opacity:0.6;"></span>
+              <span class="bar-seg off" style="height:6px;"></span>
+              <span class="bar-seg off" style="height:4px;"></span>
+              <span class="bar-seg off" style="height:3px;"></span>
+            </div>
+          </div>
+          <div class="signal-row">
+            <span class="signal-icon">&#9656;</span>
+            <span class="signal-label fading">peaceful protest</span>
+            <div class="signal-bar">
+              <span class="bar-seg" style="height:14px; opacity:0.4;"></span>
+              <span class="bar-seg off" style="height:8px;"></span>
+              <span class="bar-seg off" style="height:5px;"></span>
+              <span class="bar-seg off" style="height:3px;"></span>
+              <span class="bar-seg off" style="height:2px;"></span>
+            </div>
+          </div>
+          <div class="signal-row">
+            <span class="signal-icon">&#9656;</span>
+            <span class="signal-label fading">free elections</span>
+            <div class="signal-bar">
+              <span class="bar-seg" style="height:10px; opacity:0.3;"></span>
+              <span class="bar-seg off" style="height:6px;"></span>
+              <span class="bar-seg off" style="height:4px;"></span>
+              <span class="bar-seg off" style="height:3px;"></span>
+              <span class="bar-seg off" style="height:2px;"></span>
+            </div>
+          </div>
+          <div class="signal-row">
+            <span class="signal-icon" style="color:rgba(248,113,113,0.25);">&#9656;</span>
+            <span class="signal-label fading">constitutional rights</span>
+            <div class="signal-bar">
+              <span class="bar-seg off" style="height:8px;"></span>
+              <span class="bar-seg off" style="height:5px;"></span>
+              <span class="bar-seg off" style="height:3px;"></span>
+              <span class="bar-seg off" style="height:2px;"></span>
+              <span class="bar-seg off" style="height:1px;"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div id="site-footer"></div>
+<div class="section-divider"></div>
 
-  <script>
-    (function setupNetworkNodes() {
-      const nodes = document.querySelectorAll('.node-link');
-      const detail = document.getElementById('networkDetail');
-      if (!nodes.length || !detail) return;
+<!-- ===== INTERCONNECTION ===== -->
+<section class="interconnection">
+  <div class="container">
+    <div class="inter-eyebrow fade-up">here's the kicker</div>
+    <h2 class="fade-up">Each crisis feeds<br>the other two.</h2>
+    <p class="inter-sub fade-up">AI job loss drives economic desperation. Desperation fuels fascism. Fascism blocks climate action. Climate crisis strains economies. Each one makes the others worse.</p>
 
-      nodes.forEach((node) => {
-        node.addEventListener('click', () => {
-          nodes.forEach((n) => n.classList.remove('active'));
-          node.classList.add('active');
-          detail.textContent = node.getAttribute('data-detail') || '';
-        });
-      });
-    })();
+    <!-- Interactive Venn Diagram -->
+    <div class="venn-container fade-up">
 
-    (function setupNavDropdown() {
-      const dropdowns = document.querySelectorAll('.nav-dropdown');
-      if (!dropdowns.length) return;
+      <!-- Cheeky floating prompt -->
+      <div class="venn-nudge">
+        <span class="venn-reaction" id="venn-reaction"></span>
+        <div class="venn-nudge-inner" id="venn-nudge">
+          <span>go on, hover the circles</span>
+          <span class="nudge-arrow">&darr;</span>
+        </div>
+      </div>
 
-      function isMobile() {
-        return window.innerWidth <= 768;
+      <div class="venn-diagram" id="venn-diagram">
+        <svg viewBox="-80 -40 920 640" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Circles for clip paths -->
+            <circle id="c-ai"      cx="310" cy="230" r="190"/>
+            <circle id="c-climate" cx="450" cy="230" r="190"/>
+            <circle id="c-fascism" cx="380" cy="370" r="190"/>
+            <clipPath id="cp-ai"><use href="#c-ai"/></clipPath>
+            <clipPath id="cp-climate"><use href="#c-climate"/></clipPath>
+            <clipPath id="cp-fascism"><use href="#c-fascism"/></clipPath>
+
+            <!-- Crosshatch pattern for center -->
+            <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+            </pattern>
+            <pattern id="hatch2" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            </pattern>
+          </defs>
+
+          <!-- ====== LAYER 1: Thick circle outlines (sketch feel) ====== -->
+          <circle cx="310" cy="230" r="190" fill="none" stroke="rgba(245,200,66,0.3)" stroke-width="2.5"/>
+          <circle cx="450" cy="230" r="190" fill="none" stroke="rgba(74,222,128,0.3)" stroke-width="2.5"/>
+          <circle cx="380" cy="370" r="190" fill="none" stroke="rgba(248,113,113,0.3)" stroke-width="2.5"/>
+
+          <!-- ====== LAYER 2: Solo zones ====== -->
+          <circle class="venn-zone" data-zone="ai"
+            cx="310" cy="230" r="189" fill="rgba(245,200,66,0.06)"/>
+          <circle class="venn-zone" data-zone="climate"
+            cx="450" cy="230" r="189" fill="rgba(74,222,128,0.06)"/>
+          <circle class="venn-zone" data-zone="fascism"
+            cx="380" cy="370" r="189" fill="rgba(248,113,113,0.06)"/>
+
+          <!-- ====== LAYER 3: Two-way overlaps ====== -->
+          <circle class="venn-zone" data-zone="ai-climate"
+            cx="310" cy="230" r="189" fill="rgba(200,230,80,0.1)"
+            clip-path="url(#cp-climate)"/>
+          <circle class="venn-zone" data-zone="ai-fascism"
+            cx="310" cy="230" r="189" fill="rgba(240,160,90,0.1)"
+            clip-path="url(#cp-fascism)"/>
+          <circle class="venn-zone" data-zone="climate-fascism"
+            cx="450" cy="230" r="189" fill="rgba(180,140,160,0.1)"
+            clip-path="url(#cp-fascism)"/>
+
+          <!-- ====== LAYER 4: Center (all three) with crosshatch ====== -->
+          <g clip-path="url(#cp-fascism)">
+            <circle class="venn-zone" data-zone="center"
+              cx="310" cy="230" r="189" fill="rgba(255,255,255,0.08)"
+              clip-path="url(#cp-climate)"/>
+          </g>
+          <!-- Crosshatch overlay on center -->
+          <g clip-path="url(#cp-fascism)" opacity="1" style="pointer-events:none;">
+            <g clip-path="url(#cp-climate)">
+              <circle cx="310" cy="230" r="189" fill="url(#hatch)" clip-path="url(#cp-ai)"/>
+              <circle cx="310" cy="230" r="189" fill="url(#hatch2)" clip-path="url(#cp-ai)"/>
+            </g>
+          </g>
+
+          <!-- ====== INSIDE CIRCLE LABELS (big, bold, like ZURB) ====== -->
+          <text x="230" y="190" text-anchor="middle" font-size="22" font-weight="700" fill="#f5c842" opacity="0.85" letter-spacing="0.06em">AI</text>
+          <text x="230" y="212" text-anchor="middle" font-size="9" fill="rgba(245,200,66,0.45)" letter-spacing="0.1em">(JOBS)</text>
+
+          <text x="530" y="190" text-anchor="middle" font-size="22" font-weight="700" fill="#4ade80" opacity="0.85" letter-spacing="0.06em">CLIMATE</text>
+          <text x="530" y="212" text-anchor="middle" font-size="9" fill="rgba(74,222,128,0.45)" letter-spacing="0.1em">(PLANET)</text>
+
+          <text x="380" y="480" text-anchor="middle" font-size="22" font-weight="700" fill="#f87171" opacity="0.85" letter-spacing="0.06em">FASCISM</text>
+          <text x="380" y="502" text-anchor="middle" font-size="9" fill="rgba(248,113,113,0.45)" letter-spacing="0.1em">(DEMOCRACY)</text>
+
+          <!-- ====== CENTER LABEL ====== -->
+          <text x="380" y="290" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)" font-weight="700" letter-spacing="0.1em">THE</text>
+          <text x="380" y="306" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)" font-weight="700" letter-spacing="0.1em">TRIPOCALYPSE</text>
+
+          <!-- ====== CALLOUT ANNOTATIONS (outside, with arrows) ====== -->
+
+          <!-- Callout: AI + Climate (top center → points to overlap) -->
+          <g class="callout-group" data-callout="ai-climate">
+            <rect x="290" y="-30" width="180" height="24" rx="3" fill="rgba(245,200,66,0.2)" class="callout-highlight"/>
+            <text x="380" y="-12" text-anchor="middle" class="callout-text" fill="rgba(255,255,255,0.8)">AI meets climate</text>
+            <line x1="380" y1="-5" x2="380" y2="140" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3" class="callout-line"/>
+            <circle cx="380" cy="140" r="3" fill="rgba(255,255,255,0.25)"/>
+          </g>
+
+          <!-- Callout: AI + Fascism (left side → points to overlap) -->
+          <g class="callout-group" data-callout="ai-fascism">
+            <rect x="-70" y="330" width="175" height="24" rx="3" fill="rgba(245,200,66,0.2)" class="callout-highlight"/>
+            <text x="17" y="347" text-anchor="middle" class="callout-text" fill="rgba(255,255,255,0.8)">AI meets fascism</text>
+            <line x1="107" y1="342" x2="290" y2="342" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3" class="callout-line"/>
+            <circle cx="290" cy="342" r="3" fill="rgba(255,255,255,0.25)"/>
+          </g>
+
+          <!-- Callout: Climate + Fascism (right side → points to overlap) -->
+          <g class="callout-group" data-callout="climate-fascism">
+            <rect x="625" y="330" width="210" height="24" rx="3" fill="rgba(74,222,128,0.2)" class="callout-highlight"/>
+            <text x="730" y="347" text-anchor="middle" class="callout-text" fill="rgba(255,255,255,0.8)">Climate meets fascism</text>
+            <line x1="623" y1="342" x2="470" y2="342" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3" class="callout-line"/>
+            <circle cx="470" cy="342" r="3" fill="rgba(255,255,255,0.25)"/>
+          </g>
+
+          <!-- Callout: Center / Tripocalypse (bottom → points up) -->
+          <g class="callout-group" data-callout="center">
+            <rect x="495" y="530" width="225" height="24" rx="3" fill="rgba(248,113,113,0.2)" class="callout-highlight"/>
+            <text x="607" y="547" text-anchor="middle" class="callout-text" fill="rgba(255,255,255,0.8)">the whole nightmare</text>
+            <line x1="495" y1="542" x2="400" y2="340" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 3" class="callout-line"/>
+            <circle cx="400" cy="340" r="3" fill="rgba(255,255,255,0.25)"/>
+          </g>
+
+        </svg>
+      </div>
+
+      <!-- Detail card -->
+      <div class="venn-detail-card" id="venn-card" data-active="center">
+        <div class="venn-card-title" id="venn-title">The tripocalypse.</div>
+        <div class="venn-card-body" id="venn-body">All three crises share the same engine: economic desperation. Fix that — with a clean economy that actually puts people to work — and all three start to unravel. That's not a coincidence. That's the plan.</div>
+        <span class="venn-card-tag" id="venn-tag">all three crises</span>
+      </div>
+
+      <div class="venn-hint" id="venn-hint">click or hover any zone to explore</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SOLUTION ===== -->
+<section class="solution">
+  <div class="container">
+    <div class="solution-content fade-up">
+      <div class="solution-eyebrow">the way out</div>
+      <h2>Turns out there's a fix.</h2>
+      <p>All three crises share the same engine: <strong>economic desperation.</strong> Fix that — with a clean economy that actually puts people to work — and all three start to unravel.</p>
+      <p>That's not a coincidence. That's the plan.</p>
+    </div>
+
+    <div class="fix-grid fade-up">
+      <div class="fix-card">
+        <div class="fix-card-prompt">root@fix ~ $ solve --crisis=economy<span class="blink-cursor"></span></div>
+        <h4>> Fix desperation</h4>
+        <p>Massive economic project. Great jobs for everyone. Real work that pays real wages.</p>
+        <span class="term-tag">status: same_project</span>
+      </div>
+      <div class="fix-card">
+        <div class="fix-card-prompt">root@fix ~ $ solve --crisis=climate<span class="blink-cursor"></span></div>
+        <h4>> Fix the climate</h4>
+        <p>Massive clean economy buildout. Same project. Same workers. Same timeline.</p>
+        <span class="term-tag">status: same_project</span>
+      </div>
+      <div class="fix-card">
+        <div class="fix-card-prompt">root@fix ~ $ solve --crisis=fascism<span class="blink-cursor"></span></div>
+        <h4>> Fix fascism</h4>
+        <p>Take away the desperation it runs on. No fuel, no fire. Still the same project.</p>
+        <span class="term-tag">status: same_project</span>
+      </div>
+    </div>
+
+    <div class="solution-urgency fade-up">
+      <strong>BEFORE</strong> your job disappears.<br>
+      <strong>BEFORE</strong> your city floods.<br>
+      <strong>BEFORE</strong> your democracy does too.
+    </div>
+
+    <div class="fade-up">
+      <a href="#" class="cta-btn">
+        Ready for the solution?
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Site footer injected by shared-layout.js -->
+<div id="site-footer"></div>
+
+<!-- ===== SCROLL ANIMATION & VENN DIAGRAM INTERACTIVITY SCRIPT ===== -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ========== VENN DIAGRAM INTERACTIVITY ==========
+(function() {
+  const DATA = {
+    ai: {
+      title: 'AI alone',
+      body: 'Mass unemployment hollows out the middle class. Desperate people don\'t vote for stability — they vote for whoever promises to burn it down.',
+      tag: 'crisis 01'
+    },
+    climate: {
+      title: 'Climate alone',
+      body: 'Floods, fires, and crop failures strain economies and displace populations. Economic stress creates the conditions fascism feeds on.',
+      tag: 'crisis 02'
+    },
+    fascism: {
+      title: 'Fascism alone',
+      body: 'Authoritarian governments defund climate agencies, gut environmental protections, and block international cooperation. Every year of fascism is years of lost climate action.',
+      tag: 'crisis 03'
+    },
+    'ai-climate': {
+      title: 'AI meets climate',
+      body: 'As automation eliminates jobs, the economic pressure to delay expensive climate transitions intensifies. Why retrofit a factory that\'s already being shut down?',
+      tag: 'overlap'
+    },
+    'ai-fascism': {
+      title: 'AI meets fascism',
+      body: 'Mass unemployment is fascism\'s best recruiting tool. Desperate, displaced workers are the base. AI is currently manufacturing that base at scale.',
+      tag: 'overlap'
+    },
+    'climate-fascism': {
+      title: 'Climate meets fascism',
+      body: 'Climate refugees create migration pressure. Migration pressure feeds nationalist movements. Nationalist movements elect governments that accelerate climate destruction. The loop tightens.',
+      tag: 'overlap'
+    },
+    center: {
+      title: 'The tripocalypse.',
+      body: 'All three crises share the same engine: economic desperation. Fix that — with a clean economy that actually puts people to work — and all three start to unravel. That\'s not a coincidence. That\'s the plan.',
+      tag: 'all three crises'
+    }
+  };
+
+  // Cheeky reactions per zone
+  const REACTIONS = {
+    ai:              'yeah, that one\'s personal',
+    climate:         'getting warmer. literally.',
+    fascism:         'you noticed that too, huh',
+    'ai-climate':    'two for the price of none',
+    'ai-fascism':    'the fun combo',
+    'climate-fascism': 'it gets worse',
+    center:          'there it is.'
+  };
+
+  // Nudge text progressions
+  const NUDGE_STATES = [
+    'go on, hover the circles',
+    'see? they\'re connected.',
+    'keep going. try the overlaps.',
+    'now try the center.',
+    'you\'re getting it.',
+    'told you.'
+  ];
+
+  const diagram  = document.getElementById('venn-diagram');
+  const card     = document.getElementById('venn-card');
+  const elTitle  = document.getElementById('venn-title');
+  const elBody   = document.getElementById('venn-body');
+  const elTag    = document.getElementById('venn-tag');
+  const hint     = document.getElementById('venn-hint');
+  const nudge    = document.getElementById('venn-nudge');
+  const reaction = document.getElementById('venn-reaction');
+  const zones    = diagram.querySelectorAll('.venn-zone');
+  const callouts = diagram.querySelectorAll('.callout-group');
+
+  let activeZone = null;
+  let interactionCount = 0;
+  let reactionTimeout = null;
+  const visitedZones = new Set();
+
+  function updateCard(zone) {
+    const d = DATA[zone];
+    if (!d) return;
+
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(6px)';
+
+    setTimeout(() => {
+      card.setAttribute('data-active', zone);
+      elTitle.textContent = d.title;
+      elBody.textContent  = d.body;
+      elTag.textContent   = d.tag;
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 200);
+  }
+
+  function showReaction(zone) {
+    const text = REACTIONS[zone];
+    if (!text) return;
+
+    // Clear previous
+    clearTimeout(reactionTimeout);
+    reaction.classList.remove('show');
+
+    setTimeout(() => {
+      reaction.textContent = text;
+      reaction.classList.add('show');
+
+      reactionTimeout = setTimeout(() => {
+        reaction.classList.remove('show');
+      }, 2200);
+    }, 50);
+  }
+
+  function advanceNudge(zone) {
+    visitedZones.add(zone);
+    interactionCount++;
+
+    // Update nudge text based on progression
+    nudge.classList.add('touched');
+    const idx = Math.min(interactionCount, NUDGE_STATES.length - 1);
+    nudge.querySelector('span:first-child').textContent = NUDGE_STATES[idx];
+
+    // Hide the bouncing arrow after first touch
+    const arrow = nudge.querySelector('.nudge-arrow');
+    if (arrow && interactionCount >= 1) {
+      arrow.style.display = 'none';
+    }
+
+    // Hide hint
+    hint.classList.add('hidden');
+  }
+
+  function highlightCallout(zone) {
+    callouts.forEach(c => {
+      c.classList.toggle('callout-active', c.dataset.callout === zone);
+    });
+  }
+
+  function setActive(zone) {
+    activeZone = zone;
+    zones.forEach(z => z.classList.toggle('active', z.dataset.zone === zone));
+    diagram.classList.add('has-active');
+    highlightCallout(zone);
+    updateCard(zone);
+    showReaction(zone);
+    advanceNudge(zone);
+  }
+
+  function clearActive() {
+    activeZone = null;
+    zones.forEach(z => z.classList.remove('active'));
+    callouts.forEach(c => c.classList.remove('callout-active'));
+    diagram.classList.remove('has-active');
+    updateCard('center');
+  }
+
+  // Attach events
+  zones.forEach(z => {
+    const zone = z.dataset.zone;
+
+    z.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (activeZone === zone) {
+        clearActive();
+      } else {
+        setActive(zone);
       }
+    });
 
-      function setOpen(dropdown, open) {
-        const trigger = dropdown.querySelector('.nav-dropdown-trigger');
-        dropdown.classList.toggle('open', open);
-        if (open) {
-          dropdown.setAttribute('open', '');
-        } else {
-          dropdown.removeAttribute('open');
-        }
-        if (trigger) {
-          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
+    z.addEventListener('mouseenter', () => {
+      if (!activeZone) {
+        zones.forEach(zz => zz.classList.toggle('active', zz.dataset.zone === zone));
+        diagram.classList.add('has-active');
+        highlightCallout(zone);
+        updateCard(zone);
+        showReaction(zone);
+        advanceNudge(zone);
       }
+    });
 
-      function closeAll() {
-        dropdowns.forEach((dropdown) => setOpen(dropdown, false));
+    z.addEventListener('mouseleave', () => {
+      if (!activeZone) {
+        zones.forEach(zz => zz.classList.remove('active'));
+        callouts.forEach(c => c.classList.remove('callout-active'));
+        diagram.classList.remove('has-active');
+        setTimeout(() => {
+          if (!activeZone && !diagram.querySelector('.venn-zone:hover')) {
+            updateCard('center');
+          }
+        }, 100);
       }
+    });
+  });
 
-      dropdowns.forEach((dropdown) => {
-        const trigger = dropdown.querySelector('.nav-dropdown-trigger');
-        if (!trigger) return;
+  // Click outside to deselect
+  document.addEventListener('click', (e) => {
+    if (activeZone && !diagram.contains(e.target) && !card.contains(e.target)) {
+      clearActive();
+    }
+  });
+})();
+</script>
 
-        trigger.addEventListener('click', (e) => {
-          if (isMobile()) {
-            e.preventDefault();
-            setOpen(dropdown, !dropdown.classList.contains('open'));
-          }
-        });
+<!-- Inject shared layout (nav + footer) -->
+<script src="/shared-layout.js"></script>
 
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setOpen(dropdown, !dropdown.classList.contains('open'));
-          }
-          if (e.key === 'Escape') {
-            setOpen(dropdown, false);
-            trigger.blur();
-          }
-        });
-
-        dropdown.addEventListener('mouseenter', () => {
-          if (!isMobile()) setOpen(dropdown, true);
-        });
-
-        dropdown.addEventListener('mouseleave', () => {
-          if (!isMobile()) setOpen(dropdown, false);
-        });
-
-        dropdown.addEventListener('focusout', (e) => {
-          if (!dropdown.contains(e.relatedTarget)) {
-            setOpen(dropdown, false);
-          }
-        });
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-dropdown')) {
-          closeAll();
-        }
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAll();
-      });
-    })();
-  </script>
-  <script src="/shared-layout.js"></script>
 </body>
 </html>

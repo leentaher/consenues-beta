@@ -140,6 +140,34 @@
       letter-spacing: 0.01em;
     }
 
+    .hero-assignment {
+      max-width: 680px;
+      margin-bottom: 72px;
+    }
+
+    .assignment-headline {
+      font-family: var(--font-sans);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .hero-assignment p {
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 1.3vw, 16px);
+      color: var(--gray-300);
+      line-height: 1.9;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+
+    .hero-assignment p:last-child {
+      margin-bottom: 0;
+    }
+
     .hero-ctas {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -501,6 +529,15 @@
       <p class="hero-eyebrow">the break-glass plan</p>
       <h1 class="hero-headline">The Mission<br>for America</h1>
       <p class="hero-subhead">20+ chapters. Every sector. A 10-year mobilization to build a new economy before the old one collapses.</p>
+
+      <div class="hero-assignment">
+        <h2 class="assignment-headline">here's the assignment.</h2>
+        <p>AI is eliminating jobs. Someone needs to create new ones. The planet is heating. Someone needs to build a clean economy. Fascism is rising. Someone needs to prove democracy still works.</p>
+        <p>Turns out all three assignments are the same assignment.</p>
+        <p>Build a clean economy with great jobs for everyone. That's it. That's the whole thing. Prosperity, democracy, freedom — all of it falls out of that one project if you do it right.</p>
+        <p>Simple. Obvious. Boring. Been done before.</p>
+        <p>More on that in a second.</p>
+      </div>
 
       <div class="hero-ctas">
         <a href="#gist" class="hero-cta">

@@ -416,10 +416,10 @@
       <div class="nav-dropdown-menu">
         <a href="/team" class="nav-dropdown-item${flags.team ? ' active' : ''}">Team</a>
         <a href="/jobs" class="nav-dropdown-item${flags.jobs ? ' active' : ''}">Jobs</a>
-        <a href="/contact" class="nav-dropdown-item${flags.contact ? ' active' : ''}">Contact</a>
+        <a href="/press" class="nav-dropdown-item${flags.press ? ' active' : ''}">Press</a>
         <a href="/library" class="nav-dropdown-item${flags.library ? ' active' : ''}">Library</a>
         <a href="/blog" class="nav-dropdown-item${flags.blog ? ' active' : ''}">Blog</a>
-        <a href="/press" class="nav-dropdown-item${flags.press ? ' active' : ''}">Press</a>
+        <a href="/contact" class="nav-dropdown-item${flags.contact ? ' active' : ''}">Contact</a>
       </div>
     </div>
     <a href="/#join" class="nav-cta">Start serving</a>
