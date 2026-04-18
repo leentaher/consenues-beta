@@ -1658,6 +1658,18 @@
         face.style.inset = '';
       }
 
+      function syncBothHeights() {
+        const allFaces = [endCard, beginCard].flatMap(c => [
+          c.querySelector('.flip-card-front'),
+          c.querySelector('.flip-card-back')
+        ]);
+        allFaces.forEach(f => { f.style.position = 'relative'; f.style.inset = 'auto'; });
+        const maxH = Math.max(...allFaces.map(f => f.offsetHeight));
+        allFaces.forEach(f => { f.style.position = ''; f.style.inset = ''; });
+        endCard.style.height = maxH + 'px';
+        beginCard.style.height = maxH + 'px';
+      }
+
       function toggleCard(card, other) {
         if (card.classList.contains('flipped')) {
           card.classList.remove('flipped');
@@ -1669,8 +1681,7 @@
         }
         setDimState();
         updateAria();
-        syncHeight(card);
-        syncHeight(other);
+        syncBothHeights();
       }
 
       function addKeyboardFlip(card, other) {
@@ -1707,8 +1718,7 @@
             beginCard.classList.add('flipped');
             setDimState();
             updateAria();
-            syncHeight(endCard);
-            syncHeight(beginCard);
+            syncBothHeights();
           }, 260);
         });
       }
@@ -1725,15 +1735,13 @@
             endCard.classList.add('flipped');
             setDimState();
             updateAria();
-            syncHeight(endCard);
-            syncHeight(beginCard);
+            syncBothHeights();
           }, 260);
         });
       }
 
       updateAria();
-      syncHeight(endCard);
-      syncHeight(beginCard);
+      syncBothHeights();
     })();
   </script>
 
