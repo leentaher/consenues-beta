@@ -321,43 +321,46 @@
   }
 
   .footer {
-    padding: 60px 40px;
-    border-top: 1px solid #1a1a1a;
+    display: block !important;
+    padding: 0 !important;
+    border-top: none !important;
+    gap: 0 !important;
+  }
+
+  .footer-top {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 48px 32px 48px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     gap: 40px;
-  }
-
-  .footer-brand {
-    max-width: 400px;
-  }
-
-  .footer-logo {
-    font-weight: 600;
-    font-size: 15px;
-    color: #ffffff;
-    margin-bottom: 16px;
   }
 
   .footer-tagline {
     font-size: 14px;
-    color: #707070;
-    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0;
   }
 
-  .footer-links {
+  .footer-nav {
     display: flex;
-    gap: 32px;
+    align-items: center;
+    gap: 40px;
     flex-wrap: wrap;
   }
 
   .footer-link {
-    font-size: 13px;
-    color: #707070;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
     text-decoration: none;
     transition: color 0.15s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
   }
 
   .footer-link:hover {
@@ -371,24 +374,36 @@
   }
 
   .footer-social-link {
-    color: #707070;
-    text-decoration: none;
     display: flex;
     align-items: center;
-    transition: color 0.15s ease;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+    color: #ffffff;
+    text-decoration: none;
   }
 
   .footer-social-link:hover {
-    color: #ffffff;
+    opacity: 1;
   }
 
   .footer-copy {
-    width: 100%;
-    padding-top: 40px;
-    border-top: 1px solid #1a1a1a;
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 48px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 12px;
-    color: #505050;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-copy-link {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .footer-copy-link:hover {
+    color: rgba(255,255,255,0.6);
   }
 
   /* ============================================
@@ -513,12 +528,25 @@
       display: inline-flex;
     }
 
-    .footer {
-      padding: 40px 24px;
+    .footer-top {
+      flex-direction: column;
+      gap: 32px;
+      padding: 32px 24px;
     }
 
-    .footer-links {
+    .footer-tagline {
+      max-width: 100%;
+    }
+
+    .footer-nav {
+      flex-direction: column;
+      align-items: flex-start;
       gap: 16px;
+    }
+
+    .footer-copy {
+      padding: 24px;
+      margin-bottom: 100px;
     }
   }
   `;
@@ -642,29 +670,26 @@
   function buildFooter() {
     return `
 <footer class="footer">
-  <div class="footer-brand">
-    <div class="footer-logo">New Consensus</div>
-    <p class="footer-tagline">
-      An economic policy think tank for people who think "realistic" policy got us into this mess.
-      Authors of the Green New Deal and Mission for America.
-    </p>
-  </div>
-  <div class="footer-links">
-    <a href="/team" class="footer-link">about</a>
-    <a href="https://blog.newconsensus.com" class="footer-link" target="_blank" rel="noopener noreferrer">blog</a>
-    <a href="/projects" class="footer-link">projects</a>
-    <a href="/jobs" class="footer-link">jobs</a>
-  </div>
-  <div class="footer-social">
-    <a href="https://x.com/newconsensus" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-    </a>
-    <a href="https://blog.newconsensus.com" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Substack">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
-    </a>
+  <div class="footer-top">
+    <p class="footer-tagline">An economic policy think tank for people who think "realistic" policy got us into this mess. Authors of the Green New Deal and Mission for America.</p>
+    <nav class="footer-nav">
+      <a href="/team" class="footer-link">about</a>
+      <a href="https://blog.newconsensus.com" class="footer-link" target="_blank" rel="noopener noreferrer">blog</a>
+      <a href="/projects" class="footer-link">projects</a>
+      <a href="/jobs" class="footer-link">jobs</a>
+      <a href="mailto:hello@newconsensus.ai" class="footer-link">contact</a>
+      <div class="footer-social">
+        <a href="https://x.com/newconsensus" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        </a>
+        <a href="https://blog.newconsensus.com" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
+      </div>
+    </nav>
   </div>
   <div class="footer-copy">
-    © 2026 New Consensus. All rights reserved. (Assuming there's still a world to reserve rights in.)
+    © 2026 New Consensus. All rights reserved. · <a href="/privacy" class="footer-copy-link">Privacy Policy</a>
   </div>
 </footer>`;
   }
