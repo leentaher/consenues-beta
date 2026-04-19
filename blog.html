@@ -7,14 +7,29 @@
 	<title>Blog — New Consensus</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>	<style>
-		*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-		:root{--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;--black:#0a0a0a;--gray-900:#111;--gray-800:#1a1a1a;--gray-500:#505050;--gray-300:#909090;--gray-100:#e0e0e0;--white:#fff;--red-500:#ff2020;--red-400:#ff5252}
-		body{font-family:var(--font-sans);background:var(--black);color:var(--gray-100)}
-		.hero{padding:130px 40px 24px}.eyebrow{font-family:var(--font-mono);font-size:14px;color:var(--red-400);text-transform:lowercase}.hero h1{font-size:clamp(38px,8vw,68px);line-height:1.05;margin:14px 0 18px}
-		.body{max-width:760px;color:var(--gray-300);line-height:1.8}
-		.section{padding:54px 40px;border-top:1px solid var(--gray-800)}
-		@media (max-width:768px){.hero,.section{padding-left:24px;padding-right:24px}}
-	</style>
+
+    .hero {
+      padding: 130px 40px 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 68px);
+      line-height: 1.05;
+      margin: 14px 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .body {
+      max-width: 760px;
+      color: var(--gray-300);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding-left: 24px; padding-right: 24px; }
+      .section { padding-left: 24px; padding-right: 24px; }
+    }
+</style>
 </head>
 <body>
 <div class="scanlines"></div>

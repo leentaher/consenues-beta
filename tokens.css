@@ -1,88 +1,25 @@
 /*
  * NEW CONSENSUS — DESIGN SYSTEM TOKENS
- * Extracted from index.html computed styles — this is the spec the homepage actually follows.
- * Drop this file in the repo root and import it as the first line of every page's <style> block:
- *   @import url('/tokens.css');
- * Then reference only variables — never hardcode values.
+ * Single source of truth for all pages. index.html inlines this same system.
+ * Link as the first stylesheet on every page (except index.html which is self-contained).
  */
 
 /* ============================================================
    FONTS
-   Two faces only: Inter (display/body) + JetBrains Mono (labels/code)
    ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
+  /* Fonts */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-
-  /* ============================================================
-     TYPOGRAPHY SCALE
-     Rule: Inter for headings + body. JetBrains Mono for eyebrows,
-     labels, nav links, code-style callouts, and CTA link text.
-     ============================================================ */
-
-  /* Headings — Inter, tight negative tracking */
-  --text-h1-size:     72px;
-  --text-h1-weight:   600;
-  --text-h1-leading:  1.05;        /* 75.6px at 72px */
-  --text-h1-tracking: -0.03em;     /* -2.16px at 72px */
-
-  --text-h2-size:     32px;
-  --text-h2-weight:   500;
-  --text-h2-leading:  1.3;
-  --text-h2-tracking: -0.02em;
-
-  --text-h3-size:     54px;        /* used for section pull-quotes / big numbers */
-  --text-h3-weight:   600;
-  --text-h3-leading:  1.1;
-  --text-h3-tracking: -0.03em;
-
-  --text-h4-size:     24px;        /* card titles */
-  --text-h4-weight:   700;
-  --text-h4-leading:  1.3;
-  --text-h4-tracking: normal;
-
-  /* Eyebrow labels — JetBrains Mono, uppercase, spaced */
-  --text-eyebrow-size:     11px;
-  --text-eyebrow-weight:   400;
-  --text-eyebrow-tracking: 0.12em;
-  --text-eyebrow-transform: uppercase;
-
-  /* Body — Inter, comfortable reading */
-  --text-body-size:    16px;
-  --text-body-leading: 1.6;
-
-  /* Body subhead / lead — JetBrains Mono, slightly larger */
-  --text-subhead-size:    15px;
-  --text-subhead-leading: 1.65;
-
-  /* Small / caption — JetBrains Mono */
-  --text-small-size: 13px;
-
-  /* Nav links — Inter */
-  --text-nav-size:   13px;
-  --text-nav-weight: 400;
-
-  /* Nav logo — Inter semibold */
-  --text-logo-size:   15px;
-  --text-logo-weight: 600;
-  --text-logo-tracking: -0.02em;
-
-  /* CTA button text — Inter */
-  --text-cta-size:   15px;
-  --text-cta-weight: 600;
-
-  /* Project card link text — JetBrains Mono */
-  --text-card-link-size: 13px;
-
-
-  /* ============================================================
-     COLOR — BACKGROUNDS
-     Base is #0a0a0a. Surfaces elevate in ~5-step increments.
-     ============================================================ */
-  --black:         #0a0a0a;   /* body background */
+  /* Backgrounds */
+  --black:         #0a0a0a;
   --gray-900:      #111111;
   --gray-800:      #1a1a1a;
   --gray-700:      #222222;
@@ -94,74 +31,34 @@
   --gray-100:      #e0e0e0;
   --white:         #ffffff;
 
-  /* Named surfaces — use these, not raw grays */
-  --bg-base:       var(--black);          /* page background */
-  --surface-900:   #141414;              /* nav background */
-  --surface-850:   #161616;              /* nav border / subtle dividers */
-  --surface-800:   #1d1d1d;             /* cards, featured card bg */
-  --border-subtle: #2a2a2a;             /* hard borders */
+  --surface-900:   #141414;
+  --surface-850:   #161616;
+  --surface-800:   #1d1d1d;
+  --border-subtle: #2a2a2a;
 
-  /* White-alpha surfaces */
-  --surface-white-02: rgba(255, 255, 255, 0.02);   /* card fill */
-  --surface-white-03: rgba(255, 255, 255, 0.03);   /* pill / badge fill */
-  --border-white-06:  rgba(255, 255, 255, 0.06);   /* card border */
-  --border-white-08:  rgba(255, 255, 255, 0.08);   /* stronger card border */
-  --border-white-12:  rgba(255, 255, 255, 0.12);   /* visible border */
+  --surface-white-02: rgba(255, 255, 255, 0.02);
+  --surface-white-03: rgba(255, 255, 255, 0.03);
+  --border-white-06:  rgba(255, 255, 255, 0.06);
+  --border-white-08:  rgba(255, 255, 255, 0.08);
+  --border-white-12:  rgba(255, 255, 255, 0.12);
 
+  /* Text */
+  --text-primary:   #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-body:      rgba(255, 255, 255, 0.65);
+  --text-muted:     #a0a0a0;
+  --text-dim:       #909090;
+  --text-white-65:  rgba(255, 255, 255, 0.65);
 
-  /* ============================================================
-     COLOR — TEXT
-     ============================================================ */
-  --text-primary:   rgb(255, 255, 255);            /* headings, max emphasis */
-  --text-secondary: rgb(224, 224, 224);            /* body default */
-  --text-body:      rgba(255, 255, 255, 0.65);     /* body paragraphs */
-  --text-muted:     rgb(160, 160, 160);            /* subheads, descriptions */
-  --text-dim:       rgb(144, 144, 144);            /* nav links, metadata */
-  --text-footer:    rgb(112, 112, 112);            /* footer links */
-  --text-white-65:  rgba(255, 255, 255, 0.65);     /* alias for --text-body */
+  /* Accent — overridden at runtime by random palette picker in shared-layout.js */
+  --accent:    #e7ff00;
 
+  /* Red scale — overridden by palette picker on load */
+  --red-500:   #e7ff00;
+  --red-400:   #f7ff70;
+  --red-300:   #fbff9e;
 
-  /* ============================================================
-     COLOR — ACCENT / BRAND
-     --accent is the primary brand color: electric yellow-green.
-     Used for: "start serving" nav CTA, section highlights, featured
-     card accents, urgent callout text.
-     ============================================================ */
-  --accent:         #e7ff00;   /* primary: electric yellow-green */
-  --accent-dim:     #f7ff70;   /* lighter tint */
-  --accent-pale:    #fbff9e;   /* palest tint */
-
-  /* Red — primary action / danger / CTA buttons */
-  --red-500:        #ff2020;
-  --red-400:        #ff4040;   /* primary CTA button bg */
-  --red-300:        #ff6060;
-  --red-cta:        #ff2020;   /* .cta-primary background */
-  --red-nav:        #ff4040;   /* "start serving" nav text */
-
-  /* Crisis-specific colors (used on tripocalypse page — include for cross-page consistency) */
-  --crisis-ai:      rgb(245, 200, 66);    /* gold — AI/jobs */
-  --crisis-climate: rgb(74, 222, 128);    /* green — climate */
-  --crisis-fascism: rgb(248, 113, 113);   /* salmon — fascism */
-
-  /* Two-futures rail colors */
-  --end-rail:         #8b0000;
-  --end-rail-glow:    rgba(139, 0, 0, 0.2);
-  --begin-rail:       #004d00;
-  --begin-rail-glow:  rgba(0, 77, 0, 0.22);
-  --end-accent:       #ff5b5b;
-  --begin-accent:     #5ab86a;
-
-  /* Panic button */
-  --panic-glow-10: rgba(255, 32, 32, 0.10);
-  --panic-glow-20: rgba(255, 32, 32, 0.20);
-  --panic-glow-30: rgba(255, 32, 32, 0.30);
-  --panic-glow-40: rgba(255, 32, 32, 0.40);
-  --panic-glow-50: rgba(255, 32, 32, 0.50);
-
-
-  /* ============================================================
-     COLOR — FULL PALETTE (reference only — use named tokens above)
-     ============================================================ */
+  /* Full palette (for palette picker) */
   --palette-red-500:    #ff2020;
   --palette-red-400:    #ff4040;
   --palette-red-300:    #ff6060;
@@ -174,16 +71,40 @@
   --palette-yellow-500: #fff700;
   --palette-yellow-400: #ffec4c;
   --palette-yellow-300: #ffe88c;
-  --amber-500:          #f0a020;
-  --cyan-500:           #00ffff;
   --purple-300:         #c4b5fd;
   --purple-400-soft:    rgba(167, 139, 250, 0.08);
+  --amber-500:          #f0a020;
+  --cyan-500:           #00ffff;
 
+  /* Crisis page colors */
+  --crisis-ai:      rgb(245, 200, 66);
+  --crisis-climate: rgb(74, 222, 128);
+  --crisis-fascism: rgb(248, 113, 113);
 
-  /* ============================================================
-     SPACING
-     Base unit: 4px. Scale in 4px steps up to 16, then 8px steps.
-     ============================================================ */
+  /* Two-futures cards */
+  --end-rail:         #8b0000;
+  --end-rail-glow:    rgba(139, 0, 0, 0.2);
+  --begin-rail:       #004d00;
+  --begin-rail-corner: #0f6a2e;
+  --begin-rail-glow:  rgba(0, 77, 0, 0.22);
+  --end-accent:       #ff5b5b;
+  --begin-accent:     #5ab86a;
+
+  /* Panic glow */
+  --panic-glow-10: rgba(255, 32, 32, 0.10);
+  --panic-glow-15: rgba(255, 32, 32, 0.15);
+  --panic-glow-20: rgba(255, 32, 32, 0.20);
+  --panic-glow-30: rgba(255, 32, 32, 0.30);
+  --panic-glow-40: rgba(255, 32, 32, 0.40);
+  --panic-glow-50: rgba(255, 32, 32, 0.50);
+
+  /* Flip card */
+  --flip-face-grad-start: rgba(12, 12, 12, 0.96);
+  --flip-face-grad-end:   rgba(18, 18, 18, 0.9);
+  --shadow-card-hover:    0 8px 30px rgba(0, 0, 0, 0.4);
+  --overlay-black-10:     rgba(0, 0, 0, 0.1);
+
+  /* Spacing — 4px base unit */
   --space-1:  4px;
   --space-2:  8px;
   --space-3:  12px;
@@ -198,69 +119,27 @@
   --space-24: 96px;
   --space-30: 120px;
 
-  /* Named spacing patterns */
-  --space-eyebrow-to-heading: var(--space-5);   /* 20px — eyebrow margin-bottom */
-  --space-heading-to-body:    var(--space-5);   /* 20px */
-  --space-body-to-cta:        var(--space-8);   /* 32px */
-  --space-section-top:        var(--space-20);  /* 80px */
-  --space-section-bottom:     var(--space-20);  /* 80px */
-  --space-hero-top:           var(--space-30);  /* 120px */
-  --space-card-padding:       36px 32px;
-  --space-card-gap:           22px;
-  --space-section-horizontal: 40px;             /* page side padding */
+  /* Layout */
+  --max-width-content:        1280px;
+  --nav-height:               64px;
+  --space-section-horizontal: 40px;
 
+  /* Borders & radius */
+  --radius-none: 0px;
+  --radius-sm:   2px;
+  --radius-md:   6px;
+  --radius-lg:   8px;
+  --radius-xl:   14px;
+  --radius-pill: 100px;
 
-  /* ============================================================
-     LAYOUT
-     ============================================================ */
-  --max-width-content: 1280px;   /* max-width for content containers */
-  --nav-height:        64px;
-
-
-  /* ============================================================
-     BORDERS & RADIUS
-     Rule: Cards and primary elements use 0px border-radius (sharp).
-     Only pills/badges use radius.
-     ============================================================ */
-  --radius-none:  0px;    /* cards, buttons, sections — default */
-  --radius-sm:    2px;    /* very subtle */
-  --radius-md:    6px;    /* tags, small badges */
-  --radius-lg:    8px;    /* data widgets */
-  --radius-xl:    14px;   /* larger badges */
-  --radius-pill:  100px;  /* full pill — hero pill badge, crisis labels */
-
-  --border-card:     1px solid var(--border-white-06);
-  --border-card-vis: 1px solid var(--border-white-12);
-  --border-featured: 3.75px solid var(--palette-purple-500);  /* featured card accent */
-
-
-  /* ============================================================
-     SHADOWS
-     ============================================================ */
-  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --overlay-black-10:  rgba(0, 0, 0, 0.1);
-
-
-  /* ============================================================
-     TRANSITIONS
-     ============================================================ */
+  /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-med:  0.25s ease;
-
-
-  /* ============================================================
-     EFFECTS — Scanlines / VHS
-     Applied as overlay divs, not CSS variables, but documented here.
-     .scanlines: position fixed, pointer-events none, z-index 9999
-       background: repeating-linear-gradient(transparent 0px, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)
-     .scan-bar: position fixed, 8px tall, animated top-to-bottom
-       background: rgba(255,255,255,0.02), blur 1px, animation ~8s linear infinite
-     ============================================================ */
 }
 
 
 /* ============================================================
-   BASE RESET — apply to every page
+   BASE RESET
    ============================================================ */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -269,296 +148,90 @@
 }
 
 html {
-  background: var(--bg-base);
-  color: var(--text-secondary);
+  scroll-behavior: smooth;
+}
+
+body {
   font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-leading);
-  -webkit-font-smoothing: antialiased;
+  background: var(--black);
+  color: var(--gray-100);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-
-/* ============================================================
-   TYPOGRAPHY CLASSES
-   Use these classes directly on elements across all pages.
-   ============================================================ */
-
-/* Eyebrow label — always JetBrains Mono, uppercase, spaced */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--text-eyebrow-size);
-  font-weight: var(--text-eyebrow-weight);
-  letter-spacing: var(--text-eyebrow-tracking);
-  text-transform: var(--text-eyebrow-transform);
-  color: var(--accent);
-  margin-bottom: var(--space-eyebrow-to-heading);
-}
-
-/* H1 — page title */
-h1, .text-h1 {
-  font-family: var(--font-sans);
-  font-size: var(--text-h1-size);
-  font-weight: var(--text-h1-weight);
-  line-height: var(--text-h1-leading);
-  letter-spacing: var(--text-h1-tracking);
-  color: var(--text-primary);
-}
-
-/* H2 — section heading */
-h2, .text-h2 {
-  font-family: var(--font-sans);
-  font-size: var(--text-h2-size);
-  font-weight: var(--text-h2-weight);
-  line-height: var(--text-h2-leading);
-  letter-spacing: var(--text-h2-tracking);
-  color: var(--text-primary);
-}
-
-/* H3 — large pull-quote / stat */
-h3, .text-h3 {
-  font-family: var(--font-sans);
-  font-size: var(--text-h3-size);
-  font-weight: var(--text-h3-weight);
-  line-height: var(--text-h3-leading);
-  letter-spacing: var(--text-h3-tracking);
-  color: var(--text-secondary);
-}
-
-/* H4 — card title */
-h4, .text-h4 {
-  font-family: var(--font-sans);
-  font-size: var(--text-h4-size);
-  font-weight: var(--text-h4-weight);
-  line-height: var(--text-h4-leading);
-  color: var(--text-secondary);
-}
-
-/* Body paragraph */
-p, .text-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-body-size);
-  line-height: var(--text-body-leading);
-  color: var(--text-body);
-}
-
-/* Subhead / lead — JetBrains Mono */
-.text-subhead, .hero-subhead {
-  font-family: var(--font-mono);
-  font-size: var(--text-subhead-size);
-  line-height: var(--text-subhead-leading);
-  color: var(--text-muted);
-}
-
-/* Bold callout within body */
-strong, .text-bold {
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-/* Mono small — metadata, tags */
-.text-mono {
-  font-family: var(--font-mono);
-  font-size: var(--text-small-size);
-  color: var(--text-dim);
-}
-
-
-/* ============================================================
-   LAYOUT HELPERS
-   ============================================================ */
-.page-container {
-  max-width: var(--max-width-content);
-  margin: 0 auto;
-  padding: 0 var(--space-section-horizontal);
-}
-
-.section {
-  padding-top: var(--space-section-top);
-  padding-bottom: var(--space-section-bottom);
-}
-
-.section-divider {
-  height: 1px;
-  background: var(--border-subtle);
-  opacity: 0.5;
-}
-
-
-/* ============================================================
-   CARD — base pattern
-   ============================================================ */
-.card {
-  background: var(--surface-white-02);
-  border: var(--border-card);
-  border-radius: var(--radius-none);
-  padding: var(--space-card-padding);
-}
-
-.card:hover {
-  border-color: var(--border-white-12);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.card--featured {
-  background: var(--surface-800);
-  border: var(--border-featured);
-}
-
-.card-eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--text-eyebrow-size);
-  letter-spacing: var(--text-eyebrow-tracking);
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--space-3);
-}
-
-.card-title {
-  font-family: var(--font-sans);
-  font-size: var(--text-h4-size);
-  font-weight: var(--text-h4-weight);
-  color: var(--text-secondary);
-  margin-bottom: var(--space-3);
-}
-
-.card-desc {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: var(--text-body);
-  margin-bottom: var(--space-5);
-}
-
-.card-link {
-  font-family: var(--font-mono);
-  font-size: var(--text-card-link-size);
-  color: var(--text-muted);
+a {
+  color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
 }
 
-.card-link:hover {
-  color: var(--accent);
-}
-
-
-/* ============================================================
-   BUTTONS & CTAs
-   ============================================================ */
-
-/* Primary CTA button — red fill, dark text, sharp corners */
-.cta-primary {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: var(--text-cta-size);
-  font-weight: var(--text-cta-weight);
-  color: var(--bg-base);
-  background: var(--red-cta);
-  border: none;
-  border-radius: var(--radius-none);
-  padding: 16px 32px;
-  text-decoration: none;
+button {
+  font-family: inherit;
   cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-}
-
-.cta-primary:hover {
-  background: var(--red-400);
-  transform: translateY(-1px);
-}
-
-/* Inline CTA link — mono, muted, arrow pattern */
-.cta-link {
-  font-family: var(--font-mono);
-  font-size: var(--text-small-size);
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.cta-link:hover {
-  color: var(--text-primary);
+  border: none;
+  background: none;
 }
 
 
 /* ============================================================
-   NAV — base pattern
+   COMMON ANIMATIONS
    ============================================================ */
-.nav {
-  height: var(--nav-height);
-  background: var(--surface-900);
-  border-bottom: 1px solid var(--surface-850);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--space-section-horizontal);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%, 99%      { opacity: 0.85; }
+  97%           { opacity: 0.7; }
 }
 
-.nav-logo {
-  font-family: var(--font-sans);
-  font-size: var(--text-logo-size);
-  font-weight: var(--text-logo-weight);
-  letter-spacing: var(--text-logo-tracking);
-  color: var(--text-primary);
-  text-decoration: none;
+@keyframes blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-.nav-link {
-  font-family: var(--font-sans);
-  font-size: var(--text-nav-size);
-  color: var(--text-dim);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
 }
 
-.nav-link:hover {
-  color: var(--text-primary);
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 20px var(--panic-glow-40),
+      0 0 40px var(--panic-glow-30),
+      0 0 60px var(--panic-glow-20),
+      0 0 80px var(--panic-glow-10);
+  }
+  50% {
+    box-shadow:
+      0 0 30px var(--panic-glow-50),
+      0 0 50px var(--panic-glow-40),
+      0 0 70px var(--panic-glow-30),
+      0 0 100px var(--panic-glow-15);
+  }
 }
 
-.nav-cta {
-  font-family: var(--font-sans);
-  font-size: var(--text-nav-size);
-  color: var(--red-nav);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+@keyframes rgbSplit {
+  0%, 88%, 100% { text-shadow: none; }
+  90%           { text-shadow: -2px 0 var(--red-400), 2px 0 var(--cyan-500); }
+  94%           { text-shadow: 2px 0 var(--red-400), -2px 0 var(--cyan-500); }
 }
 
-.nav-cta:hover {
-  color: var(--red-300);
+@keyframes trackingError {
+  0%, 85%, 100% { transform: translateX(0); opacity: 1; }
+  87%           { transform: translateX(-50px); opacity: 0.5; }
+  89%           { transform: translateX(30px); opacity: 0.7; }
 }
 
-
-/* ============================================================
-   SCANLINE OVERLAY — paste this HTML into every page <body>
-   <div class="scanlines"></div>
-   <div class="scan-bar"></div>
-   ============================================================ */
-.scanlines {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--red-500), 0 0 16px var(--red-500); }
+  50%      { box-shadow: 0 0 16px var(--red-500), 0 0 32px var(--red-500); }
 }
 
-.scan-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  height: 8px;
-  pointer-events: none;
-  z-index: 9998;
-  background: rgba(255, 255, 255, 0.02);
-  filter: blur(1px);
-  animation: scanBarMove 8s linear infinite;
+@keyframes glitchIn {
+  0%   { clip-path: inset(40% 0 61% 0); transform: translate(-20px) skewX(-10deg); }
+  20%  { clip-path: inset(92% 0 1% 0);  transform: translate(20px) skewX(10deg); }
+  40%  { clip-path: inset(43% 0 1% 0);  transform: translate(-10px); }
+  60%  { clip-path: inset(25% 0 58% 0); transform: translate(10px) skewX(5deg); }
+  80%  { clip-path: inset(54% 0 7% 0);  transform: translate(-5px); }
+  100% { clip-path: inset(0 0 0 0);     transform: translate(0); }
 }
 
 @keyframes scanBarMove {
@@ -568,11 +241,243 @@ strong, .text-bold {
 
 
 /* ============================================================
-   SCROLL ANIMATION — fade-up pattern used across pages
-   Add class="fade-up" to any element, JS adds "visible" on scroll.
+   VHS OVERLAY
+   ============================================================ */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--overlay-black-10) 2px,
+    var(--overlay-black-10) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.scan-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(transparent, var(--surface-white-03), transparent);
+  animation: scanBarMove 6s linear infinite;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.vhs-timestamp {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--red-500);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--red-500);
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+
+/* ============================================================
+   HERO — shared pattern
+   ============================================================ */
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--red-300);
+  margin-bottom: 20px;
+}
+
+.hero-headline {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.hero-subhead {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--gray-200);
+  line-height: 1.9;
+  max-width: 80ch;
+  margin-bottom: 40px;
+}
+
+.hero-lead {
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--white);
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 80ch;
+}
+
+
+/* ============================================================
+   CTA BUTTONS
+   ============================================================ */
+.cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta {
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.cta-primary {
+  background: var(--red-500);
+  border-color: var(--red-500);
+  color: var(--black);
+}
+
+.cta-primary:hover {
+  background: var(--red-400);
+  border-color: var(--red-400);
+}
+
+.cta-secondary {
+  background: transparent;
+  border-color: var(--gray-500);
+  color: var(--gray-200);
+}
+
+.cta-secondary:hover {
+  border-color: var(--red-500);
+  color: var(--red-400);
+}
+
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section {
+  padding: 80px var(--space-section-horizontal);
+  border-top: 1px solid var(--gray-800);
+}
+
+.section-head {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.section-body {
+  font-size: 16px;
+  color: var(--gray-300);
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+.section-body strong {
+  color: var(--gray-100);
+  font-weight: 500;
+}
+
+.section-body em {
+  color: var(--red-300);
+  font-style: normal;
+}
+
+.section-body p + p {
+  margin-top: 24px;
+}
+
+
+/* ============================================================
+   CARD — base pattern
+   ============================================================ */
+.card {
+  background: var(--surface-white-02);
+  border: 1px solid var(--border-white-08);
+  padding: 28px;
+  transition: all var(--transition-med);
+}
+
+.card:hover {
+  border-color: var(--red-500);
+  background: var(--surface-850);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-100);
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--text-white-65);
+  line-height: 1.7;
+}
+
+.card-link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+
+/* ============================================================
+   EYEBROW LABEL
+   ============================================================ */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-5);
+}
+
+
+/* ============================================================
+   SCROLL FADE — add class="fade-up", JS adds "visible"
    ============================================================ */
 .fade-up {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
@@ -583,9 +488,118 @@ strong, .text-bold {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-up {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .fade-up { opacity: 1; transform: none; transition: none; }
+}
+
+
+/* ============================================================
+   GLITCH / PANIC OVERLAY — shared across pages
+   ============================================================ */
+.glitch-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+}
+
+.glitch-overlay.active {
+  display: flex;
+  animation: glitchIn 0.3s ease-out;
+}
+
+.emergency-text {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--red-500);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 48px;
+  animation: blink 0.8s infinite;
+}
+
+.countdown-big {
+  font-family: var(--font-mono);
+  font-size: clamp(60px, 15vw, 120px);
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.countdown-label-big {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--gray-500);
+  margin-top: 16px;
+  text-transform: lowercase;
+}
+
+.panic-subtext {
+  font-size: 15px;
+  color: var(--gray-400);
+  max-width: 440px;
+  margin-top: 48px;
+  line-height: 1.8;
+}
+
+.panic-subtext strong {
+  color: var(--white);
+}
+
+.close-glitch {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: 1px solid var(--gray-600);
+  color: var(--gray-400);
+  padding: 10px 20px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  transition: all var(--transition-fast);
+}
+
+.close-glitch:hover {
+  border-color: var(--red-500);
+  color: var(--red-400);
+}
+
+
+/* ============================================================
+   RESPONSIVE BASE
+   ============================================================ */
+@media (max-width: 768px) {
+  :root {
+    --space-section-horizontal: 24px;
+  }
+
+  .section {
+    padding: 60px 24px;
+  }
+
+  .hero-headline {
+    font-size: clamp(32px, 10vw, 56px);
+  }
+
+  .hero-subhead {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-row {
+    flex-direction: column;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
   }
 }

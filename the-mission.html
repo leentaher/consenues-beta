@@ -10,51 +10,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-
-      --black: #0f0f10;
-      --gray-900: #111111;
-      --gray-850: #151111;
-      --gray-800: #1a1a1a;
-      --gray-700: #262626;
-      --gray-400: #8a8a8a;
-      --gray-300: #b7b7b7;
-      --gray-200: #dddddd;
-      --white: #f3f0eb;
-
-      --red-500: #c43e2a;
-      --red-400: #e5503a;
-
-      --transition-fast: 0.15s ease;
-      --transition-med: 0.3s ease;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: radial-gradient(circle at 20% -20%, rgba(196, 62, 42, 0.08), transparent 36%), var(--gray-900);
-      color: var(--white);
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    ::selection {
-      background: var(--red-500);
-      color: #fff;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
 
     .page-wrap {
       padding-top: 92px;
@@ -70,26 +25,24 @@
       font-size: 12px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--red-400);
+      color: var(--red-300);
       margin-bottom: 18px;
     }
 
     .hero-headline {
-      font-family: var(--font-serif);
-      font-size: clamp(52px, 8vw, 106px);
-      line-height: 0.92;
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
       margin-bottom: 16px;
       color: var(--white);
     }
 
     .hero-subhead {
-      font-family: var(--font-serif);
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(20px, 2.8vw, 30px);
       color: var(--gray-400);
+      line-height: 1.3;
       font-style: italic;
-      line-height: 1.2;
     }
 
     .section {
@@ -99,7 +52,7 @@
     }
 
     .section-tinted {
-      background: linear-gradient(180deg, rgba(196, 62, 42, 0.08), rgba(196, 62, 42, 0.02));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
     }
 
     .section-slot {
@@ -107,22 +60,24 @@
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gray-400);
+      color: var(--gray-500);
       margin-bottom: 16px;
     }
 
     .section-headline {
       font-size: clamp(30px, 4.5vw, 54px);
+      font-weight: 600;
       line-height: 1.05;
       letter-spacing: -0.03em;
       text-transform: lowercase;
       margin-bottom: 26px;
       max-width: 980px;
+      color: var(--white);
     }
 
     .section-body {
       max-width: 860px;
-      font-size: clamp(1.05rem, 1.9vw, 1.17rem);
+      font-size: clamp(16px, 1.8vw, 18px);
       color: var(--gray-300);
       line-height: 1.8;
     }
@@ -137,10 +92,9 @@
     }
 
     .punchline {
-      font-family: var(--font-serif);
       font-style: italic;
       color: var(--gray-400);
-      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      font-size: clamp(20px, 2.2vw, 28px);
       line-height: 1.3;
       margin: 22px 0;
     }
@@ -148,14 +102,14 @@
     .peak-callout {
       margin: 30px 0;
       padding: 24px 0;
-      border-top: 1px solid rgba(196, 62, 42, 0.7);
-      border-bottom: 1px solid rgba(196, 62, 42, 0.7);
-      font-size: clamp(1.55rem, 4.4vw, 3rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: clamp(24px, 4vw, 40px);
       font-weight: 800;
       letter-spacing: 0.02em;
       line-height: 1.1;
       text-transform: uppercase;
-      color: var(--red-500);
+      color: var(--red-400);
     }
 
     .mission-link {
@@ -164,27 +118,18 @@
       gap: 10px;
       margin-top: 16px;
       font-family: var(--font-mono);
-      color: var(--red-400);
-      border-bottom: 1px solid rgba(229, 80, 58, 0.65);
+      color: var(--red-300);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       padding-bottom: 2px;
-      font-size: 0.96rem;
+      font-size: 14px;
       letter-spacing: 0.04em;
       text-transform: lowercase;
       transition: color var(--transition-fast), border-color var(--transition-fast);
     }
 
-    .mission-link .arrow {
-      display: inline-block;
-      transition: transform var(--transition-med);
-    }
-
     .mission-link:hover {
-      color: #ff6b53;
-      border-color: #ff6b53;
-    }
-
-    .mission-link:hover .arrow {
-      transform: translateX(4px);
+      color: var(--red-400);
+      border-color: var(--red-400);
     }
 
     .reveal {
@@ -198,190 +143,12 @@
       transform: translateY(0);
     }
 
-    @keyframes scanline {
-      0% { top: -100%; }
-      100% { top: 100%; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 20px rgba(255, 32, 32, 0.4),
-          0 0 40px rgba(255, 32, 32, 0.3),
-          0 0 60px rgba(255, 32, 32, 0.2),
-          0 0 80px rgba(255, 32, 32, 0.1);
-      }
-      50% {
-        box-shadow:
-          0 0 30px rgba(255, 32, 32, 0.5),
-          0 0 50px rgba(255, 32, 32, 0.4),
-          0 0 70px rgba(255, 32, 32, 0.3),
-          0 0 100px rgba(255, 32, 32, 0.15);
-      }
-    }
-
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.1) 2px,
-        rgba(0, 0, 0, 0.1) 4px
-      );
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    .scan-bar {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: linear-gradient(
-        transparent,
-        rgba(255, 255, 255, 0.03),
-        transparent
-      );
-      animation: scanline 6s linear infinite;
-      pointer-events: none;
-      z-index: 1001;
-    }
-
-    .panic-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 80px;
-      height: 80px;
-      background: #0a0a0a;
-      border: none;
-      border-radius: 16px;
-      color: #ffffff;
-      font-family: var(--font-sans);
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1.4;
-      cursor: pointer;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
-    }
-
-    .panic-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .panic-btn span {
-      display: block;
-      line-height: 1.1;
-    }
-
-    .glitch-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--black);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 40px;
-      text-align: center;
-    }
-
-    .glitch-overlay.active {
-      display: flex;
-    }
-
-    .close-glitch {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      border: 1px solid var(--gray-700);
-      color: var(--gray-300);
-      padding: 10px 20px;
-      font-size: 12px;
-      font-family: var(--font-mono);
-      transition: border-color var(--transition-fast), color var(--transition-fast);
-      background: transparent;
-      cursor: pointer;
-      text-transform: lowercase;
-    }
-
-    .close-glitch:hover {
-      border-color: var(--red-500);
-      color: var(--red-400);
-    }
-
-    .countdown-big {
-      font-family: var(--font-mono);
-      font-size: clamp(58px, 14vw, 112px);
-      color: var(--white);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-
-    .countdown-label-big {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      color: var(--gray-400);
-      margin-top: 16px;
-      text-transform: lowercase;
-    }
-
-    @media (max-width: 1024px) {
-      .hero {
-        padding: 48px 32px 22px;
-      }
-
-      .section {
-        padding: 68px 32px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .page-wrap {
-        padding-top: 84px;
-      }
-
-      .hero {
-        padding: 38px 24px 18px;
-      }
-
-      .section {
-        padding: 54px 24px;
-      }
-
-      .hero-eyebrow,
-      .section-slot {
-        font-size: 10px;
-      }
-
-      .panic-btn {
-        bottom: 24px;
-        right: 24px;
-        width: 72px;
-        height: 72px;
-        font-size: 12px;
-      }
+      .page-wrap { padding-top: 84px; }
+      .hero { padding: 38px 24px 18px; }
+      .section { padding: 54px 24px; }
     }
-  </style>
+</style>
 </head>
 <body>
   <div class="scanlines"></div>

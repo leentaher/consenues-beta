@@ -7,13 +7,40 @@
 	<title>Panic — New Consensus</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>	<style>
-		body{margin:0;background:#0a0a0a;color:#fff;font-family:'Inter',sans-serif}
-		.wrap{min-height:100vh;display:grid;place-items:center;text-align:center;padding:40px}
-		.kicker{font-family:'JetBrains Mono',monospace;letter-spacing:.18em;color:#f7ff70;text-transform:uppercase;font-size:12px}
-		.num{font-family:'JetBrains Mono',monospace;font-size:clamp(60px,14vw,120px);line-height:1;margin:16px 0}
-		.sub{color:#a0a0a0;max-width:680px;line-height:1.8}
-		a{color:#c4b5fd;text-decoration:none}
-	</style>
+
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      letter-spacing: 0.18em;
+      color: var(--red-400);
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .num {
+      font-family: var(--font-mono);
+      font-size: clamp(60px, 14vw, 120px);
+      line-height: 1;
+      margin: 16px 0;
+    }
+
+    .sub {
+      color: var(--gray-300);
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    a {
+      color: var(--purple-300);
+    }
+</style>
 </head>
 <body>
 <div class="scanlines"></div>

@@ -10,63 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
-
-      --black: #0f0f10;
-      --gray-900: #111111;
-      --gray-850: #151515;
-      --gray-800: #1a1a1a;
-      --gray-700: #262626;
-      --gray-600: #333333;
-      --gray-400: #8a8a8a;
-      --gray-300: #b7b7b7;
-      --gray-200: #dddddd;
-      --white: #f3f0eb;
-
-      --red-500: #c43e2a;
-      --red-400: #e5503a;
-
-      --transition-fast: 0.15s ease;
-      --transition-med: 0.3s ease;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: radial-gradient(circle at 20% -20%, rgba(196, 62, 42, 0.08), transparent 36%), var(--gray-900);
-      color: var(--white);
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    ::selection {
-      background: var(--red-500);
-      color: #fff;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ============================================
-       HERO
-    ============================================ */
-    .page-wrap {
-      padding-top: 92px;
-    }
 
     .hero {
       max-width: 980px;
-      padding: 54px 40px 28px;
+      padding: 130px 40px 24px;
     }
 
     .hero-eyebrow {
@@ -74,45 +21,39 @@
       font-size: 12px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--red-400);
+      color: var(--red-300);
       margin-bottom: 18px;
     }
 
     .hero-headline {
-      font-family: var(--font-serif);
-      font-size: clamp(52px, 8vw, 106px);
-      line-height: 0.92;
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
       margin-bottom: 16px;
       color: var(--white);
     }
 
     .hero-subhead {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 3vw, 34px);
+      font-size: clamp(18px, 2.5vw, 26px);
       color: var(--gray-400);
-      font-style: italic;
-      line-height: 1.25;
+      line-height: 1.4;
       max-width: 760px;
     }
 
-    /* ============================================
-       INTRO SECTION
-    ============================================ */
     .intro {
       padding: 48px 40px 60px;
       max-width: 760px;
     }
 
     .intro p {
-      font-size: clamp(1.05rem, 1.9vw, 1.15rem);
+      font-size: 16px;
       color: var(--gray-300);
       line-height: 1.85;
     }
 
     .intro p + p {
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .intro strong {
@@ -120,9 +61,6 @@
       font-weight: 600;
     }
 
-    /* ============================================
-       BOOK GRID — stripe press inspired
-    ============================================ */
     .books-section {
       padding: 0 40px 80px;
     }
@@ -135,9 +73,8 @@
     }
 
     .book-card {
-      background: var(--gray-850);
+      background: var(--gray-900);
       border: 1px solid var(--gray-700);
-      border-radius: 12px;
       padding: 32px 28px 28px;
       display: flex;
       flex-direction: column;
@@ -146,8 +83,8 @@
     }
 
     .book-card:hover {
-      border-color: rgba(196, 62, 42, 0.4);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(196, 62, 42, 0.15);
+      border-color: var(--red-500);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
       transform: translateY(-2px);
     }
 
@@ -160,10 +97,9 @@
     }
 
     .book-title {
-      font-family: var(--font-serif);
-      font-size: clamp(22px, 2.5vw, 28px);
-      line-height: 1.15;
-      font-weight: 400;
+      font-size: clamp(20px, 2.2vw, 26px);
+      line-height: 1.2;
+      font-weight: 600;
       color: var(--white);
       margin-bottom: 4px;
     }
@@ -173,12 +109,12 @@
       font-size: 12px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--red-400);
+      color: var(--red-300);
       margin-bottom: 16px;
     }
 
     .book-desc {
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 1.7;
       color: var(--gray-300);
       flex: 1;
@@ -189,7 +125,7 @@
       gap: 16px;
       margin-top: 20px;
       padding-top: 16px;
-      border-top: 1px solid var(--gray-700);
+      border-top: 1px solid var(--gray-800);
     }
 
     .book-link {
@@ -207,18 +143,6 @@
       color: var(--red-400);
     }
 
-    .book-link .arrow {
-      transition: transform var(--transition-fast);
-      display: inline-block;
-    }
-
-    .book-link:hover .arrow {
-      transform: translateX(3px);
-    }
-
-    /* ============================================
-       AND MORE — papers/articles list
-    ============================================ */
     .more-section {
       padding: 64px 40px 80px;
       border-top: 1px solid var(--gray-800);
@@ -227,10 +151,10 @@
     .more-label {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 28px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
     }
 
     .more-list {
@@ -247,45 +171,38 @@
       flex-direction: column;
     }
 
-    .more-item:nth-child(-n+2) {
-      border-top: 1px solid var(--gray-800);
-    }
-
-
     .more-item-author {
       font-family: var(--font-mono);
       font-size: 12px;
-      color: var(--red-400);
+      color: var(--red-300);
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 2px;
     }
 
     .more-item-title {
-      font-family: var(--font-serif);
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 500;
       color: var(--white);
       line-height: 1.3;
     }
 
-    /* ============================================
-       CTA / SUGGEST
-    ============================================ */
     .suggest-section {
       padding: 64px 40px 100px;
       border-top: 1px solid var(--gray-800);
     }
 
     .suggest-headline {
-      font-family: var(--font-serif);
       font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
       line-height: 1.1;
+      letter-spacing: -0.02em;
       margin-bottom: 12px;
       color: var(--white);
     }
 
     .suggest-body {
-      font-size: 1.05rem;
+      font-size: 16px;
       color: var(--gray-300);
       margin-bottom: 24px;
     }
@@ -295,164 +212,45 @@
       align-items: center;
       gap: 10px;
       font-family: var(--font-mono);
-      color: var(--red-400);
-      border-bottom: 1px solid rgba(229, 80, 58, 0.65);
+      color: var(--red-300);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       padding-bottom: 2px;
-      font-size: 0.96rem;
+      font-size: 14px;
       letter-spacing: 0.04em;
       text-transform: lowercase;
       transition: color var(--transition-fast), border-color var(--transition-fast);
     }
 
     .suggest-link:hover {
-      color: #ff6b53;
-      border-color: #ff6b53;
+      color: var(--red-400);
+      border-color: var(--red-400);
     }
 
-    .suggest-link:hover .arrow {
-      transform: translateX(4px);
-    }
-
-    .suggest-link .arrow {
-      display: inline-block;
-      transition: transform var(--transition-med);
-    }
-
-    /* ============================================
-       SCANLINES / PANIC / GLITCH
-    ============================================ */
-    @keyframes scanline {
-      0% { top: -100%; }
-      100% { top: 100%; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 20px rgba(255, 32, 32, 0.4),
-          0 0 40px rgba(255, 32, 32, 0.3),
-          0 0 60px rgba(255, 32, 32, 0.2),
-          0 0 80px rgba(255, 32, 32, 0.1);
-      }
-      50% {
-        box-shadow:
-          0 0 30px rgba(255, 32, 32, 0.5),
-          0 0 50px rgba(255, 32, 32, 0.4),
-          0 0 70px rgba(255, 32, 32, 0.3),
-          0 0 100px rgba(255, 32, 32, 0.15);
-      }
-    }
-
-    .scanlines {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    .scan-bar {
-      position: fixed;
-      left: 0; right: 0;
-      height: 8px;
-      background: linear-gradient(transparent, rgba(255,255,255,0.03), transparent);
-      animation: scanline 6s linear infinite;
-      pointer-events: none;
-      z-index: 1001;
-    }
-
-    .panic-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 80px;
-      height: 80px;
-      background: #0a0a0a;
-      border: none;
-      border-radius: 16px;
-      color: #ffffff;
-      font-family: var(--font-sans);
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1.4;
-      cursor: pointer;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      animation: float 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
-    }
-
-    .panic-btn:hover { transform: scale(1.05); }
-    .panic-btn span { display: block; line-height: 1.1; }
-
-    .glitch-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--black);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 40px;
-      text-align: center;
-    }
-    .glitch-overlay.active { display: flex; }
-    .close-glitch {
-      position: absolute;
-      top: 24px; right: 24px;
-      border: 1px solid var(--gray-700);
-      color: var(--gray-300);
-      padding: 10px 20px;
-      font-size: 12px;
-      background: none;
-      cursor: pointer;
-    }
-
-    /* ============================================
-       REVEAL ANIMATION
-    ============================================ */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ============================================
-       RESPONSIVE
-    ============================================ */
     @media (max-width: 768px) {
       .hero, .intro, .books-section, .more-section, .suggest-section {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 24px;
+        padding-right: 24px;
       }
-      .book-grid {
-        grid-template-columns: 1fr;
+
+      .hero {
+        padding-top: 100px;
       }
-      .more-list {
-        grid-template-columns: 1fr;
-      }
-      .more-item:nth-child(2) {
-        border-top: none;
-      }
-      .book-card {
-        padding: 24px 20px 20px;
-      }
+
+      .book-grid { grid-template-columns: 1fr; }
+      .more-list { grid-template-columns: 1fr; }
     }
-  </style>
+</style>
 </head>
 <body>
   <div class="scanlines"></div>

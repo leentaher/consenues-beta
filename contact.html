@@ -7,28 +7,54 @@
 	<title>Contact — New Consensus</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>	<style>
-		*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-		:root{--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;--black:#0a0a0a;--gray-900:#111;--gray-800:#1a1a1a;--gray-500:#505050;--gray-300:#909090;--gray-100:#e0e0e0;--white:#fff;--violet:#c4b5fd}
-		body{font-family:var(--font-sans);background:var(--black);color:var(--gray-100)}
-		.nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,var(--black),transparent)}
-		.nav-logo{font-weight:600;font-size:15px}.nav-links{display:flex;align-items:center;gap:32px}.nav-link{display:inline-flex;align-items:center;line-height:1;font-size:13px;color:var(--gray-300);text-transform:lowercase;text-decoration:none}
-		.nav-dropdown{position:relative}.nav-dropdown-trigger{background:none;border:none;color:var(--gray-300);font-size:13px;text-transform:lowercase;line-height:1;display:inline-flex;gap:4px}
-		.nav-dropdown-trigger.active{color:#fff}.nav-dropdown-menu{position:absolute;top:calc(100% + 8px);left:0;min-width:180px;background:#141414;border:1px solid #2a2a2a;border-radius:8px;padding:8px 0;opacity:0;visibility:hidden}
-		.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown[open] .nav-dropdown-menu{opacity:1;visibility:visible}
-		.nav-dropdown-item{display:block;padding:10px 16px;color:var(--violet);text-decoration:none}.nav-dropdown-item.active,.nav-dropdown-item:hover{color:#fff;background:rgba(167,139,250,.08)}
-		.nav-cta{display:inline-flex;align-items:center;line-height:1;font-size:13px;color:var(--violet);text-transform:lowercase;text-decoration:none}
-		.hero{padding:130px 40px 24px}.eyebrow{font-family:var(--font-mono);font-size:14px;color:var(--violet);text-transform:lowercase}.hero h1{font-size:clamp(38px,8vw,68px);line-height:1.05;margin:14px 0 18px}
-		.body{max-width:760px;color:var(--gray-300);line-height:1.8}
-		.countdown-strip{display:flex;gap:36px;padding:24px 40px;background:var(--gray-900);border-top:1px solid var(--gray-800);border-bottom:1px solid var(--gray-800);flex-wrap:wrap}
-		.countdown-label{font-family:var(--font-mono);font-size:11px;color:var(--gray-500);text-transform:lowercase}.countdown-value{font-family:var(--font-mono);font-size:22px}
-		.section{padding:54px 40px;border-top:1px solid var(--gray-800)}
-		.contact-list{display:grid;gap:18px;max-width:760px;margin-top:16px}.contact-list a{color:var(--violet);text-decoration:none}.muted{color:var(--gray-500);font-style:italic;font-size:14px}
-		.footer{padding:60px 40px;border-top:1px solid var(--gray-800)}
-		.footer-links{display:flex;gap:24px;margin-top:10px}.footer a{text-decoration:none;color:var(--gray-300)}
-		.panic-btn{position:fixed;bottom:24px;right:24px;width:80px;height:80px;border:none;border-radius:16px;background:#0a0a0a;color:#fff;box-shadow:0 0 20px rgba(255,32,32,.4)}
-		.glitch-overlay{display:none;position:fixed;inset:0;background:#0a0a0a;z-index:2000;align-items:center;justify-content:center;flex-direction:column}.glitch-overlay.active{display:flex}
-		@media (max-width:768px){.nav-links{display:none}.hero,.section,.countdown-strip,.footer{padding-left:24px;padding-right:24px}}
-	</style>
+
+    .hero {
+      padding: 130px 40px 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 8vw, 68px);
+      line-height: 1.05;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--red-300);
+      text-transform: lowercase;
+      margin-bottom: 14px;
+    }
+
+    .body {
+      max-width: 760px;
+      color: var(--gray-300);
+      line-height: 1.8;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 18px;
+      max-width: 760px;
+      margin-top: 32px;
+    }
+
+    .contact-list a {
+      color: var(--red-300);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      transition: color var(--transition-fast);
+    }
+
+    .contact-list a:hover {
+      color: var(--red-400);
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 100px 24px 24px; }
+    }
+</style>
 </head>
 <body>
 <div class="scanlines"></div>
