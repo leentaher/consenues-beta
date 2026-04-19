@@ -6,6 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Tripocalypse — New Consensus</title>
 <meta name="description" content="AI, climate, and fascism are connected crises that feed each other."><style>
+/* ========== MISSING TOKEN FALLBACKS ========== */
+:root {
+  --space-card-padding: 28px 24px;
+  --border-card:     1px solid rgba(255,255,255,0.08);
+  --border-card-vis: 1px solid rgba(255,255,255,0.12);
+  --bg-base:         #000000;
+  --accent-dim:      rgba(231,255,0,0.45);
+}
+
 /* ========== PAGE BASE ========== */
 html { scroll-behavior: smooth; }
 body { overflow-x: hidden; }
@@ -19,8 +28,6 @@ body { overflow-x: hidden; }
   display: flex; flex-direction: column;
   justify-content: center;
   position: relative;
-  padding-top: 100px;
-  padding-bottom: 60px;
   background: var(--bg-base);
 }
 
@@ -644,16 +651,13 @@ body { overflow-x: hidden; }
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="container">
-
-    <h1>The Tripocalypse</h1>
-    <p class="hero-sub">AI. Climate. Fascism. Let's get into it.</p>
-    <div class="hero-pill">
-      <span class="dot dot-ai"></span>
-      <span class="dot dot-climate"></span>
-      <span class="dot dot-fascism"></span>
-      <span>three crises &middot; one planet &middot; no time</span>
-    </div>
+  <h1>The Tripocalypse</h1>
+  <p class="hero-sub">AI. Climate. Fascism. Let's get into it.</p>
+  <div class="hero-pill">
+    <span class="dot dot-ai"></span>
+    <span class="dot dot-climate"></span>
+    <span class="dot dot-fascism"></span>
+    <span>three crises &middot; one planet &middot; no time</span>
   </div>
 </section>
 

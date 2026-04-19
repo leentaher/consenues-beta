@@ -293,6 +293,10 @@ button {
 /* ============================================================
    HERO — shared pattern
    ============================================================ */
+.hero {
+  padding: 120px 40px 80px;
+}
+
 .hero-eyebrow {
   font-family: var(--font-mono);
   font-size: 14px;
@@ -580,6 +584,10 @@ button {
 
   .section {
     padding: 60px 24px;
+  }
+
+  .hero {
+    padding: 80px 24px 48px;
   }
 
   .hero-headline {
