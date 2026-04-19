@@ -1,0 +1,613 @@
+/*
+ * NEW CONSENSUS — DESIGN SYSTEM TOKENS
+ * Extracted from index.html computed styles — this is the spec the homepage actually follows.
+ * Drop this file in the repo root and import it as the first line of every page's <style> block:
+ *   @import url('/tokens.css');
+ * Then reference only variables — never hardcode values.
+ */
+
+/* ============================================================
+   FONTS
+   Two faces only: Inter (display/body) + JetBrains Mono (labels/code)
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+
+  /* ============================================================
+     TYPOGRAPHY SCALE
+     Rule: Inter for headings + body. JetBrains Mono for eyebrows,
+     labels, nav links, code-style callouts, and CTA link text.
+     ============================================================ */
+
+  /* Headings — Inter, tight negative tracking */
+  --text-h1-size:     72px;
+  --text-h1-weight:   600;
+  --text-h1-leading:  1.05;        /* 75.6px at 72px */
+  --text-h1-tracking: -0.03em;     /* -2.16px at 72px */
+
+  --text-h2-size:     32px;
+  --text-h2-weight:   500;
+  --text-h2-leading:  1.3;
+  --text-h2-tracking: -0.02em;
+
+  --text-h3-size:     54px;        /* used for section pull-quotes / big numbers */
+  --text-h3-weight:   600;
+  --text-h3-leading:  1.1;
+  --text-h3-tracking: -0.03em;
+
+  --text-h4-size:     24px;        /* card titles */
+  --text-h4-weight:   700;
+  --text-h4-leading:  1.3;
+  --text-h4-tracking: normal;
+
+  /* Eyebrow labels — JetBrains Mono, uppercase, spaced */
+  --text-eyebrow-size:     11px;
+  --text-eyebrow-weight:   400;
+  --text-eyebrow-tracking: 0.12em;
+  --text-eyebrow-transform: uppercase;
+
+  /* Body — Inter, comfortable reading */
+  --text-body-size:    16px;
+  --text-body-leading: 1.6;
+
+  /* Body subhead / lead — JetBrains Mono, slightly larger */
+  --text-subhead-size:    15px;
+  --text-subhead-leading: 1.65;
+
+  /* Small / caption — JetBrains Mono */
+  --text-small-size: 13px;
+
+  /* Nav links — Inter */
+  --text-nav-size:   13px;
+  --text-nav-weight: 400;
+
+  /* Nav logo — Inter semibold */
+  --text-logo-size:   15px;
+  --text-logo-weight: 600;
+  --text-logo-tracking: -0.02em;
+
+  /* CTA button text — Inter */
+  --text-cta-size:   15px;
+  --text-cta-weight: 600;
+
+  /* Project card link text — JetBrains Mono */
+  --text-card-link-size: 13px;
+
+
+  /* ============================================================
+     COLOR — BACKGROUNDS
+     Base is #0a0a0a. Surfaces elevate in ~5-step increments.
+     ============================================================ */
+  --black:         #0a0a0a;   /* body background */
+  --gray-900:      #111111;
+  --gray-800:      #1a1a1a;
+  --gray-700:      #222222;
+  --gray-600:      #333333;
+  --gray-500:      #505050;
+  --gray-400:      #707070;
+  --gray-300:      #909090;
+  --gray-200:      #a0a0a0;
+  --gray-100:      #e0e0e0;
+  --white:         #ffffff;
+
+  /* Named surfaces — use these, not raw grays */
+  --bg-base:       var(--black);          /* page background */
+  --surface-900:   #141414;              /* nav background */
+  --surface-850:   #161616;              /* nav border / subtle dividers */
+  --surface-800:   #1d1d1d;             /* cards, featured card bg */
+  --border-subtle: #2a2a2a;             /* hard borders */
+
+  /* White-alpha surfaces */
+  --surface-white-02: rgba(255, 255, 255, 0.02);   /* card fill */
+  --surface-white-03: rgba(255, 255, 255, 0.03);   /* pill / badge fill */
+  --border-white-06:  rgba(255, 255, 255, 0.06);   /* card border */
+  --border-white-08:  rgba(255, 255, 255, 0.08);   /* stronger card border */
+  --border-white-12:  rgba(255, 255, 255, 0.12);   /* visible border */
+
+
+  /* ============================================================
+     COLOR — TEXT
+     ============================================================ */
+  --text-primary:   rgb(255, 255, 255);            /* headings, max emphasis */
+  --text-secondary: rgb(224, 224, 224);            /* body default */
+  --text-body:      rgba(255, 255, 255, 0.65);     /* body paragraphs */
+  --text-muted:     rgb(160, 160, 160);            /* subheads, descriptions */
+  --text-dim:       rgb(144, 144, 144);            /* nav links, metadata */
+  --text-footer:    rgb(112, 112, 112);            /* footer links */
+  --text-white-65:  rgba(255, 255, 255, 0.65);     /* alias for --text-body */
+
+
+  /* ============================================================
+     COLOR — ACCENT / BRAND
+     --accent is the primary brand color: electric yellow-green.
+     Used for: "start serving" nav CTA, section highlights, featured
+     card accents, urgent callout text.
+     ============================================================ */
+  --accent:         #e7ff00;   /* primary: electric yellow-green */
+  --accent-dim:     #f7ff70;   /* lighter tint */
+  --accent-pale:    #fbff9e;   /* palest tint */
+
+  /* Red — primary action / danger / CTA buttons */
+  --red-500:        #ff2020;
+  --red-400:        #ff4040;   /* primary CTA button bg */
+  --red-300:        #ff6060;
+  --red-cta:        #ff2020;   /* .cta-primary background */
+  --red-nav:        #ff4040;   /* "start serving" nav text */
+
+  /* Crisis-specific colors (used on tripocalypse page — include for cross-page consistency) */
+  --crisis-ai:      rgb(245, 200, 66);    /* gold — AI/jobs */
+  --crisis-climate: rgb(74, 222, 128);    /* green — climate */
+  --crisis-fascism: rgb(248, 113, 113);   /* salmon — fascism */
+
+  /* Two-futures rail colors */
+  --end-rail:         #8b0000;
+  --end-rail-glow:    rgba(139, 0, 0, 0.2);
+  --begin-rail:       #004d00;
+  --begin-rail-glow:  rgba(0, 77, 0, 0.22);
+  --end-accent:       #ff5b5b;
+  --begin-accent:     #5ab86a;
+
+  /* Panic button */
+  --panic-glow-10: rgba(255, 32, 32, 0.10);
+  --panic-glow-20: rgba(255, 32, 32, 0.20);
+  --panic-glow-30: rgba(255, 32, 32, 0.30);
+  --panic-glow-40: rgba(255, 32, 32, 0.40);
+  --panic-glow-50: rgba(255, 32, 32, 0.50);
+
+
+  /* ============================================================
+     COLOR — FULL PALETTE (reference only — use named tokens above)
+     ============================================================ */
+  --palette-red-500:    #ff2020;
+  --palette-red-400:    #ff4040;
+  --palette-red-300:    #ff6060;
+  --palette-blue-500:   #0000cc;
+  --palette-blue-400:   #0000ff;
+  --palette-blue-300:   #3366ff;
+  --palette-purple-500: #8b5cf6;
+  --palette-purple-400: #a78bfa;
+  --palette-purple-300: #c4b5fd;
+  --palette-yellow-500: #fff700;
+  --palette-yellow-400: #ffec4c;
+  --palette-yellow-300: #ffe88c;
+  --amber-500:          #f0a020;
+  --cyan-500:           #00ffff;
+  --purple-300:         #c4b5fd;
+  --purple-400-soft:    rgba(167, 139, 250, 0.08);
+
+
+  /* ============================================================
+     SPACING
+     Base unit: 4px. Scale in 4px steps up to 16, then 8px steps.
+     ============================================================ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+
+  /* Named spacing patterns */
+  --space-eyebrow-to-heading: var(--space-5);   /* 20px — eyebrow margin-bottom */
+  --space-heading-to-body:    var(--space-5);   /* 20px */
+  --space-body-to-cta:        var(--space-8);   /* 32px */
+  --space-section-top:        var(--space-20);  /* 80px */
+  --space-section-bottom:     var(--space-20);  /* 80px */
+  --space-hero-top:           var(--space-30);  /* 120px */
+  --space-card-padding:       36px 32px;
+  --space-card-gap:           22px;
+  --space-section-horizontal: 40px;             /* page side padding */
+
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  --max-width-content: 1280px;   /* max-width for content containers */
+  --nav-height:        64px;
+
+
+  /* ============================================================
+     BORDERS & RADIUS
+     Rule: Cards and primary elements use 0px border-radius (sharp).
+     Only pills/badges use radius.
+     ============================================================ */
+  --radius-none:  0px;    /* cards, buttons, sections — default */
+  --radius-sm:    2px;    /* very subtle */
+  --radius-md:    6px;    /* tags, small badges */
+  --radius-lg:    8px;    /* data widgets */
+  --radius-xl:    14px;   /* larger badges */
+  --radius-pill:  100px;  /* full pill — hero pill badge, crisis labels */
+
+  --border-card:     1px solid var(--border-white-06);
+  --border-card-vis: 1px solid var(--border-white-12);
+  --border-featured: 3.75px solid var(--palette-purple-500);  /* featured card accent */
+
+
+  /* ============================================================
+     SHADOWS
+     ============================================================ */
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --overlay-black-10:  rgba(0, 0, 0, 0.1);
+
+
+  /* ============================================================
+     TRANSITIONS
+     ============================================================ */
+  --transition-fast: 0.15s ease;
+  --transition-med:  0.25s ease;
+
+
+  /* ============================================================
+     EFFECTS — Scanlines / VHS
+     Applied as overlay divs, not CSS variables, but documented here.
+     .scanlines: position fixed, pointer-events none, z-index 9999
+       background: repeating-linear-gradient(transparent 0px, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px)
+     .scan-bar: position fixed, 8px tall, animated top-to-bottom
+       background: rgba(255,255,255,0.02), blur 1px, animation ~8s linear infinite
+     ============================================================ */
+}
+
+
+/* ============================================================
+   BASE RESET — apply to every page
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-leading);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   Use these classes directly on elements across all pages.
+   ============================================================ */
+
+/* Eyebrow label — always JetBrains Mono, uppercase, spaced */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow-size);
+  font-weight: var(--text-eyebrow-weight);
+  letter-spacing: var(--text-eyebrow-tracking);
+  text-transform: var(--text-eyebrow-transform);
+  color: var(--accent);
+  margin-bottom: var(--space-eyebrow-to-heading);
+}
+
+/* H1 — page title */
+h1, .text-h1 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h1-size);
+  font-weight: var(--text-h1-weight);
+  line-height: var(--text-h1-leading);
+  letter-spacing: var(--text-h1-tracking);
+  color: var(--text-primary);
+}
+
+/* H2 — section heading */
+h2, .text-h2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h2-size);
+  font-weight: var(--text-h2-weight);
+  line-height: var(--text-h2-leading);
+  letter-spacing: var(--text-h2-tracking);
+  color: var(--text-primary);
+}
+
+/* H3 — large pull-quote / stat */
+h3, .text-h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h3-size);
+  font-weight: var(--text-h3-weight);
+  line-height: var(--text-h3-leading);
+  letter-spacing: var(--text-h3-tracking);
+  color: var(--text-secondary);
+}
+
+/* H4 — card title */
+h4, .text-h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4-size);
+  font-weight: var(--text-h4-weight);
+  line-height: var(--text-h4-leading);
+  color: var(--text-secondary);
+}
+
+/* Body paragraph */
+p, .text-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-leading);
+  color: var(--text-body);
+}
+
+/* Subhead / lead — JetBrains Mono */
+.text-subhead, .hero-subhead {
+  font-family: var(--font-mono);
+  font-size: var(--text-subhead-size);
+  line-height: var(--text-subhead-leading);
+  color: var(--text-muted);
+}
+
+/* Bold callout within body */
+strong, .text-bold {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Mono small — metadata, tags */
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-small-size);
+  color: var(--text-dim);
+}
+
+
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+.page-container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-section-horizontal);
+}
+
+.section {
+  padding-top: var(--space-section-top);
+  padding-bottom: var(--space-section-bottom);
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   CARD — base pattern
+   ============================================================ */
+.card {
+  background: var(--surface-white-02);
+  border: var(--border-card);
+  border-radius: var(--radius-none);
+  padding: var(--space-card-padding);
+}
+
+.card:hover {
+  border-color: var(--border-white-12);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card--featured {
+  background: var(--surface-800);
+  border: var(--border-featured);
+}
+
+.card-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow-size);
+  letter-spacing: var(--text-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.card-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4-size);
+  font-weight: var(--text-h4-weight);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.card-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-body);
+  margin-bottom: var(--space-5);
+}
+
+.card-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-card-link-size);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.card-link:hover {
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   BUTTONS & CTAs
+   ============================================================ */
+
+/* Primary CTA button — red fill, dark text, sharp corners */
+.cta-primary {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--text-cta-size);
+  font-weight: var(--text-cta-weight);
+  color: var(--bg-base);
+  background: var(--red-cta);
+  border: none;
+  border-radius: var(--radius-none);
+  padding: 16px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.cta-primary:hover {
+  background: var(--red-400);
+  transform: translateY(-1px);
+}
+
+/* Inline CTA link — mono, muted, arrow pattern */
+.cta-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-small-size);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.cta-link:hover {
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   NAV — base pattern
+   ============================================================ */
+nav, .nav {
+  height: var(--nav-height);
+  background: var(--surface-900);
+  border-bottom: 1px solid var(--surface-850);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-section-horizontal);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: var(--font-sans);
+  font-size: var(--text-logo-size);
+  font-weight: var(--text-logo-weight);
+  letter-spacing: var(--text-logo-tracking);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-nav-size);
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: var(--text-nav-size);
+  color: var(--red-nav);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-cta:hover {
+  color: var(--red-300);
+}
+
+
+/* ============================================================
+   FOOTER — base pattern
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-12) var(--space-section-horizontal);
+  color: var(--text-footer);
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+
+footer a {
+  color: var(--text-footer);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+footer a:hover {
+  color: var(--text-muted);
+}
+
+
+/* ============================================================
+   SCANLINE OVERLAY — paste this HTML into every page <body>
+   <div class="scanlines"></div>
+   <div class="scan-bar"></div>
+   ============================================================ */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+.scan-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 8px;
+  pointer-events: none;
+  z-index: 9998;
+  background: rgba(255, 255, 255, 0.02);
+  filter: blur(1px);
+  animation: scanBarMove 8s linear infinite;
+}
+
+@keyframes scanBarMove {
+  from { top: -8px; }
+  to   { top: 100vh; }
+}
+
+
+/* ============================================================
+   SCROLL ANIMATION — fade-up pattern used across pages
+   Add class="fade-up" to any element, JS adds "visible" on scroll.
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="/tokens.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flip hint options</title><style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #c4c4c4; font-family: 'Inter', sans-serif; padding: 40px 24px; }
+
+  h1 { color: #fff; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+  .subtitle { font-size: 13px; color: #505050; margin-bottom: 40px; }
+
+  .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .options { grid-template-columns: 1fr; } }
+
+  .option-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #505050;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  /* ===== BASE CARD ===== */
+  .card-wrap { perspective: 1200px; }
+  .card {
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .card.flipped { transform: rotateY(180deg); }
+
+  .card-face {
+    backface-visibility: hidden;
+    border: 1px solid #2a2a2a;
+    border-top-width: 2px;
+    border-top-color: #00c853;
+    border-radius: 12px;
+    padding: 20px;
+    background: linear-gradient(150deg, #0f0f12, #0a0a0c);
+  }
+  .card-front { }
+  .card-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #00c853;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-headline { font-size: 28px; font-weight: 600; color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .card-teaser { font-size: 14px; color: #606060; }
+  .card-back-head { font-size: 18px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .card-copy { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #707070; line-height: 1.7; }
+  .flip-back { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #00c853; letter-spacing: 0.05em; margin-top: 4px; }
+
+  /* ===========================
+     OPTION 1: Tap hint label
+     =========================== */
+  .hint-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #404040;
+    letter-spacing: 0.08em;
+    transition: opacity 0.5s ease;
+  }
+  .hint-label .hint-arrow {
+    display: inline-block;
+    animation: hintBounce 1.5s ease-in-out infinite;
+  }
+  @keyframes hintBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+  .card.flipped .hint-label { opacity: 0; pointer-events: none; }
+
+  /* ===========================
+     OPTION 2: Pulse glow
+     =========================== */
+  .card-pulse {
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+    50% { box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.15), 0 0 20px rgba(0, 200, 83, 0.08); }
+  }
+  .card.flipped .card-pulse {
+    animation: none;
+  }
+  /* Hover shimmer on border */
+  .card-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, rgba(0,200,83,0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .card-pulse:hover::after { opacity: 1; }
+
+  /* ===========================
+     OPTION 3: Rotate icon
+     =========================== */
+  .flip-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #2a2a2a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #404040;
+    transition: color 0.2s, border-color 0.2s, transform 0.4s;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .card:hover .flip-icon {
+    color: #00c853;
+    border-color: rgba(0,200,83,0.3);
+    transform: rotate(30deg);
+  }
+  .card.flipped .flip-icon {
+    transform: rotate(180deg);
+    color: #00c853;
+    border-color: rgba(0,200,83,0.3);
+  }
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+<div class="scan-bar"></div>
+
+<h1>Flip hint options</h1>
+<p class="subtitle">Click any card to see it flip. Tap to compare.</p>
+
+<div class="options">
+
+  <!-- OPTION 1: Tap hint label -->
+  <div>
+    <div class="option-label">01 — text hint</div>
+    <div class="card-wrap">
+      <div class="card" id="c1">
+        <div class="card-face card-front">
+          <div class="card-eyebrow">↓ the beginning of utopia</div>
+          <div class="card-headline">the beginning.</div>
+          <div class="card-teaser">We're building the beginning.</div>
+          <div class="hint-label">
+            <span>tap to flip</span>
+            <span class="hint-arrow">→</span>
+          </div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-eyebrow">↓ the beginning</div>
+          <div class="card-back-head">We're building the beginning.</div>
+          <div class="card-copy">We've been here before. The last time everything broke at once, we reversed it.</div>
+          <div class="flip-back">← see what we're up against</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 2: Pulse glow -->
+  <div>
+    <div class="option-label">02 — pulse glow</div>
+    <div class="card-wrap">
+      <div class="card" id="c2">
+        <div class="card-face card-front card-pulse">
+          <div class="card-eyebrow">↓ the beginning of utopia</div>
+          <div class="card-headline">the beginning.</div>
+          <div class="card-teaser">We're building the beginning.</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-eyebrow">↓ the beginning</div>
+          <div class="card-back-head">We're building the beginning.</div>
+          <div class="card-copy">We've been here before. The last time everything broke at once, we reversed it.</div>
+          <div class="flip-back">← see what we're up against</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 3: Rotate icon -->
+  <div>
+    <div class="option-label">03 — flip icon</div>
+    <div class="card-wrap">
+      <div class="card" id="c3">
+        <div class="card-face card-front">
+          <div class="card-eyebrow">↓ the beginning of utopia</div>
+          <div class="card-headline">the beginning.</div>
+          <div class="card-teaser">We're building the beginning.</div>
+        </div>
+        <div class="card-face card-back">
+          <div class="card-eyebrow">↓ the beginning</div>
+          <div class="card-back-head">We're building the beginning.</div>
+          <div class="card-copy">We've been here before. The last time everything broke at once, we reversed it.</div>
+          <div class="flip-back">← see what we're up against</div>
+        </div>
+        <div class="flip-icon">↻</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  ['c1','c2','c3'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function() {
+      this.classList.toggle('flipped');
+    });
+  });
+</script>
+</body>
+</html>
