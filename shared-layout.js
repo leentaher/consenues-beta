@@ -599,13 +599,6 @@
       </button>
       <div class="nav-dropdown-menu">
         <a href="/projects" class="nav-dropdown-item${flags.projectsMain ? ' active' : ''}">Fish Tank</a>
-        <a href="/crashlab" class="nav-dropdown-item${flags.crashlab ? ' active' : ''}">CrashLab</a>
-        <a href="/wont-get-fooled-again-act" class="nav-dropdown-item${flags.wgfaa ? ' active' : ''}">The Won't Get Fooled Again Act</a>
-        <a href="/cost-of-waiting" class="nav-dropdown-item${flags.costOfWaiting ? ' active' : ''}">The Cost of Waiting</a>
-        <a href="/bigsim" class="nav-dropdown-item${flags.bigsim ? ' active' : ''}">BigSim</a>
-        <a href="/ai-convening" class="nav-dropdown-item${flags.aiConvening ? ' active' : ''}">2026 AI Convening</a>
-        <a href="/abundance-101" class="nav-dropdown-item${flags.abundance101 ? ' active' : ''}">Class: REAL Abundance 101</a>
-        <a href="/nc-news" class="nav-dropdown-item${flags.ncNews ? ' active' : ''}">NC News</a>
       </div>
     </div>
     <div class="nav-dropdown">
@@ -638,13 +631,6 @@
       </button>
       <div class="mobile-menu-group-items">
         <a href="/projects" class="mobile-menu-sublink${flags.projectsMain ? ' active' : ''}">Fish Tank</a>
-        <a href="/crashlab" class="mobile-menu-sublink${flags.crashlab ? ' active' : ''}">CrashLab</a>
-        <a href="/wont-get-fooled-again-act" class="mobile-menu-sublink${flags.wgfaa ? ' active' : ''}">The Won't Get Fooled Again Act</a>
-        <a href="/cost-of-waiting" class="mobile-menu-sublink${flags.costOfWaiting ? ' active' : ''}">The Cost of Waiting</a>
-        <a href="/bigsim" class="mobile-menu-sublink${flags.bigsim ? ' active' : ''}">BigSim</a>
-        <a href="/ai-convening" class="mobile-menu-sublink${flags.aiConvening ? ' active' : ''}">2026 AI Convening</a>
-        <a href="/abundance-101" class="mobile-menu-sublink${flags.abundance101 ? ' active' : ''}">Class: REAL Abundance 101</a>
-        <a href="/nc-news" class="mobile-menu-sublink${flags.ncNews ? ' active' : ''}">NC News</a>
       </div>
     </div>
 
