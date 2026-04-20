@@ -329,7 +329,7 @@
 
   .footer-main {
     display: grid;
-    grid-template-columns: 280px 1fr auto;
+    grid-template-columns: 280px 1fr;
     align-items: start;
     gap: 48px;
     padding: 56px 48px 48px;
@@ -758,9 +758,6 @@
       </div>
     </nav>
 
-    <div class="footer-cta-col">
-      <a href="/#join" class="footer-cta">sign up to serve &rarr;</a>
-    </div>
 
   </div>
   <div class="footer-copy">
