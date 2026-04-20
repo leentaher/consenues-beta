@@ -1,647 +1,1042 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="/tokens.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission for America — New Consensus</title>
-  <meta name="description" content="The break-glass plan. 20+ chapters. Every sector. A 10-year mobilization to build a new economy before the old one collapses.">
+  <title>The Mission for America — New Consensus</title>
+  <meta name="description" content="Build a clean economy with great jobs for everyone. That's the assignment.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Bebas+Neue&family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --white: #ffffff;
+      --off: #f7f8fa;
+      --ink: #0d0f12;
+      --ink-mid: #4a5060;
+      --ink-dim: #9aa0b0;
+      --blue: #1a6ef5;
+      --blue-light: #e8f0ff;
+      --blue-dark: #0f4fc2;
+      --sun: #ffcc00;
+      --sun-light: #fff9d6;
+      --green: #00b84a;
+      --green-light: #d6f5e6;
+      --orange: #ff6b1a;
+      --border: rgba(13,15,18,0.1);
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+      --body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #0d0f12;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    main.page-wrap {
+      position: relative;
+      padding-top: 72px;
+      background: var(--blue);
+    }
+
+    .divider { height: 1px; background: var(--border); }
+    .divider-bold { height: 3px; background: var(--ink); }
+
+    /* ══════════════════════════
+       HERO
+    ══════════════════════════ */
     .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 130px 40px 24px;
+      background: var(--blue);
+      padding: 80px 80px 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.22em;
-      text-transform: lowercase;
-      color: var(--red-300);
-      margin-bottom: 22px;
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -300px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,204,0,0.35) 0%, rgba(255,204,0,0) 70%);
+      pointer-events: none;
     }
 
-    .hero-headline {
-      font-size: clamp(56px, 9vw, 132px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.035em;
-      color: var(--white);
-      margin-bottom: 30px;
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
 
-    .hero-subhead {
-      font-family: var(--font-mono);
-      font-size: clamp(14px, 1.3vw, 16px);
-      color: var(--gray-300);
-      line-height: 1.9;
-      max-width: 760px;
-      margin-bottom: 72px;
-      letter-spacing: 0.01em;
-    }
+    .hero > * { position: relative; z-index: 1; }
 
-    .hero-assignment {
-      max-width: 680px;
-      margin-bottom: 72px;
-    }
-
-    .assignment-headline {
-      font-size: clamp(28px, 3.5vw, 42px);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--white);
-      margin-bottom: 28px;
-    }
-
-    .hero-assignment p {
-      font-family: var(--font-mono);
-      font-size: clamp(14px, 1.3vw, 16px);
-      color: var(--gray-300);
-      line-height: 1.9;
-      letter-spacing: 0.01em;
-      margin-bottom: 20px;
-    }
-
-    /* Hero CTA grid */
-    .hero-ctas {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-bottom: 40px;
-      border-top: 1px solid var(--gray-800);
-      border-bottom: 1px solid var(--gray-800);
-    }
-
-    .hero-cta {
+    .hero-top {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 36px 40px 36px 0;
-      transition: background var(--transition-fast);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .hero-cta + .hero-cta {
-      border-left: 1px solid var(--gray-800);
-      padding-left: 40px;
-      padding-right: 0;
-    }
-
-    .hero-cta-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-    }
-
-    .hero-cta-title {
-      font-size: clamp(22px, 2.4vw, 30px);
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: -0.015em;
-      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      transition: color var(--transition-fast);
+      justify-content: space-between;
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: riseIn 0.6s 0.1s forwards;
     }
 
-    .hero-cta:hover .hero-cta-title,
-    .hero-cta-primary .hero-cta-title {
-      color: var(--red-400);
-    }
-
-    .hero-cta-desc {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-500);
-      line-height: 1.6;
-    }
-
-    /* Stats */
-    .stats {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      padding: 0 40px 40px;
-    }
-
-    .stat {
-      padding: 28px 24px 28px 0;
-      border-right: 1px solid var(--gray-800);
-    }
-
-    .stat:last-child {
-      border-right: none;
-      padding-right: 0;
-    }
-
-    .stat-num {
-      font-size: clamp(32px, 3.4vw, 44px);
-      font-weight: 600;
-      line-height: 1;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
-
-    .stat-label {
-      font-family: var(--font-mono);
+    .hero-kicker {
+      font-family: var(--mono);
       font-size: 11px;
-      color: var(--gray-400);
-      line-height: 1.6;
-      text-transform: lowercase;
-      letter-spacing: 0.04em;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
     }
 
-    /* Sections */
-    .section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 96px 40px;
-      border-top: 1px solid var(--gray-800);
+    .hero-badge {
+      background: var(--sun);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 6px 16px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(5rem, 11vw, 11rem);
+      line-height: 0.88;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: riseIn 0.7s 0.25s forwards;
+    }
+
+    .hero-title .for-america {
+      color: var(--sun);
+      display: block;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: end;
+      padding: 48px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 48px;
+      opacity: 0;
+      animation: riseIn 0.7s 0.4s forwards;
+    }
+
+    .hero-desc {
+      font-family: var(--body);
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      max-width: 520px;
+      line-height: 1.7;
+      padding-bottom: 40px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .hero-stat {
+      padding: 24px 32px;
+      background: rgba(255,255,255,0.1);
+      border-left: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: var(--display);
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--sun);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-stat-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Ticker strip */
+    .ticker {
+      background: var(--sun);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 25s linear infinite;
+    }
+
+    .ticker-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════
+       SCROLL-REVEAL TEXT
+    ══════════════════════════ */
+    .reveal-section {
+      padding: 0 80px;
+      background: var(--white);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .reveal-text {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.5vw, 5.2rem);
+      line-height: 1.15;
+      padding: 100px 0;
+      max-width: 1100px;
+    }
+
+    .reveal-word {
+      display: inline;
+      color: rgba(13,15,18,0.12);
+      transition: color 0.2s ease;
+    }
+
+    .reveal-word.lit               { color: var(--ink); }
+    .reveal-word.lit.accent-blue   { color: var(--blue); }
+    .reveal-word.lit.accent-green  { color: var(--green); }
+    .reveal-word.lit.accent-orange { color: var(--orange); }
+    .reveal-word.lit.accent-sun    { color: #b38600; }
+
+    /* ══════════════════════════
+       STATS BAR
+    ══════════════════════════ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--off);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .stats-bar-item {
+      padding: 40px 40px;
+      border-right: 1px solid var(--border);
       position: relative;
     }
 
-    .section-eyebrow {
-      font-family: var(--font-mono);
+    .stats-bar-item:last-child { border-right: none; }
+
+    .stats-bar-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    .stats-bar-item:nth-child(1)::before { background: var(--blue); }
+    .stats-bar-item:nth-child(2)::before { background: var(--sun); }
+    .stats-bar-item:nth-child(3)::before { background: var(--green); }
+    .stats-bar-item:nth-child(4)::before { background: var(--orange); }
+
+    .stats-bar-num {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .stats-bar-num em { font-style: normal; }
+
+    .stats-bar-item:nth-child(1) .stats-bar-num em { color: var(--blue); }
+    .stats-bar-item:nth-child(2) .stats-bar-num em { color: #b38600; }
+    .stats-bar-item:nth-child(3) .stats-bar-num em { color: var(--green); }
+    .stats-bar-item:nth-child(4) .stats-bar-num em { color: var(--orange); }
+
+    .stats-bar-label {
+      font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 18px;
+      color: var(--ink-mid);
+      letter-spacing: 0.1em;
+      line-height: 1.5;
     }
 
-    .section-headline {
-      font-size: clamp(38px, 5vw, 64px);
-      font-weight: 600;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      font-family: var(--font-mono);
-      font-size: clamp(13px, 1vw, 15px);
-      color: var(--gray-400);
-      line-height: 1.8;
-      max-width: 700px;
-      margin-bottom: 56px;
-    }
-
-    /* Gist grid */
-    .gist-grid {
+    /* ══════════════════════════
+       ASSIGNMENT
+    ══════════════════════════ */
+    .assignment {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 60px;
-      row-gap: 0;
     }
 
-    .gist-item {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 20px;
-      padding: 22px 0;
-      border-top: 1px solid var(--gray-800);
+    .assignment-left {
+      padding: 80px 60px 80px 80px;
+      border-right: 1px solid var(--border);
+      background: var(--white);
     }
 
-    .gist-num {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-500);
-      padding-top: 6px;
+    .assignment-right {
+      padding: 80px 80px 80px 60px;
+      background: var(--off);
+    }
+
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-kicker::before {
+      content: '';
+      width: 20px;
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    .assignment-left .section-kicker::before { background: var(--blue); }
+    .assignment-right .section-kicker::before { background: var(--green); }
+
+    .assignment-title {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .assignment-body {
+      font-family: var(--body);
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+
+    .assignment-body p { margin-bottom: 18px; }
+    .assignment-body p:last-child { margin-bottom: 0; }
+    .assignment-body strong { color: var(--ink); }
+
+    .proof-stack { display: flex; flex-direction: column; gap: 2px; }
+
+    .proof-item {
+      background: var(--white);
+      padding: 24px 24px 24px 20px;
+      border-left: 4px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .proof-item:hover {
+      transform: translateX(4px);
+      box-shadow: -4px 0 0 0 currentColor;
+    }
+
+    .proof-ai      { border-color: #e07b18; }
+    .proof-climate { border-color: var(--green); }
+    .proof-fascism { border-color: var(--blue); }
+
+    .proof-problem {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .proof-action {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .proof-result {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
       letter-spacing: 0.08em;
     }
 
-    .gist-title {
-      display: block;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
+    .proof-ai .proof-result      { color: #c86a00; }
+    .proof-climate .proof-result { color: var(--green); }
+    .proof-fascism .proof-result { color: var(--blue); }
+
+    /* ══════════════════════════
+       MODE SELECTOR
+    ══════════════════════════ */
+    .mode-section {
+      background: var(--blue);
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
     }
 
-    .gist-desc {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--gray-400);
-      line-height: 1.7;
+    .mode-header {
+      padding: 40px 80px 0;
     }
 
-    /* Plan grid */
-    .plan-grid {
+    .mode-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .mode-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .mode-btn {
+      padding: 40px 80px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .mode-btn:last-child { border-right: none; }
+    .mode-btn:hover { background: rgba(255,255,255,0.08); }
+    .mode-btn.active { background: var(--white); }
+
+    .mode-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .mode-btn.active .mode-tag { color: var(--ink-dim); }
+
+    .mode-title {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.05;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .mode-btn:hover .mode-title { color: rgba(255,255,255,0.9); }
+    .mode-btn.active .mode-title { color: var(--ink); }
+    .mode-gist.active .mode-title { color: var(--blue); }
+    .mode-full.active .mode-title { color: var(--green); }
+
+    .mode-desc {
+      font-family: var(--body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s;
+    }
+
+    .mode-btn:hover .mode-desc { color: rgba(255,255,255,0.7); }
+    .mode-btn.active .mode-desc { color: var(--ink-mid); }
+
+    /* ══════════════════════════
+       CONTENT PANELS
+    ══════════════════════════ */
+    .content-panels {
+      background: var(--white);
+      padding: 0 80px 80px;
+    }
+
+    #gist-view {}
+
+    .gist-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      align-items: baseline;
+      transition: background 0.15s, padding 0.15s;
+      cursor: default;
+    }
+
+    .gist-item:hover {
+      background: var(--blue-light);
+      margin: 0 -80px;
+      padding: 16px 80px;
+    }
+
+    .gist-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink-dim);
+      letter-spacing: 0.08em;
+      padding-top: 2px;
+    }
+
+    .gist-content {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gist-chapter {
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      min-width: 160px;
+    }
+
+    .gist-line {
+      font-family: var(--body);
+      font-size: 14px;
+      color: var(--ink-mid);
+      flex: 1;
+    }
+
+    #full-view { display: none; }
+    #full-view.visible { display: block; }
+    #gist-view.hidden { display: none; }
+
+    .chapters-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
 
-    .plan-card {
-      display: flex;
-      flex-direction: column;
-      padding: 28px 28px 24px;
-      background: var(--gray-900);
-      border: 1px solid var(--gray-800);
-      transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
-      min-height: 260px;
+    .chapter-card {
+      background: var(--white);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+      cursor: pointer;
       text-decoration: none;
-      color: inherit;
+      display: block;
     }
 
-    .plan-card:hover {
-      border-color: var(--red-500);
-      background: var(--surface-900);
-      transform: translateY(-2px);
+    .chapter-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
     }
 
-    .plan-chapter {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--gray-500);
-      letter-spacing: 0.12em;
-      text-transform: lowercase;
-      margin-bottom: 14px;
+    .chapter-card:hover { background: var(--blue-light); }
+    .chapter-card:hover::before { transform: scaleX(1); }
+
+    .chapter-num {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .plan-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.2;
-      letter-spacing: -0.015em;
-      margin-bottom: 14px;
+    .chapter-title {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.1;
     }
 
-    .plan-desc {
-      font-family: var(--font-mono);
+    .chapter-desc {
+      font-family: var(--body);
       font-size: 13px;
-      color: var(--gray-300);
-      line-height: 1.7;
-      flex: 1;
-      margin-bottom: 24px;
+      color: var(--ink-mid);
+      line-height: 1.65;
     }
 
-    .plan-link {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--red-300);
-      letter-spacing: 0.06em;
-      text-transform: lowercase;
+    .chapter-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding-bottom: 3px;
-      align-self: flex-start;
-      transition: color var(--transition-fast), border-color var(--transition-fast);
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-top: 14px;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 0.2s, transform 0.2s;
     }
 
-    .plan-link:hover {
-      color: var(--red-400);
+    .chapter-card:hover .chapter-link { opacity: 1; transform: none; }
+
+    /* ══════════════════════════
+       CLOSING CTA
+    ══════════════════════════ */
+    .closing {
+      background: var(--sun);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Final CTA */
-    .final-cta {
-      text-align: left;
+    .closing::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.15);
+      pointer-events: none;
     }
 
-    .final-cta-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 40px;
+    .closing::after {
+      content: '';
+      position: absolute;
+      top: -350px;
+      right: -350px;
+      width: 900px;
+      height: 900px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.08);
+      pointer-events: none;
     }
 
-    @media (max-width: 900px) {
-      .hero-ctas { grid-template-columns: 1fr; }
-      .hero-cta + .hero-cta { border-left: none; border-top: 1px solid var(--gray-800); padding-left: 0; padding-top: 32px; }
-      .stats { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
-      .gist-grid { grid-template-columns: 1fr; }
-      .plan-grid { grid-template-columns: repeat(2, 1fr); }
+    .closing > * { position: relative; z-index: 1; }
+
+    .closing-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(13,15,18,0.45);
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 600px) {
-      .hero { padding: 100px 24px 24px; }
-      .stats { padding: 0 24px 24px; }
-      .section { padding: 72px 24px; }
-      .plan-grid { grid-template-columns: 1fr; }
+    .closing-title {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      color: var(--ink);
+      line-height: 0.92;
+      margin-bottom: 32px;
+      letter-spacing: 0.01em;
+      max-width: 800px;
     }
-</style>
+
+    .closing-body {
+      font-family: var(--body);
+      font-size: 17px;
+      color: rgba(13,15,18,0.65);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .cta-primary:hover { background: var(--blue); }
+
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid rgba(13,15,18,0.3);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .cta-secondary:hover { border-color: var(--ink); background: rgba(13,15,18,0.06); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hero { padding: 60px 24px 0; }
+      .hero-title { font-size: clamp(3.5rem, 14vw, 6rem); }
+      .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { overflow-x: auto; }
+      .hero-stat { padding: 18px 20px; }
+
+      .reveal-section { padding: 0 24px; }
+      .reveal-text { font-size: clamp(1.6rem, 7vw, 2.8rem); padding: 64px 0; }
+
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stats-bar-item { padding: 28px 20px; }
+      .stats-bar-item:nth-child(2) { border-right: none; }
+
+      .assignment { grid-template-columns: 1fr; }
+      .assignment-left { padding: 60px 24px 40px; border-right: none; border-bottom: 1px solid var(--border); }
+      .assignment-right { padding: 40px 24px 60px; }
+
+      .mode-header { padding: 32px 24px 0; }
+      .mode-selector { grid-template-columns: 1fr; }
+      .mode-btn { padding: 28px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+
+      .content-panels { padding: 0 24px 60px; }
+      .chapters-grid { grid-template-columns: 1fr; }
+      .gist-item:hover { margin: 0 -24px; padding: 16px 24px; }
+      .gist-content { flex-direction: column; gap: 4px; }
+      .gist-chapter { min-width: unset; }
+
+      .closing { padding: 64px 24px; }
+      .cta-primary, .cta-secondary { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="scanlines"></div>
-  <div class="scan-bar"></div>
+
   <div id="site-header"></div>
 
-  <div class="page-wrap">
+  <main class="page-wrap">
 
-    <!-- ============== HERO ============== -->
+    <!-- ══ HERO ══ -->
     <section class="hero">
-      <p class="hero-eyebrow">the break-glass plan</p>
-      <h1 class="hero-headline">The Mission<br>for America</h1>
-      <p class="hero-subhead">20+ chapters. Every sector. A 10-year mobilization to build a new economy before the old one collapses.</p>
-
-      <div class="hero-assignment">
-        <h2 class="assignment-headline">here's the assignment.</h2>
-        <p>AI is eliminating jobs. Someone needs to create new ones. The planet is heating. Someone needs to build a clean economy. Fascism is rising. Someone needs to prove democracy still works.</p>
-        <p>Turns out all three assignments are the same assignment.</p>
-        <p>Build a clean economy with great jobs for everyone. That's it. That's the whole thing. Prosperity, democracy, freedom — all of it falls out of that one project if you do it right.</p>
-        <p>Simple. Obvious. Boring. Been done before.</p>
-        <p>More on that in a second.</p>
+      <div class="hero-top">
+        <span class="hero-kicker">the break-glass plan</span>
+        <span class="hero-badge">2029 window</span>
       </div>
 
-      <div class="hero-ctas">
-        <a href="#gist" class="hero-cta">
-          <span class="hero-cta-label">I have 2 minutes</span>
-          <span class="hero-cta-title">Give me the gist <span class="arrow">→</span></span>
-          <span class="hero-cta-desc">The big ideas. One line per chapter. Fast.</span>
-        </a>
-        <a href="#full-plan" class="hero-cta hero-cta-primary">
-          <span class="hero-cta-label">I want the detail</span>
-          <span class="hero-cta-title">Show me everything <span class="arrow">→</span></span>
-          <span class="hero-cta-desc">All 20+ chapters. What's in each one. The whole plan.</span>
-        </a>
-      </div>
+      <h1 class="hero-title">
+        The Mission<br>
+        <span class="for-america">for America</span>
+      </h1>
 
-      <div class="scroll-indicator">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <div class="hero-bottom">
+        <p class="hero-desc">20+ chapters. Every sector. A 10-year mobilization to build a new economy before the old one collapses.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">20+</div>
+            <div class="hero-stat-label">Chapters</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">10yr</div>
+            <div class="hero-stat-label">Mobilization</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">30M</div>
+            <div class="hero-stat-label">New Workers</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============== STATS ============== -->
-    <section class="stats">
-      <div class="stat">
-        <div class="stat-num">20+</div>
-        <div class="stat-label">chapters covering every sector</div>
+    <!-- Ticker -->
+    <div class="ticker">
+      <div class="ticker-inner">
+        <span class="ticker-text">BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; </span>
+        <span class="ticker-text" aria-hidden="true">BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; BUILD A CLEAN ECONOMY WITH GREAT JOBS FOR EVERYONE &nbsp;·&nbsp; </span>
       </div>
-      <div class="stat">
-        <div class="stat-num">10</div>
-        <div class="stat-label">year mobilization plan</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">30M</div>
-        <div class="stat-label">workers trained into new jobs</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">clean electricity grid</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2029</div>
-        <div class="stat-label">window to deploy</div>
+    </div>
+
+    <!-- ══ SCROLL-REVEAL TEXT ══ -->
+    <section class="reveal-section">
+      <div class="reveal-text" id="reveal-text">
+        AI is eliminating jobs. <span class="accent-orange">Someone needs to create new ones.</span> The planet is heating. <span class="accent-green">Someone needs to build a clean economy.</span> Fascism is rising. <span class="accent-blue">Someone needs to prove democracy still works.</span> Turns out all three assignments are <span class="accent-sun">the same assignment.</span> Build a clean economy with great jobs for everyone. <span class="accent-sun">That's it. That's the whole thing.</span> Prosperity, democracy, freedom — all of it falls out of that one project if you do it right.
       </div>
     </section>
 
-    <!-- ============== GIST ============== -->
-    <section class="section" id="gist">
-      <p class="section-eyebrow">the gist</p>
-      <h2 class="section-headline">The gist.</h2>
-      <p class="section-sub">One line per chapter. The whole plan in 2 minutes.</p>
-
-      <div class="gist-grid">
-        <div class="gist-item"><span class="gist-num">00</span><div><span class="gist-title">MFA at a Glance</span><span class="gist-desc">A narrative vision of what WWII-scale mobilization actually looks like.</span></div></div>
-        <div class="gist-item"><span class="gist-num">01</span><div><span class="gist-title">The RFC</span><span class="gist-desc">A public investment bank to finance the whole thing.</span></div></div>
-        <div class="gist-item"><span class="gist-num">02</span><div><span class="gist-title">Clean Power</span><span class="gist-desc">100% clean electricity. Double the grid. 10 years.</span></div></div>
-        <div class="gist-item"><span class="gist-num">03</span><div><span class="gist-title">EVs</span><span class="gist-desc">30 million EVs a year. America becomes the world's top exporter.</span></div></div>
-        <div class="gist-item"><span class="gist-num">04</span><div><span class="gist-title">Steel</span><span class="gist-desc">50% more steel. All of it clean.</span></div></div>
-        <div class="gist-item"><span class="gist-num">05</span><div><span class="gist-title">Hydrogen</span><span class="gist-desc">Green hydrogen for everything that can't be electrified.</span></div></div>
-        <div class="gist-item"><span class="gist-num">06</span><div><span class="gist-title">Buildings</span><span class="gist-desc">Retrofit every home. Build millions of new zero-emission ones.</span></div></div>
-        <div class="gist-item"><span class="gist-num">07</span><div><span class="gist-title">Aircraft</span><span class="gist-desc">Zero-emissions aviation. Moonshot for hydrogen long-haul jets.</span></div></div>
-        <div class="gist-item"><span class="gist-num">08</span><div><span class="gist-title">Trucking</span><span class="gist-desc">All-electric trucking with a nationwide charging network.</span></div></div>
-        <div class="gist-item"><span class="gist-num">09</span><div><span class="gist-title">Shipping</span><span class="gist-desc">Clean ports. Hydrogen-powered ships. Built for export.</span></div></div>
-        <div class="gist-item"><span class="gist-num">10</span><div><span class="gist-title">Farming</span><span class="gist-desc">Electrify farms. Cut methane. Reform subsidies.</span></div></div>
-        <div class="gist-item"><span class="gist-num">11</span><div><span class="gist-title">Geothermal</span><span class="gist-desc">Virtually inexhaustible clean energy. Everywhere.</span></div></div>
-        <div class="gist-item"><span class="gist-num">12</span><div><span class="gist-title">Manhattan Projects</span><span class="gist-desc">Crack the hardest problems: CO₂ removal, methane, zero-emission concrete.</span></div></div>
-        <div class="gist-item"><span class="gist-num">13</span><div><span class="gist-title">Nuclear</span><span class="gist-desc">Reactors on military bases. Bypass the gridlock.</span></div></div>
-        <div class="gist-item"><span class="gist-num">14</span><div><span class="gist-title">Water</span><span class="gist-desc">Aqueducts and storage to solve the water crisis.</span></div></div>
-        <div class="gist-item"><span class="gist-num">15</span><div><span class="gist-title">Toxins</span><span class="gist-desc">Track every harmful chemical. Ban the processes responsible.</span></div></div>
-        <div class="gist-item"><span class="gist-num">16</span><div><span class="gist-title">Public Transport</span><span class="gist-desc">High-speed rail. Electric transit. Car-free living, actually practical.</span></div></div>
-        <div class="gist-item"><span class="gist-num">17</span><div><span class="gist-title">Workforce</span><span class="gist-desc">30 million new workers. Paid training, healthcare, childcare.</span></div></div>
-        <div class="gist-item"><span class="gist-num">18</span><div><span class="gist-title">Industry</span><span class="gist-desc">Modernize and decarbonize every factory. Cement to chemicals.</span></div></div>
-        <div class="gist-item"><span class="gist-num">19</span><div><span class="gist-title">Cooldown</span><span class="gist-desc">NASA-led program to temporarily cool the planet while we fix it.</span></div></div>
-        <div class="gist-item"><span class="gist-num">20</span><div><span class="gist-title">Foreign Policy</span><span class="gist-desc">Finance clean development globally. Align trade with climate goals.</span></div></div>
-        <div class="gist-item"><span class="gist-num">21</span><div><span class="gist-title">Oceans</span><span class="gist-desc">Make U.S. waters the healthiest marine area on Earth.</span></div></div>
-        <div class="gist-item"><span class="gist-num">22</span><div><span class="gist-title">Fossil Fuels</span><span class="gist-desc">10-year wind-down. Workers supported. No chaos.</span></div></div>
+    <!-- ══ STATS BAR ══ -->
+    <div class="stats-bar fade-in">
+      <div class="stats-bar-item">
+        <div class="stats-bar-num"><em>20+</em></div>
+        <div class="stats-bar-label">chapters covering<br>every sector</div>
       </div>
-
-      <div class="scroll-indicator" style="padding-top: 72px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <div class="stats-bar-item">
+        <div class="stats-bar-num"><em>10</em>yr</div>
+        <div class="stats-bar-label">mobilization<br>plan</div>
       </div>
-    </section>
+      <div class="stats-bar-item">
+        <div class="stats-bar-num"><em>30</em>M</div>
+        <div class="stats-bar-label">workers trained<br>into new jobs</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="stats-bar-num"><em>100</em>%</div>
+        <div class="stats-bar-label">clean electricity<br>grid</div>
+      </div>
+    </div>
 
-    <!-- ============== FULL PLAN ============== -->
-    <section class="section" id="full-plan">
-      <p class="section-eyebrow">the full plan</p>
-      <h2 class="section-headline">The full plan.</h2>
-      <p class="section-sub">All 20+ chapters. Click any chapter to read it.</p>
-
-      <div class="plan-grid">
-        <a href="#chapter-00" id="chapter-00" class="plan-card">
-          <span class="plan-chapter">chapter 00</span>
-          <h3 class="plan-title">MFA at a Glance</h3>
-          <p class="plan-desc">A narrative vision of what it would look like if an independent president responded to the AI crisis and climate catastrophe by launching a WWII-scale mission to rebuild the American economy.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-01" id="chapter-01" class="plan-card">
-          <span class="plan-chapter">chapter 01</span>
-          <h3 class="plan-title">The RFC</h3>
-          <p class="plan-desc">Reviving the Reconstruction Finance Corporation as a public investment bank to finance and coordinate the massive industrial mobilization the Mission for America requires.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-02" id="chapter-02" class="plan-card">
-          <span class="plan-chapter">chapter 02</span>
-          <h3 class="plan-title">Clean Power</h3>
-          <p class="plan-desc">Transitioning to 100% clean electricity and doubling total power production in 10 years to support the electrification of transportation, industry, and buildings across America.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-03" id="chapter-03" class="plan-card">
-          <span class="plan-chapter">chapter 03</span>
-          <h3 class="plan-title">EVs</h3>
-          <p class="plan-desc">Producing 30 million electric vehicles a year so America becomes the world's top exporter — with the manufacturing base, supply chains, and charging network to match.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-04" id="chapter-04" class="plan-card">
-          <span class="plan-chapter">chapter 04</span>
-          <h3 class="plan-title">Steel</h3>
-          <p class="plan-desc">Expanding domestic steel output by 50% and converting the entire industry to clean production. The backbone of the new economy — made here, made clean.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-05" id="chapter-05" class="plan-card">
-          <span class="plan-chapter">chapter 05</span>
-          <h3 class="plan-title">Hydrogen</h3>
-          <p class="plan-desc">A national green hydrogen program to decarbonize everything electrification can't reach — heavy industry, long-haul transport, chemicals, and beyond.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-06" id="chapter-06" class="plan-card">
-          <span class="plan-chapter">chapter 06</span>
-          <h3 class="plan-title">Buildings</h3>
-          <p class="plan-desc">Retrofitting every existing home and building millions of new zero-emission homes to solve the housing crisis and the climate crisis simultaneously.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-07" id="chapter-07" class="plan-card">
-          <span class="plan-chapter">chapter 07</span>
-          <h3 class="plan-title">Aircraft</h3>
-          <p class="plan-desc">A moonshot for zero-emissions aviation — hydrogen-powered long-haul jets, electric short-haul, and a modernized aerospace industry built around it.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-08" id="chapter-08" class="plan-card">
-          <span class="plan-chapter">chapter 08</span>
-          <h3 class="plan-title">Trucking</h3>
-          <p class="plan-desc">Transitioning the American trucking fleet to all-electric, with a nationwide fast-charging network designed for freight from day one.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-09" id="chapter-09" class="plan-card">
-          <span class="plan-chapter">chapter 09</span>
-          <h3 class="plan-title">Shipping</h3>
-          <p class="plan-desc">Clean ports. Hydrogen-powered ships. A reindustrialized U.S. shipbuilding sector built to serve the global transition — and export it.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-10" id="chapter-10" class="plan-card">
-          <span class="plan-chapter">chapter 10</span>
-          <h3 class="plan-title">Farming</h3>
-          <p class="plan-desc">Electrify farms. Cut methane. Reform subsidies so American agriculture rewards stewardship, resilience, and clean production at scale.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-11" id="chapter-11" class="plan-card">
-          <span class="plan-chapter">chapter 11</span>
-          <h3 class="plan-title">Geothermal</h3>
-          <p class="plan-desc">Unlocking virtually inexhaustible, always-on clean energy — everywhere in the country — using next-generation enhanced geothermal systems.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-12" id="chapter-12" class="plan-card">
-          <span class="plan-chapter">chapter 12</span>
-          <h3 class="plan-title">Manhattan Projects</h3>
-          <p class="plan-desc">Full-stack national programs to crack the hardest remaining problems: atmospheric CO₂ removal, methane, and zero-emission concrete.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-13" id="chapter-13" class="plan-card">
-          <span class="plan-chapter">chapter 13</span>
-          <h3 class="plan-title">Nuclear</h3>
-          <p class="plan-desc">Deploying advanced reactors on military bases to bypass permitting gridlock and demonstrate a new generation of firm, clean baseload power.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-14" id="chapter-14" class="plan-card">
-          <span class="plan-chapter">chapter 14</span>
-          <h3 class="plan-title">Water</h3>
-          <p class="plan-desc">New aqueducts, reservoirs, and storage to end the Western water crisis and secure a stable supply for cities, farms, and ecosystems.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-15" id="chapter-15" class="plan-card">
-          <span class="plan-chapter">chapter 15</span>
-          <h3 class="plan-title">Toxins</h3>
-          <p class="plan-desc">Track every harmful chemical in commerce. Ban the processes responsible for the worst of them. Clean up what's already been done.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-16" id="chapter-16" class="plan-card">
-          <span class="plan-chapter">chapter 16</span>
-          <h3 class="plan-title">Public Transport</h3>
-          <p class="plan-desc">High-speed rail between every major city. Electric transit inside them. Car-free living made actually practical for tens of millions of Americans.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-17" id="chapter-17" class="plan-card">
-          <span class="plan-chapter">chapter 17</span>
-          <h3 class="plan-title">Workforce</h3>
-          <p class="plan-desc">30 million new workers trained into the new economy. Paid training, guaranteed healthcare, and childcare so anyone can make the jump.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-18" id="chapter-18" class="plan-card">
-          <span class="plan-chapter">chapter 18</span>
-          <h3 class="plan-title">Industry</h3>
-          <p class="plan-desc">Modernize and decarbonize every factory — cement, chemicals, paper, glass, aluminum — so American manufacturing leads the clean economy globally.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-19" id="chapter-19" class="plan-card">
-          <span class="plan-chapter">chapter 19</span>
-          <h3 class="plan-title">Cooldown</h3>
-          <p class="plan-desc">A NASA-led research and deployment program to temporarily cool the planet while emissions come down — carefully, transparently, internationally.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-20" id="chapter-20" class="plan-card">
-          <span class="plan-chapter">chapter 20</span>
-          <h3 class="plan-title">Foreign Policy</h3>
-          <p class="plan-desc">Finance clean development globally. Align trade, aid, and diplomacy with climate goals so the transition is American-led and worldwide.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-21" id="chapter-21" class="plan-card">
-          <span class="plan-chapter">chapter 21</span>
-          <h3 class="plan-title">Oceans</h3>
-          <p class="plan-desc">Make U.S. waters the healthiest marine area on Earth — protected fisheries, restored ecosystems, and a living coastline that works for everyone.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
-        <a href="#chapter-22" id="chapter-22" class="plan-card">
-          <span class="plan-chapter">chapter 22</span>
-          <h3 class="plan-title">Fossil Fuels</h3>
-          <p class="plan-desc">A 10-year orderly wind-down of the fossil fuel economy. Workers, communities, and regions supported every step of the way. No chaos.</p>
-          <span class="plan-link">read chapter <span class="arrow">→</span></span>
-        </a>
+    <!-- ══ ASSIGNMENT ══ -->
+    <section class="assignment">
+      <div class="assignment-left fade-in">
+        <p class="section-kicker">here's the assignment</p>
+        <h2 class="assignment-title">One Fix.<br>All Three.</h2>
+        <div class="assignment-body">
+          <p>Simple. Obvious. Boring. Been done before.</p>
+          <p>We wrote the Green New Deal. Now we're writing the plan the next president will need on day one. It's long. It's detailed. <strong>That's the point.</strong></p>
+          <p>This is a living document. We continue to update and refine it as things develop. The plan keeps growing.</p>
+        </div>
+      </div>
+      <div class="assignment-right fade-in">
+        <p class="section-kicker">three problems. one engine.</p>
+        <div class="proof-stack">
+          <div class="proof-item proof-ai">
+            <div class="proof-problem">AI is eliminating jobs.</div>
+            <div class="proof-action">Someone needs to create new ones.</div>
+            <div class="proof-result">→ 30M jobs in the clean economy</div>
+          </div>
+          <div class="proof-item proof-climate">
+            <div class="proof-problem">The planet is heating.</div>
+            <div class="proof-action">Someone needs to build a clean economy.</div>
+            <div class="proof-result">→ 100% clean grid in 10 years</div>
+          </div>
+          <div class="proof-item proof-fascism">
+            <div class="proof-problem">Fascism is rising.</div>
+            <div class="proof-action">Someone needs to prove democracy still works.</div>
+            <div class="proof-result">→ same project. same workers. same timeline.</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============== FINAL CTA ============== -->
-    <section class="section final-cta">
-      <p class="section-eyebrow">the plan keeps growing</p>
-      <h2 class="section-headline">This is a living document.</h2>
-      <p class="section-sub">We continue to update and refine it as things develop. It's long. It's detailed. That's the point.</p>
-      <div class="final-cta-row">
-        <a href="#full-plan" class="cta cta-primary">read the full plan <span class="arrow">→</span></a>
-        <a href="/#join" class="cta cta-secondary">sign up to serve <span class="arrow">→</span></a>
+    <div class="divider-bold"></div>
+
+    <!-- ══ MODE SELECTOR ══ -->
+    <div class="mode-section">
+      <div class="mode-header">
+        <p class="mode-eyebrow fade-in">2029 window to deploy</p>
+      </div>
+      <div class="mode-selector fade-in">
+        <button class="mode-btn mode-gist active" id="btn-gist">
+          <div class="mode-tag">I have 2 minutes</div>
+          <div class="mode-title">Give me the gist →</div>
+          <div class="mode-desc">The big ideas. One line per chapter. Fast.</div>
+        </button>
+        <button class="mode-btn mode-full" id="btn-full">
+          <div class="mode-tag">I want the detail</div>
+          <div class="mode-title">Show me everything →</div>
+          <div class="mode-desc">All 20+ chapters. What's in each one. The whole plan.</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ CONTENT ══ -->
+    <div class="content-panels">
+
+      <div id="gist-view">
+        <div class="gist-item"><span class="gist-num">00</span><div class="gist-content"><span class="gist-chapter">MFA at a Glance</span><span class="gist-line">A narrative vision of what WWII-scale mobilization actually looks like.</span></div></div>
+        <div class="gist-item"><span class="gist-num">01</span><div class="gist-content"><span class="gist-chapter">The RFC</span><span class="gist-line">A public investment bank to finance the whole thing.</span></div></div>
+        <div class="gist-item"><span class="gist-num">02</span><div class="gist-content"><span class="gist-chapter">Clean Power</span><span class="gist-line">100% clean electricity. Double the grid. 10 years.</span></div></div>
+        <div class="gist-item"><span class="gist-num">03</span><div class="gist-content"><span class="gist-chapter">EVs</span><span class="gist-line">30 million EVs a year. America becomes the world's top exporter.</span></div></div>
+        <div class="gist-item"><span class="gist-num">04</span><div class="gist-content"><span class="gist-chapter">Steel</span><span class="gist-line">50% more steel. All of it clean.</span></div></div>
+        <div class="gist-item"><span class="gist-num">05</span><div class="gist-content"><span class="gist-chapter">Hydrogen</span><span class="gist-line">Green hydrogen for everything that can't be electrified.</span></div></div>
+        <div class="gist-item"><span class="gist-num">06</span><div class="gist-content"><span class="gist-chapter">Buildings</span><span class="gist-line">Retrofit every home. Build millions of new zero-emission ones.</span></div></div>
+        <div class="gist-item"><span class="gist-num">07</span><div class="gist-content"><span class="gist-chapter">Aircraft</span><span class="gist-line">Zero-emissions aviation. Moonshot for hydrogen long-haul jets.</span></div></div>
+        <div class="gist-item"><span class="gist-num">08</span><div class="gist-content"><span class="gist-chapter">Trucking</span><span class="gist-line">All-electric trucking with a nationwide charging network.</span></div></div>
+        <div class="gist-item"><span class="gist-num">09</span><div class="gist-content"><span class="gist-chapter">Shipping</span><span class="gist-line">Clean ports. Hydrogen-powered ships. Built for export.</span></div></div>
+        <div class="gist-item"><span class="gist-num">10</span><div class="gist-content"><span class="gist-chapter">Farming</span><span class="gist-line">Electrify farms. Cut methane. Reform subsidies.</span></div></div>
+        <div class="gist-item"><span class="gist-num">11</span><div class="gist-content"><span class="gist-chapter">Geothermal</span><span class="gist-line">Virtually inexhaustible clean energy. Everywhere.</span></div></div>
+        <div class="gist-item"><span class="gist-num">12</span><div class="gist-content"><span class="gist-chapter">Manhattan Projects</span><span class="gist-line">Crack the hardest problems: CO₂ removal, methane, zero-emission concrete.</span></div></div>
+        <div class="gist-item"><span class="gist-num">13</span><div class="gist-content"><span class="gist-chapter">Nuclear</span><span class="gist-line">Reactors on military bases. Bypass the gridlock.</span></div></div>
+        <div class="gist-item"><span class="gist-num">14</span><div class="gist-content"><span class="gist-chapter">Water</span><span class="gist-line">Aqueducts and storage to solve the water crisis.</span></div></div>
+        <div class="gist-item"><span class="gist-num">15</span><div class="gist-content"><span class="gist-chapter">Toxins</span><span class="gist-line">Track every harmful chemical. Ban the processes responsible.</span></div></div>
+        <div class="gist-item"><span class="gist-num">16</span><div class="gist-content"><span class="gist-chapter">Public Transport</span><span class="gist-line">High-speed rail. Electric transit. Car-free living, actually practical.</span></div></div>
+        <div class="gist-item"><span class="gist-num">17</span><div class="gist-content"><span class="gist-chapter">Workforce</span><span class="gist-line">30 million new workers. Paid training, healthcare, childcare.</span></div></div>
+        <div class="gist-item"><span class="gist-num">18</span><div class="gist-content"><span class="gist-chapter">Industry</span><span class="gist-line">Modernize and decarbonize every factory. Cement to chemicals.</span></div></div>
+        <div class="gist-item"><span class="gist-num">19</span><div class="gist-content"><span class="gist-chapter">Cooldown</span><span class="gist-line">NASA-led program to temporarily cool the planet while we fix it.</span></div></div>
+        <div class="gist-item"><span class="gist-num">20</span><div class="gist-content"><span class="gist-chapter">Foreign Policy</span><span class="gist-line">Finance clean development globally. Align trade with climate goals.</span></div></div>
+        <div class="gist-item"><span class="gist-num">21</span><div class="gist-content"><span class="gist-chapter">Oceans</span><span class="gist-line">Make U.S. waters the healthiest marine area on Earth.</span></div></div>
+        <div class="gist-item"><span class="gist-num">22</span><div class="gist-content"><span class="gist-chapter">Fossil Fuels</span><span class="gist-line">10-year wind-down. Workers supported. No chaos.</span></div></div>
+      </div>
+
+      <div id="full-view">
+        <div class="chapters-grid">
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 00</div><div class="chapter-title">MFA at a Glance</div><div class="chapter-desc">A narrative vision of what it would look like if an independent president launched a WWII-scale mission to rebuild the American economy.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 01</div><div class="chapter-title">The RFC</div><div class="chapter-desc">Reviving the Reconstruction Finance Corporation as a public investment bank to finance and coordinate the massive industrial mobilization.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 02</div><div class="chapter-title">Clean Power</div><div class="chapter-desc">Transitioning to 100% clean electricity and doubling total power production in 10 years across America.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 03</div><div class="chapter-title">EVs</div><div class="chapter-desc">Producing 30 million electric vehicles a year so America becomes the world's top exporter — with the manufacturing base to match.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 04</div><div class="chapter-title">Steel</div><div class="chapter-desc">Expanding domestic steel output by 50% and converting the entire industry to clean production. The backbone of the new economy.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 05</div><div class="chapter-title">Hydrogen</div><div class="chapter-desc">A national green hydrogen program to decarbonize everything electrification can't reach — heavy industry, chemicals, and beyond.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 06</div><div class="chapter-title">Buildings</div><div class="chapter-desc">Retrofitting every existing home and building millions of new zero-emission homes to solve the housing and climate crises simultaneously.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 07</div><div class="chapter-title">Aircraft</div><div class="chapter-desc">A moonshot for zero-emissions aviation — hydrogen-powered long-haul jets and a modernized aerospace industry built around it.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 08</div><div class="chapter-title">Trucking</div><div class="chapter-desc">Transitioning the American trucking fleet to all-electric, with a nationwide fast-charging network designed for freight from day one.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 09</div><div class="chapter-title">Shipping</div><div class="chapter-desc">Clean ports. Hydrogen-powered ships. A reindustrialized U.S. shipbuilding sector built to serve the global transition.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 10</div><div class="chapter-title">Farming</div><div class="chapter-desc">Electrify farms. Cut methane. Reform subsidies so American agriculture rewards stewardship and clean production at scale.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 11</div><div class="chapter-title">Geothermal</div><div class="chapter-desc">Unlocking virtually inexhaustible, always-on clean energy everywhere in the country using next-generation enhanced geothermal systems.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 12</div><div class="chapter-title">Manhattan Projects</div><div class="chapter-desc">Full-stack national programs to crack the hardest remaining problems: CO₂ removal, methane, and zero-emission concrete.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 13</div><div class="chapter-title">Nuclear</div><div class="chapter-desc">Deploying advanced reactors on military bases to bypass permitting gridlock and demonstrate clean baseload power.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 14</div><div class="chapter-title">Water</div><div class="chapter-desc">New aqueducts, reservoirs, and storage to end the Western water crisis and secure a stable supply for cities and farms.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 15</div><div class="chapter-title">Toxins</div><div class="chapter-desc">Track every harmful chemical in commerce. Ban the processes responsible. Clean up what's been done.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 16</div><div class="chapter-title">Public Transport</div><div class="chapter-desc">High-speed rail between every major city. Electric transit inside them. Car-free living made actually practical.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 17</div><div class="chapter-title">Workforce</div><div class="chapter-desc">30 million new workers trained into the new economy. Paid training, guaranteed healthcare, childcare so anyone can make the jump.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 18</div><div class="chapter-title">Industry</div><div class="chapter-desc">Modernize and decarbonize every factory — cement, chemicals, paper, glass — so American manufacturing leads the clean economy.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 19</div><div class="chapter-title">Cooldown</div><div class="chapter-desc">A NASA-led program to temporarily cool the planet while emissions come down — carefully, transparently, internationally.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 20</div><div class="chapter-title">Foreign Policy</div><div class="chapter-desc">Finance clean development globally. Align trade, aid, and diplomacy so the transition is American-led and worldwide.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 21</div><div class="chapter-title">Oceans</div><div class="chapter-desc">Make U.S. waters the healthiest marine area on Earth — protected fisheries, restored ecosystems, a living coastline.</div><div class="chapter-link">Read chapter →</div></a>
+          <a class="chapter-card" href="#"><div class="chapter-num">Chapter 22</div><div class="chapter-title">Fossil Fuels</div><div class="chapter-desc">A 10-year orderly wind-down of the fossil fuel economy. Workers and communities supported every step of the way. No chaos.</div><div class="chapter-link">Read chapter →</div></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider-bold"></div>
+
+    <!-- ══ CLOSING ══ -->
+    <section class="closing">
+      <p class="closing-eyebrow fade-in">the plan keeps growing</p>
+      <h2 class="closing-title fade-in">This is a living document.</h2>
+      <p class="closing-body fade-in">We continue to update and refine it as things develop. It's long. It's detailed. That's the point. Read it. Join a call. Sign up to serve in the 2029 administration.</p>
+      <div class="cta-row fade-in">
+        <a href="#" class="cta-primary">Read the full plan →</a>
+        <a href="#" class="cta-secondary">Sign up to serve →</a>
       </div>
     </section>
 
-  </div>
+  </main>
 
   <div id="site-footer"></div>
 
   <script>
-    (function setupNavDropdown() {
-      const dropdowns = document.querySelectorAll('.nav-dropdown');
-      if (!dropdowns.length) return;
-
-      function isMobile() { return window.innerWidth <= 768; }
-
-      function setOpen(dropdown, open) {
-        const trigger = dropdown.querySelector('.nav-dropdown-trigger');
-        dropdown.classList.toggle('open', open);
-        if (open) { dropdown.setAttribute('open', ''); } else { dropdown.removeAttribute('open'); }
-        if (trigger) { trigger.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    /* ── SCROLL WORD REVEAL ── */
+    (function() {
+      const block = document.getElementById('reveal-text');
+      if (!block) return;
+      const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+      let n;
+      while (n = walker.nextNode()) textNodes.push(n);
+      textNodes.forEach(tn => {
+        const p = tn.parentNode;
+        const ac = p.classList.contains('accent-orange') ? 'accent-orange'
+                 : p.classList.contains('accent-green')  ? 'accent-green'
+                 : p.classList.contains('accent-blue')   ? 'accent-blue'
+                 : p.classList.contains('accent-sun')    ? 'accent-sun'
+                 : '';
+        const parts = tn.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        parts.forEach(part => {
+          if (/^\s+$/.test(part) || part === '') {
+            frag.appendChild(document.createTextNode(part));
+          } else {
+            const s = document.createElement('span');
+            s.className = 'reveal-word' + (ac ? ' ' + ac : '');
+            s.textContent = part;
+            frag.appendChild(s);
+          }
+        });
+        tn.parentNode.replaceChild(frag, tn);
+      });
+      block.querySelectorAll('.accent-orange,.accent-green,.accent-blue,.accent-sun').forEach(el => {
+        if (el.classList.contains('reveal-word')) return;
+        while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el);
+        el.remove();
+      });
+      const words = Array.from(block.querySelectorAll('.reveal-word'));
+      function illuminate() {
+        const t = window.innerHeight * 0.72;
+        words.forEach(w => {
+          const r = w.getBoundingClientRect();
+          w.classList.toggle('lit', r.top + r.height / 2 < t);
+        });
       }
+      window.addEventListener('scroll', illuminate, { passive: true });
+      illuminate();
+    })();
 
-      function closeAll() { dropdowns.forEach((d) => setOpen(d, false)); }
-
-      dropdowns.forEach((dropdown) => {
-        const trigger = dropdown.querySelector('.nav-dropdown-trigger');
-        if (!trigger) return;
-
-        trigger.addEventListener('click', (e) => {
-          if (isMobile()) { e.preventDefault(); setOpen(dropdown, !dropdown.classList.contains('open')); }
-        });
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(dropdown, !dropdown.classList.contains('open')); }
-          if (e.key === 'Escape') { setOpen(dropdown, false); trigger.blur(); }
-        });
-        dropdown.addEventListener('mouseenter', () => { if (!isMobile()) setOpen(dropdown, true); });
-        dropdown.addEventListener('mouseleave', () => { if (!isMobile()) setOpen(dropdown, false); });
-        dropdown.addEventListener('focusout', (e) => {
-          if (!dropdown.contains(e.relatedTarget)) { setOpen(dropdown, false); }
-        });
+    /* ── MODE SWITCHER ── */
+    (function() {
+      const bg = document.getElementById('btn-gist');
+      const bf = document.getElementById('btn-full');
+      const gv = document.getElementById('gist-view');
+      const fv = document.getElementById('full-view');
+      bg.addEventListener('click', () => {
+        bg.classList.add('active'); bf.classList.remove('active');
+        gv.classList.remove('hidden'); fv.classList.remove('visible');
       });
-
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-dropdown')) { closeAll(); }
+      bf.addEventListener('click', () => {
+        bf.classList.add('active'); bg.classList.remove('active');
+        fv.classList.add('visible'); gv.classList.add('hidden');
       });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+    })();
+
+    /* ── FADE IN ── */
+    (function() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
     })();
   </script>
+
   <script src="/shared-layout.js"></script>
 </body>
 </html>
