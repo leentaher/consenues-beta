@@ -492,6 +492,25 @@
 
     #gist-view {}
 
+    .gist-header {
+      padding: 32px 40px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .gist-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .gist-subhead {
+      font-size: 14px;
+      color: var(--ink-mid);
+      font-family: var(--font-mono);
+    }
+
     .gist-item {
       display: grid;
       grid-template-columns: 52px 1fr;
@@ -812,7 +831,7 @@
     <!-- ══ SCROLL-REVEAL TEXT ══ -->
     <section class="reveal-section">
       <div class="reveal-text" id="reveal-text">
-        AI is eliminating jobs. <span class="accent-orange">Someone needs to create new ones.</span> The planet is heating. <span class="accent-green">Someone needs to build a clean economy.</span> Fascism is rising. <span class="accent-blue">Someone needs to prove democracy still works.</span> Turns out all three assignments are <span class="accent-sun">the same assignment.</span> Build a clean economy with great jobs for everyone. <span class="accent-sun">That's it. That's the whole thing.</span> Prosperity, democracy, freedom — all of it falls out of that one project if you do it right.
+        AI is eliminating jobs. <span class="accent-orange">Someone needs to create new ones.</span> The planet is heating. <span class="accent-green">Someone needs to build a clean economy.</span> Fascism is rising. <span class="accent-blue">Someone needs to prove democracy still works.</span> Turns out all three assignments are <span class="accent-sun">the same assignment.</span> Build a clean economy with great jobs for everyone. <span class="accent-sun">That's it. That's the whole thing.</span> Prosperity, democracy, freedom — all of it falls out of that one project if you do it right. Simple. Obvious. Boring. Been done before. We wrote the Green New Deal. Now we're writing the plan the next president will need on day one. It's long. It's detailed. That's the point.
       </div>
     </section>
 
@@ -842,9 +861,13 @@
         <p class="section-kicker">here's the assignment</p>
         <h2 class="assignment-title">One Fix.<br>All Three.</h2>
         <div class="assignment-body">
+          <p>AI is eliminating jobs. Someone needs to create new ones.</p>
+          <p>The planet is heating. Someone needs to build a clean economy.</p>
+          <p>Fascism is rising. Someone needs to prove democracy still works.</p>
+          <p>Turns out all three assignments are the same assignment.</p>
+          <p>Build a clean economy with great jobs for everyone. That's it. That's the whole thing. Prosperity, democracy, freedom — all of it falls out of that one project if you do it right.</p>
           <p>Simple. Obvious. Boring. Been done before.</p>
           <p>We wrote the Green New Deal. Now we're writing the plan the next president will need on day one. It's long. It's detailed. <strong>That's the point.</strong></p>
-          <p>This is a living document. We continue to update and refine it as things develop. The plan keeps growing.</p>
         </div>
       </div>
       <div class="assignment-right fade-in">
@@ -893,6 +916,10 @@
     <div class="content-panels">
 
       <div id="gist-view">
+        <div class="gist-header">
+          <h2 class="gist-headline">The gist.</h2>
+          <p class="gist-subhead">One line per chapter. The whole plan in 2 minutes.</p>
+        </div>
         <div class="gist-item"><span class="gist-num">00</span><div class="gist-content"><span class="gist-chapter">MFA at a Glance</span><span class="gist-line">A narrative vision of what WWII-scale mobilization actually looks like.</span></div></div>
         <div class="gist-item"><span class="gist-num">01</span><div class="gist-content"><span class="gist-chapter">The RFC</span><span class="gist-line">A public investment bank to finance the whole thing.</span></div></div>
         <div class="gist-item"><span class="gist-num">02</span><div class="gist-content"><span class="gist-chapter">Clean Power</span><span class="gist-line">100% clean electricity. Double the grid. 10 years.</span></div></div>
@@ -919,6 +946,10 @@
       </div>
 
       <div id="full-view">
+        <div class="gist-header">
+          <h2 class="gist-headline">The full plan.</h2>
+          <p class="gist-subhead">All 20+ chapters. Click any chapter to read it.</p>
+        </div>
         <div class="chapters-grid">
           <a class="chapter-card" href="#"><div class="chapter-num">Chapter 00</div><div class="chapter-title">MFA at a Glance</div><div class="chapter-desc">A narrative vision of what it would look like if an independent president launched a WWII-scale mission to rebuild the American economy.</div><div class="chapter-link">Read chapter →</div></a>
           <a class="chapter-card" href="#"><div class="chapter-num">Chapter 01</div><div class="chapter-title">The RFC</div><div class="chapter-desc">Reviving the Reconstruction Finance Corporation as a public investment bank to finance and coordinate the massive industrial mobilization.</div><div class="chapter-link">Read chapter →</div></a>
@@ -954,7 +985,7 @@
     <section class="closing">
       <p class="closing-eyebrow fade-in">the plan keeps growing</p>
       <h2 class="closing-title fade-in">This is a living document.</h2>
-      <p class="closing-body fade-in">We continue to update and refine it as things develop. It's long. It's detailed. That's the point. Read it. Join a call. Sign up to serve in the 2029 administration.</p>
+      <p class="closing-body fade-in">We continue to update and refine it as things develop. It's long. It's detailed. That's the point.</p>
       <div class="cta-row fade-in">
         <a href="#" class="cta-primary">Read the full plan →</a>
         <a href="#" class="cta-secondary">Sign up to serve →</a>
