@@ -327,44 +327,32 @@
     gap: 0 !important;
   }
 
-  .footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 40px 48px 32px 48px;
+  .footer-main {
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
+    align-items: start;
+    gap: 48px;
+    padding: 56px 48px 48px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    gap: 40px;
+  }
+
+  .footer-brand {}
+
+  .footer-logo {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
   }
 
   .footer-tagline {
-    font-size: 14px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.6;
-    max-width: 400px;
-    margin: 0;
-  }
-
-  .footer-nav {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .footer-link {
-    font-size: 14px;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    transition: color 0.15s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-family: inherit;
-  }
-
-  .footer-link:hover {
-    color: #ffffff;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+    margin: 0 0 20px;
   }
 
   .footer-social {
@@ -376,34 +364,102 @@
   .footer-social-link {
     display: flex;
     align-items: center;
-    opacity: 0.5;
-    transition: opacity 0.15s ease;
-    color: #ffffff;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
+    transition: color 0.15s ease;
   }
 
   .footer-social-link:hover {
-    opacity: 1;
+    color: #ffffff;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px 24px;
+  }
+
+  .footer-nav-col {}
+
+  .footer-nav-label {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .footer-link {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px 0;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  .footer-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-cta-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 22px;
+  }
+
+  .footer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    color: var(--red-400, #f7ff70);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .footer-cta:hover {
+    color: #ffffff;
   }
 
   .footer-copy {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
-    padding: 24px 48px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 20px 48px;
+    border-top: 1px solid rgba(255,255,255,0.07);
     font-size: 12px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.25);
+    line-height: 1.5;
   }
 
   .footer-copy-link {
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.25);
     text-decoration: none;
     transition: color 0.15s ease;
   }
 
   .footer-copy-link:hover {
     color: rgba(255,255,255,0.6);
+  }
+
+  .footer-copy-aside {
+    font-style: italic;
+    color: rgba(255,255,255,0.18);
   }
 
   /* ============================================
@@ -528,24 +584,37 @@
       display: inline-flex;
     }
 
-    .footer-top {
-      flex-direction: column;
+    .footer-main {
+      grid-template-columns: 1fr;
       gap: 32px;
-      padding: 32px 24px;
+      padding: 40px 24px 32px;
     }
 
-    .footer-tagline {
-      max-width: 100%;
+    .footer-cta-col {
+      align-items: flex-start;
+      padding-top: 0;
     }
 
     .footer-nav {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .footer-nav-label {
+      display: none;
+    }
+
+    .footer-link {
+      padding: 8px 0;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .footer-copy {
-      padding: 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 20px 24px;
       margin-bottom: 100px;
     }
   }
@@ -642,26 +711,60 @@
   function buildFooter() {
     return `
 <footer class="footer">
-  <div class="footer-top">
-    <p class="footer-tagline">An economic policy think tank for people who think "realistic" policy got us into this mess. Authors of the Green New Deal and Mission for America.</p>
-    <nav class="footer-nav">
-      <a href="/team" class="footer-link">about</a>
-      <a href="https://blog.newconsensus.com" class="footer-link" target="_blank" rel="noopener noreferrer">blog</a>
-      <a href="/projects" class="footer-link">projects</a>
-      <a href="/jobs" class="footer-link">jobs</a>
-      <a href="mailto:hello@newconsensus.ai" class="footer-link">contact</a>
+  <div class="footer-main">
+
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">New Consensus</a>
+      <p class="footer-tagline">An economic policy think tank for people who think &ldquo;realistic&rdquo; policy got us into this mess. Authors of the Green New Deal and Mission for America.</p>
       <div class="footer-social">
         <a href="https://x.com/newconsensus" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+          X / Twitter
         </a>
-        <a href="https://blog.newconsensus.com" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Substack">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        <a href="https://newconsensus.substack.com" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+          Substack
         </a>
       </div>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <div class="footer-nav-col">
+        <span class="footer-nav-label">The Problem</span>
+        <a href="/tripocalypse" class="footer-link">Tripocalypse</a>
+      </div>
+      <div class="footer-nav-col">
+        <span class="footer-nav-label">The Solution</span>
+        <a href="/the-mission" class="footer-link">The Mission</a>
+        <a href="/mission-for-america" class="footer-link">Mission for America</a>
+      </div>
+      <div class="footer-nav-col">
+        <span class="footer-nav-label">The Projects</span>
+        <a href="/crashlab" class="footer-link">CrashLab</a>
+        <a href="/wont-get-fooled-again-act" class="footer-link">Won&rsquo;t Get Fooled Again Act</a>
+        <a href="/cost-of-waiting" class="footer-link">The Cost of Waiting</a>
+      </div>
+      <div class="footer-nav-col">
+        <span class="footer-nav-label">The Intel</span>
+        <a href="/library" class="footer-link">Library</a>
+        <a href="https://newconsensus.substack.com" class="footer-link" target="_blank" rel="noopener noreferrer">Blog</a>
+        <a href="/press" class="footer-link">Press</a>
+      </div>
+      <div class="footer-nav-col">
+        <span class="footer-nav-label">The Team</span>
+        <a href="/team" class="footer-link">About</a>
+        <a href="/jobs" class="footer-link">Jobs</a>
+        <a href="/contact" class="footer-link">Contact</a>
+      </div>
     </nav>
+
+    <div class="footer-cta-col">
+      <a href="/#join" class="footer-cta">sign up to serve &rarr;</a>
+    </div>
+
   </div>
   <div class="footer-copy">
-    © 2026 New Consensus. All rights reserved.
+    <span>&copy; 2026 New Consensus. All rights reserved. <span class="footer-copy-aside">(Assuming there&rsquo;s still a world to reserve rights in.)</span></span>
   </div>
 </footer>`;
   }
