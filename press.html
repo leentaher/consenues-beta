@@ -1,855 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="/tokens.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Press — New Consensus</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>	<style>
-
-    .press-hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 130px 40px 24px;
+  <link rel="stylesheet" href="/tokens.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press — New Consensus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --surface: #111; --surface2: #181818;
+      --border: rgba(255,255,255,0.07); --border-mid: rgba(255,255,255,0.14);
+      --text: #e0e0dc; --text-dim: #555550; --text-mid: #888880;
+      --yellow: #d4c84a; --red: #e63329;
+      --mono: 'JetBrains Mono', monospace; --sans: 'Inter', sans-serif;
     }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--mono); font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+    main.page-wrap { position: relative; z-index: 1; }
+    @keyframes up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
-    .press-hero .eyebrow {
-      font-family: var(--font-mono);
-      font-size: 14px;
-      color: var(--red-300);
-      margin-bottom: 20px;
-      text-transform: lowercase;
-    }
-
-    .press-hero h1 {
-      font-size: clamp(38px, 8vw, 68px);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-    }
-
-    .press-hero .hero-subtitle {
-      font-size: 17px;
-      color: var(--gray-400);
-      max-width: 520px;
-      line-height: 1.7;
-    }
-
-    /* Logo marquee */
-    .logo-strip {
-      border-top: 1px solid var(--gray-800);
-      border-bottom: 1px solid var(--gray-800);
-      padding: 20px 0;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 64px;
-    }
-
-    .logo-strip::before,
-    .logo-strip::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 120px;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .logo-strip::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--black), transparent);
-    }
-
-    .logo-strip::after {
-      right: 0;
-      background: linear-gradient(270deg, var(--black), transparent);
-    }
-
-    .marquee {
-      display: flex;
-      gap: 60px;
-      animation: marquee 30s linear infinite;
-      width: max-content;
-    }
-
-    .marquee span {
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gray-600);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Pull quotes */
-    .quotes-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px 56px;
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 64px 64px;
+      border-bottom: 1px solid var(--border-mid);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 80px;
+      align-items: end;
     }
+    .hero-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: var(--yellow); text-transform: uppercase; margin-bottom: 20px; opacity:0; animation: up 0.6s 0.1s forwards; }
+    .hero-title { font-family: var(--sans); font-size: clamp(3rem,6vw,6rem); font-weight: 900; line-height: 0.95; color: #fff; letter-spacing: -0.03em; opacity:0; animation: up 0.7s 0.2s forwards; }
+    .hero-right { opacity:0; animation: up 0.7s 0.35s forwards; }
+    .hero-desc { font-size: 15px; color: var(--text-mid); line-height: 1.85; max-width: 480px; }
 
-    .pull-quote {
-      position: relative;
-      padding: 32px 0;
-    }
-
-    .pull-quote::before {
-      content: 'C';
-      font-family: Georgia, serif;
-      font-size: 80px;
-      line-height: 1;
-      color: var(--red-500);
-      opacity: 0.3;
-      position: absolute;
-      top: 0;
-      left: -4px;
-    }
-
-    .pull-quote blockquote {
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1.45;
-      color: var(--gray-100);
-      margin: 0;
-      padding-top: 24px;
-    }
-
-    .pull-quote cite {
-      display: block;
-      margin-top: 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-400);
-      font-style: normal;
-    }
-
-    /* Filter bar */
-    .filter-bar {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px 48px;
+    /* ── OUTLET TICKER ── */
+    .outlet-ticker {
+      border-bottom: 1px solid var(--border-mid);
+      overflow: hidden;
+      height: 48px;
       display: flex;
+      align-items: center;
+      background: var(--surface);
+    }
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      animation: ticker-scroll 28s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-outlet {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0 32px;
+      border-right: 1px solid var(--border);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+    .ticker-outlet:hover { color: var(--text); }
+
+
+    /* ── FEATURED SECTION ── */
+    .section-header {
+      padding: 32px 64px 20px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.35em; color: var(--text-dim); text-transform: uppercase; }
+
+    /* Featured 3-col grid */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      border-bottom: 1px solid var(--border-mid);
+    }
+    .featured-item {
+      padding: 36px 40px;
+      border-right: 1px solid var(--border);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .featured-item:last-child { border-right: none; }
+    .featured-item:hover { background: rgba(255,255,255,0.02); }
+    .featured-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--yellow);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .featured-item:hover::before { opacity: 1; }
+
+    .fi-outlet { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); }
+    .fi-headline {
+      font-family: var(--sans);
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .fi-desc { font-size: 12px; color: var(--text-mid); line-height: 1.65; flex: 1; }
+    .fi-meta { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); }
+    .fi-date { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; }
+    .fi-type { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 2px 7px; border: 1px solid rgba(212,200,74,0.3); color: var(--yellow); }
+    .fi-arrow { margin-left: auto; font-size: 14px; color: var(--text-dim); transition: color 0.2s, transform 0.2s; }
+    .featured-item:hover .fi-arrow { color: var(--yellow); transform: translateX(3px); }
+
+    /* ── MEDIA OBJECTS (book/film/report) ── */
+    .objects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border-mid);
+    }
+    .obj-item {
+      padding: 36px 40px;
+      border-right: 1px solid var(--border);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .obj-item:last-child { border-right: none; }
+    .obj-item:hover { background: rgba(255,255,255,0.02); }
+    .obj-icon {
+      width: 44px; height: 44px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .obj-type { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); }
+    .obj-title {
+      font-family: var(--sans);
+      font-size: 1.1rem; font-weight: 900;
+      color: #fff; line-height: 1.2; letter-spacing: -0.01em;
+    }
+    .obj-desc { font-size: 12px; color: var(--text-mid); line-height: 1.65; flex: 1; }
+    .obj-cta { font-size: 11px; font-weight: 700; color: var(--yellow); letter-spacing: 0.05em; margin-top: auto; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      padding: 20px 64px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
       gap: 8px;
       flex-wrap: wrap;
     }
+    .filter-label { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); margin-right: 8px; }
+    .filter-btn { padding: 5px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-mid); background: transparent; border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; }
+    .filter-btn:hover { border-color: var(--border-mid); color: var(--text); }
+    .filter-btn.active { background: var(--yellow); color: #000 !important; border-color: var(--yellow); font-weight: 700; }
 
-    .filter-btn {
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 8px 20px;
-      border-radius: 100px;
-      border: 1px solid var(--gray-700);
-      background: transparent;
-      color: var(--gray-400);
-      cursor: pointer;
-      transition: all var(--transition-med);
-    }
-
-    .filter-btn:hover {
-      border-color: var(--red-500);
-      color: var(--white);
-    }
-
-    .filter-btn.active {
-      background: var(--red-500);
-      color: var(--black);
-      border-color: var(--red-500);
-    }
-
-    /* Section labels */
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-500);
-      margin-bottom: 20px;
-    }
-
-    /* Featured cards */
-    .featured-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px 60px;
-    }
-
-    .featured-grid {
+    /* ── COVERAGE LIST ── mirrors book-item from library ── */
+    .coverage-item {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-template-rows: auto auto;
-      gap: 16px;
-    }
-
-    .featured-card {
-      background: var(--surface-800);
-      border: 1px solid var(--gray-700);
-      padding: 36px;
+      grid-template-columns: 64px 1fr 180px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+      position: relative;
       text-decoration: none;
-      color: inherit;
+    }
+    .coverage-item:hover { background: rgba(255,255,255,0.025); }
+    .coverage-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px; opacity: 0;
+      transition: opacity 0.2s;
+      background: var(--yellow);
+    }
+    .coverage-item:hover::before { opacity: 1; }
+    .coverage-item.hidden { display: none; }
+
+    /* Number/outlet col */
+    .cov-num-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 28px 0;
+      border-right: 1px solid var(--border);
+      gap: 8px;
+    }
+    .cov-num { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: var(--text-dim); writing-mode: vertical-rl; transform: rotate(180deg); }
+
+    /* Main */
+    .cov-main { padding: 28px 40px; border-right: 1px solid var(--border); }
+    .cov-outlet { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 8px; }
+    .cov-headline {
+      font-family: var(--sans);
+      font-size: clamp(1rem,1.6vw,1.2rem);
+      font-weight: 900; color: #fff;
+      line-height: 1.2; letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .cov-desc { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+
+    /* Aside */
+    .cov-aside {
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 240px;
-      transition: all var(--transition-med);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .featured-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--red-500);
-      opacity: 0;
-      transition: opacity var(--transition-med);
-    }
-
-    .featured-card:hover {
-      border-color: var(--gray-600);
-      background: var(--surface-900);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    }
-
-    .featured-card:hover::before {
-      opacity: 1;
-    }
-
-    .featured-card.hero-card {
-      grid-row: 1 / 3;
-      min-height: 380px;
-    }
-
-    .featured-card .source-logo {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--red-300);
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .source-logo .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red-500);
-    }
-
-    .featured-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 12px;
-      color: var(--white);
-    }
-
-    .featured-card.hero-card h3 {
-      font-size: 28px;
-    }
-
-    .featured-card .excerpt {
-      font-size: 14px;
-      color: var(--gray-400);
-      line-height: 1.6;
-      flex-grow: 1;
-    }
-
-    .featured-card .meta {
-      display: flex;
-      align-items: center;
       gap: 12px;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--gray-800);
     }
+    .cov-date { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; }
+    .cov-type { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 3px 8px; border: 1px solid rgba(212,200,74,0.3); color: var(--yellow); align-self: flex-start; }
+    .cov-read { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--text-dim); display: flex; align-items: center; gap: 6px; transition: color 0.15s; }
+    .coverage-item:hover .cov-read { color: var(--yellow); }
 
-    .meta .date {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--gray-500);
-    }
-
-    .meta .type-tag {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--red-300);
-      border: 1px solid var(--gray-700);
-    }
-
-    .meta .arrow {
-      margin-left: auto;
-      font-size: 18px;
-      color: var(--gray-500);
-      transition: all var(--transition-fast);
-    }
-
-    .featured-card:hover .arrow {
-      color: var(--red-400);
-      transform: translateX(6px);
-    }
-
-    /* Highlight cards */
-    .highlights-grid {
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 80px 64px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px 80px;
-    }
-
-    .highlight-card {
-      background: var(--surface-800);
-      border: 1px solid var(--gray-700);
-      padding: 32px;
-      text-decoration: none;
-      color: inherit;
-      transition: all var(--transition-med);
-    }
-
-    .highlight-card:hover {
-      border-color: var(--gray-600);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .highlight-card .hl-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(255, 255, 255, 0.04);
-      display: flex;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      font-size: 22px;
+      border-top: 1px solid var(--border-mid);
     }
+    .contact-kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.35em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 20px; }
+    .contact-title { font-family: var(--sans); font-size: clamp(1.8rem,3vw,3rem); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .contact-sub { font-size: 13px; color: var(--text-mid); line-height: 1.8; }
+    .contact-right { display: flex; flex-direction: column; gap: 2px; }
+    .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); text-decoration: none; transition: border-color 0.2s, background 0.2s; gap: 16px; }
+    .contact-item:hover { border-color: var(--border-mid); background: var(--surface2); }
+    .contact-item-label { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); }
+    .contact-item-value { font-size: 12px; color: var(--yellow); }
 
-    .highlight-card .hl-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--red-300);
-      margin-bottom: 10px;
-    }
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-    .highlight-card h4 {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      line-height: 1.3;
-      color: var(--white);
-    }
-
-    .highlight-card .hl-desc {
-      font-size: 13px;
-      color: var(--gray-400);
-      line-height: 1.6;
-    }
-
-    /* Press list */
-    .press-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 40px 80px;
-    }
-
-    .press-list {
-      display: flex;
-      flex-direction: column;
-      counter-reset: press-counter;
-    }
-
-    .press-item {
-      display: grid;
-      grid-template-columns: 32px 140px 1fr auto;
-      align-items: center;
-      gap: 20px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--gray-800);
-      text-decoration: none;
-      color: inherit;
-      transition: all var(--transition-fast);
-      counter-increment: press-counter;
-    }
-
-    .press-item:first-child {
-      border-top: 1px solid var(--gray-800);
-    }
-
-    .press-item::before {
-      content: counter(press-counter, decimal-leading-zero);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--gray-600);
-      transition: color var(--transition-fast);
-    }
-
-    .press-item:hover { padding-left: 6px; }
-    .press-item:hover::before { color: var(--red-400); }
-    .press-item:hover .item-title { color: var(--red-400); }
-
-    .press-item .item-source {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--gray-400);
-      transition: color var(--transition-fast);
-    }
-
-    .press-item:hover .item-source { color: var(--gray-200); }
-
-    .press-item .item-content {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .press-item .item-title {
-      font-size: 15px;
-      font-weight: 500;
-      transition: color var(--transition-fast);
-      line-height: 1.4;
-      color: var(--gray-100);
-    }
-
-    .press-item .item-desc {
-      font-size: 13px;
-      color: var(--gray-500);
-      line-height: 1.5;
-    }
-
-    .press-item .item-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .press-item .item-date {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--gray-500);
-      white-space: nowrap;
-    }
-
-    .press-item .item-arrow {
-      color: var(--gray-600);
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: all var(--transition-fast);
-      font-size: 16px;
-    }
-
-    .press-item:hover .item-arrow {
-      opacity: 1;
-      transform: translateX(0);
-      color: var(--red-400);
-    }
-
-    /* Reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .press-hero { padding: 100px 24px 24px; }
-      .quotes-section { grid-template-columns: 1fr; padding: 0 24px 32px; }
-      .pull-quote blockquote { font-size: 18px; }
-      .filter-bar { padding: 0 24px 32px; }
-      .featured-section { padding: 0 24px 48px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding: 48px 20px 40px; }
+      .hero-title { font-size: clamp(2.8rem,12vw,4rem); }
+      .hero-desc { font-size: 14px; }
+      .stats-strip { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 20px; }
+      .stat-item:last-child { border-bottom: none; }
+      .section-header { padding: 20px 20px 14px; }
+      .filter-bar { padding: 16px 20px; }
       .featured-grid { grid-template-columns: 1fr; }
-      .featured-card.hero-card { grid-row: auto; min-height: 240px; }
-      .highlights-grid { padding: 0 24px 60px; grid-template-columns: 1fr; }
-      .press-section { padding: 20px 24px 60px; }
-      .press-item { grid-template-columns: 1fr; gap: 8px; }
-      .press-item::before { display: none; }
-      .press-item .item-meta { justify-content: flex-start; }
+      .featured-item { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+      .featured-item:last-child { border-bottom: none; }
+      .objects-grid { grid-template-columns: 1fr; }
+      .obj-item { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+      .obj-item:last-child { border-bottom: none; }
+      .coverage-item { grid-template-columns: 44px 1fr; }
+      .cov-aside { display: none; }
+      .cov-num-col { padding: 20px 0; }
+      .cov-main { padding: 20px 18px; border-right: none; }
+      .cov-headline { font-size: 1rem; }
+      .contact-section { grid-template-columns: 1fr; gap: 36px; padding: 48px 20px; }
+      .contact-item { flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px 18px; }
     }
-</style>
+  </style>
 </head>
 <body>
+<script>
+  (() => {
+    const palettes = {
+      red:    ['#ff2020', '#ff4040', '#ff6060'],
+      blue:   ['#0000cc', '#0000ff', '#3366ff'],
+      purple: ['#8b5cf6', '#a78bfa', '#c4b5fd'],
+      yellow: ['#d4c84a', '#e0d870', '#ede99a']
+    };
+    const keys = Object.keys(palettes);
+    const shades = palettes[keys[Math.floor(Math.random() * keys.length)]];
+    document.documentElement.style.setProperty('--yellow', shades[0]);
+    document.documentElement.style.setProperty('--yellow-mid', shades[1]);
+    document.documentElement.style.setProperty('--yellow-light', shades[2]);
+  })();
+</script>
 <div class="scanlines"></div>
 <div class="scan-bar"></div>
-	<div id="site-header"></div>
+<div id="site-header"></div>
+<main class="page-wrap">
 
-	<!-- ── HERO ── -->
-	<section class="press-hero">
-		<h1>press</h1>
-		<p class="hero-subtitle">What they're saying about New Consensus, the Green New Deal, and the Mission for America.</p>
-	</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-kicker">media coverage</div>
+      <h1 class="hero-title">Press.</h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">What they're saying about New Consensus, the Green New Deal, and the Mission for America.</p>
+    </div>
+  </section>
 
-	<!-- ── SCROLLING LOGO STRIP ── -->
-	<div class="logo-strip">
-		<div class="marquee">
-			<span>Washington Post</span>
-			<span>Politico</span>
-			<span>The Intercept</span>
-			<span>Democracy Now!</span>
-			<span>Jacobin</span>
-			<span>The Hill</span>
-			<span>Common Dreams</span>
-			<span>Grist</span>
-			<span>Essence</span>
-			<span>Marie Claire</span>
-			<span>The Climate Pod</span>
-			<span>Sundance Film Festival</span>
-			<span>E&amp;E News</span>
-			<span>City Journal</span>
-			<!-- repeat for seamless loop -->
-			<span>Washington Post</span>
-			<span>Politico</span>
-			<span>The Intercept</span>
-			<span>Democracy Now!</span>
-			<span>Jacobin</span>
-			<span>The Hill</span>
-			<span>Common Dreams</span>
-			<span>Grist</span>
-			<span>Essence</span>
-			<span>Marie Claire</span>
-			<span>The Climate Pod</span>
-			<span>Sundance Film Festival</span>
-			<span>E&amp;E News</span>
-			<span>City Journal</span>
-		</div>
-	</div>
+  <!-- OUTLET TICKER -->
+  <div class="outlet-ticker">
+    <div class="ticker-track">
+      <span class="ticker-outlet">Washington Post</span>
+      <span class="ticker-outlet">Politico</span>
+      <span class="ticker-outlet">The Intercept</span>
+      <span class="ticker-outlet">Democracy Now!</span>
+      <span class="ticker-outlet">Jacobin</span>
+      <span class="ticker-outlet">The Hill</span>
+      <span class="ticker-outlet">Common Dreams</span>
+      <span class="ticker-outlet">Grist</span>
+      <span class="ticker-outlet">Essence</span>
+      <span class="ticker-outlet">Marie Claire</span>
+      <span class="ticker-outlet">The Climate Pod</span>
+      <span class="ticker-outlet">Sundance Film Festival</span>
+      <span class="ticker-outlet">E&amp;E News</span>
+      <span class="ticker-outlet">City Journal</span>
+      <span class="ticker-outlet">Washington Post</span>
+      <span class="ticker-outlet">Politico</span>
+      <span class="ticker-outlet">The Intercept</span>
+      <span class="ticker-outlet">Democracy Now!</span>
+      <span class="ticker-outlet">Jacobin</span>
+      <span class="ticker-outlet">The Hill</span>
+      <span class="ticker-outlet">Common Dreams</span>
+      <span class="ticker-outlet">Grist</span>
+      <span class="ticker-outlet">Essence</span>
+      <span class="ticker-outlet">Marie Claire</span>
+      <span class="ticker-outlet">The Climate Pod</span>
+      <span class="ticker-outlet">Sundance Film Festival</span>
+      <span class="ticker-outlet">E&amp;E News</span>
+      <span class="ticker-outlet">City Journal</span>
+    </div>
+  </div>
 
 
-	<!-- ── FILTER TABS ── -->
-	<div class="filter-bar reveal">
-		<button class="filter-btn active" onclick="filterItems('all')">All</button>
-		<button class="filter-btn" onclick="filterItems('publication')">Publications</button>
-		<button class="filter-btn" onclick="filterItems('podcast')">Podcasts</button>
-		<button class="filter-btn" onclick="filterItems('tv')">TV &amp; Film</button>
-		<button class="filter-btn" onclick="filterItems('book')">Book</button>
-	</div>
+  <!-- FEATURED -->
+  <div class="section-header fade-in">
+    <span class="section-label">featured</span>
+  </div>
 
-	<!-- ── FEATURED ── -->
-	<div class="featured-section reveal">
-		<div class="section-label">Featured</div>
-		<div class="featured-grid">
+  <div class="featured-grid fade-in">
+    <a href="https://www.politico.com/news/magazine/2025/10/30/saikat-chakrabarti-nancy-pelosi-democratic-party-00624012" target="_blank" class="featured-item">
+      <div class="fi-outlet">Politico Magazine</div>
+      <div class="fi-headline">Saikat Chakrabarti Has Bold Plans for the Democratic Party</div>
+      <div class="fi-desc">In-depth profile of New Consensus co-founder covering his congressional challenge to Nancy Pelosi and his vision for reshaping Democratic economic policy.</div>
+      <div class="fi-meta">
+        <span class="fi-date">Oct 2025</span>
+        <span class="fi-type">Feature</span>
+        <span class="fi-arrow">→</span>
+      </div>
+    </a>
+    <a href="https://www.washingtonpost.com/politics/ocasio-cortezs-chief-of-staff-will-resign-to-join-group-working-on-green-new-deal/2019/08/02/14c1cf14-b569-11e9-951e-de024209545d_story.html" target="_blank" class="featured-item">
+      <div class="fi-outlet">The Washington Post</div>
+      <div class="fi-headline">AOC's Chief of Staff Will Resign to Join Group Working on Green New Deal</div>
+      <div class="fi-meta">
+        <span class="fi-date">Aug 2019</span>
+        <span class="fi-type">News</span>
+        <span class="fi-arrow">→</span>
+      </div>
+    </a>
+    <a href="https://podcasts.apple.com/us/podcast/is-a-new-green-new-deal-possible-w-saikat/id1469270123?i=1000728274585" target="_blank" class="featured-item">
+      <div class="fi-outlet">The Climate Pod</div>
+      <div class="fi-headline">Is a New Green New Deal Possible?</div>
+      <div class="fi-meta">
+        <span class="fi-date">Sep 2025</span>
+        <span class="fi-type">Podcast</span>
+        <span class="fi-arrow">→</span>
+      </div>
+    </a>
+  </div>
 
-			<a class="featured-card hero-card" data-type="publication" href="https://www.politico.com/news/magazine/2025/10/30/saikat-chakrabarti-nancy-pelosi-democratic-party-00624012" target="_blank">
-				<div>
-					<div class="source-logo"><span class="dot"></span> Politico Magazine</div>
-					<h3>Saikat Chakrabarti Has Bold Plans for the Democratic Party</h3>
-					<p class="excerpt">In-depth profile of New Consensus co-founder covering his congressional challenge to Nancy Pelosi and his vision for reshaping Democratic economic policy.</p>
-				</div>
-				<div class="meta">
-					<span class="date">Oct 2025</span>
-					<span class="type-tag">Feature</span>
-					<span class="arrow">&rarr;</span>
-				</div>
-			</a>
+  <!-- BOOKS / FILM / REPORTS -->
+  <div class="section-header fade-in">
+    <span class="section-label">books, film &amp; reports</span>
+  </div>
 
-			<a class="featured-card" data-type="publication" href="https://www.washingtonpost.com/politics/ocasio-cortezs-chief-of-staff-will-resign-to-join-group-working-on-green-new-deal/2019/08/02/14c1cf14-b569-11e9-951e-de024209545d_story.html" target="_blank">
-				<div>
-					<div class="source-logo"><span class="dot"></span> The Washington Post</div>
-					<h3>AOC's Chief of Staff Will Resign to Join Group Working on Green New Deal</h3>
-				</div>
-				<div class="meta">
-					<span class="date">Aug 2019</span>
-					<span class="type-tag">News</span>
-					<span class="arrow">&rarr;</span>
-				</div>
-			</a>
+  <div class="objects-grid fade-in">
+    <a href="https://www.chelseagreen.com/product/rules-for-revolutionaries/" target="_blank" class="obj-item">
+      <div class="obj-icon">📖</div>
+      <div class="obj-type">Book</div>
+      <div class="obj-title">Rules for Revolutionaries</div>
+      <div class="obj-desc">By Becky Bond &amp; Zack Exley. How the big organizing model from the Bernie Sanders campaign spawned Brand New Congress, Justice Democrats, and New Consensus.</div>
+      <div class="obj-cta">Read the book →</div>
+    </a>
+    <a href="#" class="obj-item">
+      <div class="obj-icon">🎬</div>
+      <div class="obj-type">Film · Sundance 2022</div>
+      <div class="obj-title">To the End</div>
+      <div class="obj-desc">Documentary by Rachel Lears featuring New Consensus Policy Director Rhiana Gunn-Wright. Screened at Sundance and Tribeca.</div>
+      <div class="obj-cta">Watch the film →</div>
+    </a>
+    <a href="https://blog.newconsensus.com/p/introducing-the-mission-for-america" target="_blank" class="obj-item">
+      <div class="obj-icon">📄</div>
+      <div class="obj-type">Report</div>
+      <div class="obj-title">Mission for America</div>
+      <div class="obj-desc">A comprehensive plan for a WWII-style economic mobilization to build a new clean economy. By Zack Exley.</div>
+      <div class="obj-cta">Read the report →</div>
+    </a>
+  </div>
 
-			<a class="featured-card" data-type="podcast" href="https://podcasts.apple.com/us/podcast/is-a-new-green-new-deal-possible-w-saikat/id1469270123?i=1000728274585" target="_blank">
-				<div>
-					<div class="source-logo"><span class="dot"></span> The Climate Pod</div>
-					<h3>Is a New Green New Deal Possible?</h3>
-				</div>
-				<div class="meta">
-					<span class="date">Sep 2025</span>
-					<span class="type-tag">Podcast</span>
-					<span class="arrow">&rarr;</span>
-				</div>
-			</a>
+  <!-- FILTER BAR -->
+  <div class="filter-bar fade-in">
+    <span class="filter-label">filter</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="publications">Publications</button>
+    <button class="filter-btn" data-filter="podcasts">Podcasts</button>
+    <button class="filter-btn" data-filter="tv-film">TV &amp; Film</button>
+  </div>
 
-		</div>
-	</div>
+  <!-- ALL COVERAGE -->
+  <div class="section-header fade-in">
+    <span class="section-label">all coverage</span>
+    <span style="font-size:10px;color:var(--text-dim);letter-spacing:.1em">16 items</span>
+  </div>
 
-	<!-- ── HIGHLIGHTS (Book / Film / Blog) ── -->
-	<div class="highlights-grid reveal">
+  <a href="https://jacobin.com/2025/07/saikat-chakrabarti-democrats-california-congress" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">01</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Jacobin</div>
+      <div class="cov-headline">Saikat Chakrabarti Wants to Remake the Democratic Party</div>
+      <div class="cov-desc">Feature on the New Consensus co-founder's vision for remaking progressive economic policy from inside Congress.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Jul 2025</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-		<a class="highlight-card" data-type="book" href="https://www.chelseagreen.com/product/rules-for-revolutionaries/" target="_blank">
-			<div class="hl-icon">&#128214;</div>
-			<div class="hl-label">Book</div>
-			<h4>Rules for Revolutionaries</h4>
-			<p class="hl-desc">By Becky Bond &amp; Zack Exley. How the big organizing model from the Bernie Sanders campaign spawned Brand New Congress, Justice Democrats, and New Consensus.</p>
-		</a>
+  <a href="https://thehill.com/homenews/campaign/5521160-pelosi-chakrabarti-california-congressional-race-survey/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">02</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">The Hill</div>
+      <div class="cov-headline">Nancy Pelosi Faces Progressive Challenger as Voters Signal 'Time for Change'</div>
+      <div class="cov-desc">Coverage of the Pelosi-Chakrabarti race with context on New Consensus and the Green New Deal.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2025</div>
+      <span class="cov-type">News</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-		<a class="highlight-card" data-type="tv" href="#" target="_blank">
-			<div class="hl-icon">&#127916;</div>
-			<div class="hl-label">Film &middot; Sundance 2022</div>
-			<h4>To the End</h4>
-			<p class="hl-desc">Documentary by Rachel Lears featuring New Consensus Policy Director Rhiana Gunn-Wright. Screened at Sundance and Tribeca.</p>
-		</a>
+  <a href="https://www.commondreams.org/news/saikat-chakrabarti" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">03</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Common Dreams</div>
+      <div class="cov-headline">Progressive Saikat Chakrabarti to Challenge Nancy Pelosi in 2026</div>
+      <div class="cov-desc">National coverage of the New Consensus co-founder's congressional bid.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2025</div>
+      <span class="cov-type">News</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-		<a class="highlight-card" data-type="publication" href="https://blog.newconsensus.com/p/introducing-the-mission-for-america" target="_blank">
-			<div class="hl-icon">&#128196;</div>
-			<div class="hl-label">Report</div>
-			<h4>Mission for America</h4>
-			<p class="hl-desc">A comprehensive plan for a WWII-style economic mobilization to build a new clean economy. By Zack Exley.</p>
-		</a>
+  <a href="https://missionlocal.org/2025/10/pelosi-challenger-saikat-chakrabarti-launches/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">04</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Mission Local</div>
+      <div class="cov-headline">Pelosi Challenger Saikat Chakrabarti Launches Upset Bid</div>
+      <div class="cov-desc">Local coverage of the packed campaign launch event in San Francisco.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Oct 2025</div>
+      <span class="cov-type">News</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-	</div>
+  <a href="https://www.city-journal.org/article/saikat-chakrabarti-nancy-pelosi-congress-left" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">05</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">City Journal</div>
+      <div class="cov-headline">Saikat Chakrabarti: The Progressive on a Mission</div>
+      <div class="cov-desc">Profile of the New Consensus co-founder's trajectory from think tank to Congress.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2025</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-	<!-- ── PRESS LIST ── -->
-	<div class="press-section reveal">
-		<div class="section-label">All Coverage</div>
-		<div class="press-list">
+  <a href="https://www.democracynow.org/2022/4/22/ukraine_war_opportunity_domestic_clean_steel" target="_blank" class="coverage-item fade-in" data-type="tv-film">
+    <div class="cov-num-col"><span class="cov-num">06</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Democracy Now!</div>
+      <div class="cov-headline">Will the U.S. Pivot to a Green Future &amp; Break Free from Dirty Steel?</div>
+      <div class="cov-desc">Zack Exley and Justin Mikulka discuss the Ukraine war's clean steel opportunity on Earth Day.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Apr 2022</div>
+      <span class="cov-type">TV</span>
+      <span class="cov-read">Watch →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://jacobin.com/2025/07/saikat-chakrabarti-democrats-california-congress" target="_blank">
-				<span class="item-source">Jacobin</span>
-				<div class="item-content">
-					<span class="item-title">Saikat Chakrabarti Wants to Remake the Democratic Party</span>
-					<span class="item-desc">Feature on the New Consensus co-founder's vision for remaking progressive economic policy from inside Congress.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Jul 2025</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://greatbattlefield.com/episode/the-change-making-career-of-zack-exley-of-new-consensus/" target="_blank" class="coverage-item fade-in" data-type="podcasts">
+    <div class="cov-num-col"><span class="cov-num">07</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Great Battlefield</div>
+      <div class="cov-headline">The Change-Making Career of Zack Exley of New Consensus</div>
+      <div class="cov-desc">In-depth interview covering Zack's career from internet organizing to founding New Consensus.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Jun 2024</div>
+      <span class="cov-type">Podcast</span>
+      <span class="cov-read">Listen →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://thehill.com/homenews/campaign/5521160-pelosi-chakrabarti-california-congressional-race-survey/" target="_blank">
-				<span class="item-source">The Hill</span>
-				<div class="item-content">
-					<span class="item-title">Nancy Pelosi Faces Progressive Challenger as Voters Signal 'Time for Change'</span>
-					<span class="item-desc">Coverage of the Pelosi-Chakrabarti race with context on New Consensus and the Green New Deal.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2025</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://theintercept.com/2023/12/08/squad-aoc-green-new-deal/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">08</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">The Intercept</div>
+      <div class="cov-headline">The Rise and Rollout of AOC's Green New Deal</div>
+      <div class="cov-desc">How New Consensus served as the policy think tank behind the Green New Deal resolution.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Dec 2023</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://www.commondreams.org/news/saikat-chakrabarti" target="_blank">
-				<span class="item-source">Common Dreams</span>
-				<div class="item-content">
-					<span class="item-title">Progressive Saikat Chakrabarti to Challenge Nancy Pelosi in 2026</span>
-					<span class="item-desc">National coverage of the New Consensus co-founder's congressional bid.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2025</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://theintercept.com/2022/04/19/russia-steel-pig-iron-green-energy/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">09</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">The Intercept</div>
+      <div class="cov-headline">Russia-Ukraine War Is Another Reason to Break Free of Dirty Steel</div>
+      <div class="cov-desc">By Zack Exley &amp; Justin Mikulka. How the war created an opportunity for the green steel transition.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Apr 2022</div>
+      <span class="cov-type">Opinion</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://missionlocal.org/2025/10/pelosi-challenger-saikat-chakrabarti-launches/" target="_blank">
-				<span class="item-source">Mission Local</span>
-				<div class="item-content">
-					<span class="item-title">Pelosi Challenger Saikat Chakrabarti Launches Upset Bid</span>
-					<span class="item-desc">Local coverage of the packed campaign launch event in San Francisco.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Oct 2025</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://www.noahpinion.blog/p/interview-saikat-chakrabarti-creator" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">10</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Noahpinion</div>
+      <div class="cov-headline">Interview: Saikat Chakrabarti, Creator of the Green New Deal</div>
+      <div class="cov-desc">In-depth interview on New Consensus and the economic thinking behind the GND.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2023</div>
+      <span class="cov-type">Interview</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://www.city-journal.org/article/saikat-chakrabarti-nancy-pelosi-congress-left" target="_blank">
-				<span class="item-source">City Journal</span>
-				<div class="item-content">
-					<span class="item-title">Saikat Chakrabarti: The Progressive on a Mission</span>
-					<span class="item-desc">Profile of the New Consensus co-founder's trajectory from think tank to Congress.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2025</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://grist.org/article/how-alexandria-ocasio-cortezs-green-new-deal-is-being-built/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">11</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Grist</div>
+      <div class="cov-headline">How Alexandria Ocasio-Cortez's Green New Deal Is Being Built</div>
+      <div class="cov-desc">New Consensus's role as the policy quarterback for the Green New Deal.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2019</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="tv" href="https://www.democracynow.org/2022/4/22/ukraine_war_opportunity_domestic_clean_steel" target="_blank">
-				<span class="item-source">Democracy Now!</span>
-				<div class="item-content">
-					<span class="item-title">Will the U.S. Pivot to a Green Future &amp; Break Free from Dirty Steel?</span>
-					<span class="item-desc">Zack Exley and Justin Mikulka discuss the Ukraine war's clean steel opportunity on Earth Day.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Apr 2022</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://www.essence.com/feature/she-the-people-rhiana-gunn-wright-green-new-deal/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">12</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Essence</div>
+      <div class="cov-headline">Meet Rhiana Gunn-Wright, An Architect Behind The Green New Deal</div>
+      <div class="cov-desc">Profile of the former New Consensus Policy Director who led the GND drafting.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2019</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="podcast" href="https://greatbattlefield.com/episode/the-change-making-career-of-zack-exley-of-new-consensus/" target="_blank">
-				<span class="item-source">Great Battlefield</span>
-				<div class="item-content">
-					<span class="item-title">The Change-Making Career of Zack Exley of New Consensus</span>
-					<span class="item-desc">In-depth interview covering Zack's career from internet organizing to founding New Consensus.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Jun 2024</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://www.marieclaire.com/politics/a29326190/green-new-deal-architect-rhiana-gunn-wright/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">13</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Marie Claire</div>
+      <div class="cov-headline">Rhiana Gunn-Wright Crafted AOC's Green New Deal</div>
+      <div class="cov-desc">Feature on Gunn-Wright's role at New Consensus in crafting the landmark resolution.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2019</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://theintercept.com/2023/12/08/squad-aoc-green-new-deal/" target="_blank">
-				<span class="item-source">The Intercept</span>
-				<div class="item-content">
-					<span class="item-title">The Rise and Rollout of AOC's Green New Deal</span>
-					<span class="item-desc">How New Consensus served as the policy think tank behind the Green New Deal resolution.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Dec 2023</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://www.eenews.net/stories/1060107485" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">14</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">E&amp;E News</div>
+      <div class="cov-headline">Meet the Scholar Crafting the 'Green New Deal'</div>
+      <div class="cov-desc">Profile of the policy work behind the Green New Deal at New Consensus.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">2019</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://theintercept.com/2022/04/19/russia-steel-pig-iron-green-energy/" target="_blank">
-				<span class="item-source">The Intercept</span>
-				<div class="item-content">
-					<span class="item-title">Russia-Ukraine War Is Another Reason to Break Free of Dirty Steel</span>
-					<span class="item-desc">By Zack Exley &amp; Justin Mikulka. How the war created an opportunity for the green steel transition.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">Apr 2022</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://theintercept.com/2019/05/28/bernie-sanders-accidental-organizing-movement-book/" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">15</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">The Intercept</div>
+      <div class="cov-headline">How Bernie Sanders Accidentally Built a Groundbreaking Organizing Movement</div>
+      <div class="cov-desc">The movement that led to Brand New Congress, Justice Democrats, and New Consensus.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">May 2019</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://www.noahpinion.blog/p/interview-saikat-chakrabarti-creator" target="_blank">
-				<span class="item-source">Noahpinion</span>
-				<div class="item-content">
-					<span class="item-title">Interview: Saikat Chakrabarti, Creator of the Green New Deal</span>
-					<span class="item-desc">In-depth interview on New Consensus and the economic thinking behind the GND.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2023</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <a href="https://www.politico.com/news/magazine/2025/10/30/saikat-chakrabarti-nancy-pelosi-democratic-party-00624012" target="_blank" class="coverage-item fade-in" data-type="publications">
+    <div class="cov-num-col"><span class="cov-num">16</span></div>
+    <div class="cov-main">
+      <div class="cov-outlet">Politico Magazine</div>
+      <div class="cov-headline">Saikat Chakrabarti Has Bold Plans for the Democratic Party</div>
+      <div class="cov-desc">In-depth profile covering the congressional challenge to Nancy Pelosi and New Consensus's vision for reshaping Democratic economic policy.</div>
+    </div>
+    <div class="cov-aside">
+      <div class="cov-date">Oct 2025</div>
+      <span class="cov-type">Feature</span>
+      <span class="cov-read">Read →</span>
+    </div>
+  </a>
 
-			<a class="press-item" data-type="publication" href="https://grist.org/article/how-alexandria-ocasio-cortezs-green-new-deal-is-being-built/" target="_blank">
-				<span class="item-source">Grist</span>
-				<div class="item-content">
-					<span class="item-title">How Alexandria Ocasio-Cortez's Green New Deal Is Being Built</span>
-					<span class="item-desc">New Consensus's role as the policy quarterback for the Green New Deal.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2019</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
+  <!-- CONTACT -->
+  <section class="contact-section fade-in">
+    <div>
+      <div class="contact-kicker">media inquiries</div>
+      <h2 class="contact-title">Press &amp; media.</h2>
+      <p class="contact-sub">For media inquiries, interview requests, or press materials, get in touch directly.</p>
+    </div>
+    <div class="contact-right">
+      <a href="mailto:press@newconsensus.com" class="contact-item">
+        <span class="contact-item-label">Press &amp; Media</span>
+        <span class="contact-item-value">press@newconsensus.com</span>
+      </a>
+      <a href="mailto:info@newconsensus.com" class="contact-item">
+        <span class="contact-item-label">General inquiries</span>
+        <span class="contact-item-value">info@newconsensus.com</span>
+      </a>
+    </div>
+  </section>
 
-			<a class="press-item" data-type="publication" href="https://www.essence.com/feature/she-the-people-rhiana-gunn-wright-green-new-deal/" target="_blank">
-				<span class="item-source">Essence</span>
-				<div class="item-content">
-					<span class="item-title">Meet Rhiana Gunn-Wright, An Architect Behind The Green New Deal</span>
-					<span class="item-desc">Profile of the former New Consensus Policy Director who led the GND drafting.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2019</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
-
-			<a class="press-item" data-type="publication" href="https://www.marieclaire.com/politics/a29326190/green-new-deal-architect-rhiana-gunn-wright/" target="_blank">
-				<span class="item-source">Marie Claire</span>
-				<div class="item-content">
-					<span class="item-title">Rhiana Gunn-Wright Crafted AOC's Green New Deal</span>
-					<span class="item-desc">Feature on Gunn-Wright's role at New Consensus in crafting the landmark resolution.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2019</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
-
-			<a class="press-item" data-type="publication" href="https://www.eenews.net/stories/1060107485" target="_blank">
-				<span class="item-source">E&amp;E News</span>
-				<div class="item-content">
-					<span class="item-title">Meet the Scholar Crafting the 'Green New Deal'</span>
-					<span class="item-desc">Profile of the policy work behind the Green New Deal at New Consensus.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">2019</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
-
-			<a class="press-item" data-type="publication" href="https://theintercept.com/2019/05/28/bernie-sanders-accidental-organizing-movement-book/" target="_blank">
-				<span class="item-source">The Intercept</span>
-				<div class="item-content">
-					<span class="item-title">How Bernie Sanders Accidentally Built a Groundbreaking Organizing Movement</span>
-					<span class="item-desc">The movement that led to Brand New Congress, Justice Democrats, and New Consensus.</span>
-				</div>
-				<div class="item-meta">
-					<span class="item-date">May 2019</span>
-					<span class="item-arrow">&rarr;</span>
-				</div>
-			</a>
-
-		</div>
-	</div>
-
-	<div id="site-footer"></div>
-	<script src="/shared-layout.js"></script>
-	<script>
-		// Filter
-		function filterItems(type) {
-			document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-			event.target.classList.add('active');
-			document.querySelectorAll('[data-type]').forEach(item => {
-				if (type === 'all' || item.dataset.type === type) {
-					item.style.display = '';
-					item.style.opacity = '0';
-					item.style.transform = 'translateY(8px)';
-					requestAnimationFrame(() => {
-						item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-						item.style.opacity = '1';
-						item.style.transform = 'translateY(0)';
-					});
-				} else {
-					item.style.opacity = '0';
-					item.style.transform = 'translateY(8px)';
-					setTimeout(() => { item.style.display = 'none'; }, 200);
-				}
-			});
-		}
-
-		// Scroll reveal
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('visible');
-				}
-			});
-		}, { threshold: 0.15 });
-
-		document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-	</script>
+</main>
+<div id="site-footer"></div>
+<script src="/shared-layout.js"></script>
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.coverage-item').forEach(item => {
+        item.classList.toggle('hidden', f !== 'all' && item.dataset.type !== f);
+      });
+    });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
