@@ -874,7 +874,6 @@
       </div>
       <div class="footer-nav-col">
         <span class="footer-nav-label">The Solution</span>
-        <a href="/the-mission" class="footer-link">The Mission</a>
         <a href="/mission-for-america" class="footer-link">Mission for America</a>
       </div>
       <div class="footer-nav-col">
