@@ -1050,8 +1050,7 @@
     </div>
     <span class="pm-counter-sub">days to get everything in place</span>
     <div class="pm-rule"></div>
-    <p class="pm-headline">Start preparing with us now. Sign up to serve in the 2029 presidential administration.</p>
-    <p class="pm-body-text">In <span id="pm-days-inline"></span> days, a new government will need a plan<br>and several thousand people to staff it.<br>We&rsquo;re writing the plan. You could be one of the people.</p>
+    <p class="pm-body-text">The 2029 administration needs a plan and people to staff it. We&rsquo;re writing the plan. You could be one of the people.</p>
   </div>
 </div>`;
       document.body.appendChild(wrap);
