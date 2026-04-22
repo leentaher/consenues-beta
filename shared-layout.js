@@ -527,8 +527,11 @@
   .panic-modal-wrap {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 2000;
+    background: #000;
     align-items: center;
     justify-content: center;
   }
@@ -558,6 +561,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
+  }
+
+  .panic-modal-header > div {
+    display: flex;
+    align-items: center;
   }
 
   .pm-rec-dot {
@@ -579,6 +588,7 @@
     margin-left: 7px;
     vertical-align: middle;
     font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    white-space: nowrap;
   }
 
   .pm-close-btn {
@@ -591,6 +601,7 @@
     padding: 4px 10px;
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
   }
 
   .pm-close-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
