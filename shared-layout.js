@@ -10,7 +10,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, #0a0a0a 0%, transparent 100%);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+  }
+
+  .nav--scrolled {
+    background: rgba(10, 10, 10, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   }
 
   .nav-logo {
@@ -972,6 +983,17 @@
     setupNavDropdown();
     setupMobileMenu();
     injectPanicButton();
+
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      const heroEl = document.querySelector('.hero, [class*="hero"], header + *, main > *:first-child');
+      function updateNav() {
+        const threshold = heroEl ? heroEl.offsetHeight * 0.6 : window.innerHeight * 0.6;
+        nav.classList.toggle('nav--scrolled', window.scrollY > threshold);
+      }
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+    }
   }
 
   if (document.readyState === 'loading') {

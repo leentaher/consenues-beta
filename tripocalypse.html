@@ -613,6 +613,7 @@
       max-width: 520px;
       height: auto;
       filter: drop-shadow(0 0 30px rgba(255,255,255,0.05));
+      cursor: pointer;
     }
 
     .venn-hint {
@@ -1580,8 +1581,29 @@
       btn.addEventListener('click', () => setZone(btn.dataset.zone));
     });
 
-    document.querySelectorAll('.zone-hit').forEach(el => {
-      el.addEventListener('click', () => setZone(el.dataset.zone));
+    // Full-SVG click: map coordinates to zones using circle geometry
+    const vennSvg = document.getElementById('venn-svg');
+    const C = {
+      ai:      { cx: 210, cy: 175, r: 148 },
+      climate: { cx: 310, cy: 175, r: 148 },
+      fascism: { cx: 260, cy: 268, r: 148 }
+    };
+    function inC(x, y, c) { return Math.hypot(x - c.cx, y - c.cy) <= c.r; }
+
+    vennSvg.addEventListener('click', function(e) {
+      const rect = vennSvg.getBoundingClientRect();
+      const x = (e.clientX - rect.left) * (520 / rect.width);
+      const y = (e.clientY - rect.top)  * (480 / rect.height);
+      const a = inC(x, y, C.ai), cl = inC(x, y, C.climate), f = inC(x, y, C.fascism);
+      let zone = null;
+      if (a && cl && f)       zone = 'all';
+      else if (a && cl)       zone = 'ai-climate';
+      else if (a && f)        zone = 'ai-fascism';
+      else if (cl && f)       zone = 'cl-fascism';
+      else if (a)             zone = 'ai';
+      else if (cl)            zone = 'climate';
+      else if (f)             zone = 'fascism';
+      if (zone) setZone(zone);
     });
 
     setZone('all');
