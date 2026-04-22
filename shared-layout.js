@@ -612,9 +612,10 @@
   }
 
   .pm-eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.28em;
-    color: rgba(255,255,255,0.2);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #ff2a14;
     text-transform: uppercase;
     display: block;
     margin-bottom: 28px;
@@ -658,7 +659,7 @@
   .pm-counter-sub {
     font-size: 8px;
     letter-spacing: 0.28em;
-    color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.55);
     text-transform: uppercase;
     display: block;
     margin-top: 10px;
@@ -675,7 +676,7 @@
 
   .pm-headline {
     font-size: 12px;
-    color: rgba(255,255,255,0.62);
+    color: rgba(255,255,255,0.75);
     line-height: 1.75;
     letter-spacing: 0.03em;
     margin-bottom: 22px;
@@ -684,7 +685,7 @@
 
   .pm-body-text {
     font-size: 10px;
-    color: rgba(255,255,255,0.26);
+    color: rgba(255,255,255,0.55);
     line-height: 2;
     letter-spacing: 0.03em;
     font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
@@ -1050,7 +1051,7 @@
     <span class="pm-counter-sub">days to get everything in place</span>
     <div class="pm-rule"></div>
     <p class="pm-headline">Start preparing with us now. Sign up to serve in the 2029 presidential administration.</p>
-    <p class="pm-body-text">AI&rsquo;s eating jobs. Climate&rsquo;s eating continents. Fascism&rsquo;s eating democracy.<br>In <span id="pm-days-inline"></span> days, a new government will need a plan<br>and several thousand people to staff it.<br>We&rsquo;re writing the plan. You could be one of the people.</p>
+    <p class="pm-body-text">In <span id="pm-days-inline"></span> days, a new government will need a plan<br>and several thousand people to staff it.<br>We&rsquo;re writing the plan. You could be one of the people.</p>
   </div>
 </div>`;
       document.body.appendChild(wrap);
