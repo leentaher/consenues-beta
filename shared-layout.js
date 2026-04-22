@@ -1041,7 +1041,7 @@
     <button class="pm-close-btn" id="pm-close">&times; close (fine, I&rsquo;ll help)</button>
   </div>
   <div class="panic-modal-body">
-    <span class="pm-eyebrow">oh good, you found the panic button</span>
+    <span class="pm-eyebrow">don&rsquo;t panic</span>
     <div class="pm-counter-wrap">
       <span class="pm-ghost pm-ghost-r" id="pm-ghost-r"></span>
       <span class="pm-ghost pm-ghost-b" id="pm-ghost-b"></span>
