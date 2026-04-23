@@ -62,7 +62,7 @@
       opacity: 0; animation: up 0.5s 0.1s forwards;
       display: flex; align-items: center; gap: 12px;
     }
-    .hero-kicker::before { content: ''; width: 24px; height: 2px; background: var(--yellow); }
+    .hero-kicker::before { display: none; }
 
     .hero-title {
       font-family: var(--sans);
@@ -75,16 +75,6 @@
       opacity: 0; animation: up 0.6s 0.15s forwards;
     }
 
-    /* Blinking cursor on title */
-    .hero-title .cursor {
-      display: inline-block;
-      width: 0.08em;
-      height: 0.85em;
-      background: var(--yellow);
-      vertical-align: middle;
-      margin-left: 4px;
-      animation: blink 1s step-start infinite;
-    }
 
     .hero-sub {
       font-family: var(--mono);
@@ -220,7 +210,7 @@
     <div class="hero-bg-text">hi.</div>
     <div class="hero-content">
       <div class="hero-kicker">get in touch</div>
-      <h1 class="hero-title">We actually<br>respond<span class="cursor"></span></h1>
+      <h1 class="hero-title">We actually<br>respond</h1>
       <p class="hero-sub">Questions? Want to collaborate?</p>
     </div>
   </section>
