@@ -145,14 +145,14 @@
     align-items: center;
     line-height: 1;
     font-size: 13px;
-    color: var(--red-400, #f7ff70);
+    color: var(--yellow, var(--red-400, #f7ff70));
     font-weight: 500;
     text-transform: lowercase;
     text-decoration: none;
   }
 
   .nav-cta:hover {
-    color: var(--red-300, #fbff9e);
+    color: var(--yellow-mid, var(--red-300, #fbff9e));
   }
 
   /* ============================================

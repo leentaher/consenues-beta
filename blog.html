@@ -34,6 +34,21 @@
   </style>
 </head>
 <body>
+<script>
+  (() => {
+    const palettes = {
+      red:    ['#ff2020', '#ff4040', '#ff6060'],
+      blue:   ['#0000cc', '#0000ff', '#3366ff'],
+      purple: ['#8b5cf6', '#a78bfa', '#c4b5fd'],
+      yellow: ['#d4c84a', '#e0d870', '#ede99a']
+    };
+    const keys = Object.keys(palettes);
+    const shades = palettes[keys[Math.floor(Math.random() * keys.length)]];
+    document.documentElement.style.setProperty('--yellow', shades[0]);
+    document.documentElement.style.setProperty('--yellow-mid', shades[1]);
+    document.documentElement.style.setProperty('--yellow-light', shades[2]);
+  })();
+</script>
   <div id="site-header"></div>
   <main class="page-wrap">
     <section class="hero">

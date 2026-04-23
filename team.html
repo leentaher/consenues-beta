@@ -36,7 +36,7 @@
 
     /* HERO */
     .hero { padding: 80px 64px 64px; border-bottom: 1px solid var(--t-border-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
-    .hero-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #d4c84a; text-transform: uppercase; margin-bottom: 20px; opacity: 0; animation: up 0.6s 0.1s forwards; }
+    .hero-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: var(--yellow); text-transform: uppercase; margin-bottom: 20px; opacity: 0; animation: up 0.6s 0.1s forwards; }
     .hero-title { font-family: var(--t-sans); font-size: clamp(3rem,6vw,6rem); font-weight: 900; line-height: 0.95; color: #fff; letter-spacing: -0.03em; opacity: 0; animation: up 0.7s 0.2s forwards; }
     .hero-right { opacity: 0; animation: up 0.7s 0.35s forwards; }
     .hero-desc { font-size: 15px; color: var(--t-text-mid); line-height: 1.85; max-width: 480px; }
@@ -211,6 +211,21 @@
   </style>
 </head>
 <body>
+<script>
+  (() => {
+    const palettes = {
+      red:    ['#ff2020', '#ff4040', '#ff6060'],
+      blue:   ['#0000cc', '#0000ff', '#3366ff'],
+      purple: ['#8b5cf6', '#a78bfa', '#c4b5fd'],
+      yellow: ['#d4c84a', '#e0d870', '#ede99a']
+    };
+    const keys = Object.keys(palettes);
+    const shades = palettes[keys[Math.floor(Math.random() * keys.length)]];
+    document.documentElement.style.setProperty('--yellow', shades[0]);
+    document.documentElement.style.setProperty('--yellow-mid', shades[1]);
+    document.documentElement.style.setProperty('--yellow-light', shades[2]);
+  })();
+</script>
   <div class="scanlines"></div>
   <div class="scan-bar"></div>
 
